@@ -815,3 +815,21 @@ th.sorted .th-sort { color: var(--text); }
   nav.tabs a:first-of-type { margin-left: 4px; }
   nav.tabs a:last-of-type { margin-right: 4px; }
 }
+
+/* ---------- Flèches de la barre du bas (téléphone) ---------- */
+.nav-arrow { display: none; }
+@media (max-width: 900px) {
+  .nav-arrow {
+    display: flex; align-items: center; justify-content: center; position: absolute; top: 50%; z-index: 2;
+    width: 26px; height: 26px; margin-top: -13px; padding: 0; border: 0; border-radius: 50%;
+    background: var(--sprout); color: #0f2a1d; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35); cursor: pointer;
+  }
+  .nav-arrow[hidden] { display: none; }
+  .nav-arrow svg { width: 15px; height: 15px; }
+  .nav-arrow.l { left: -6px; }
+  .nav-arrow.r { right: -6px; }
+  @media (prefers-reduced-motion: no-preference) {
+    .nav-arrow.r { animation: nav-nudge 1.6s ease-in-out 3; }
+    @keyframes nav-nudge { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(3px); } }
+  }
+}

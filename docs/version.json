@@ -1,6 +1,6 @@
 {
-  "versionCode": 25,
-  "versionName": "3.14",
+  "versionCode": 26,
+  "versionName": "3.15",
   "apk": "https://github.com/tristanderoquefeuil-tech/pilote-fl/releases/latest/download/PiloteFL.apk",
-  "notes": "Barre du bas défilante : tous les outils, qu'on fait glisser du doigt."
+  "notes": "Flèches aux bords de la barre du bas pour montrer qu'elle défile."
 }

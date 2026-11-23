@@ -4,6 +4,11 @@ Les améliorations sont regroupées par version publiée. La section « En prép
 
 ## En préparation
 
+## 3.15 — 23 novembre 2026
+
+- **Flèches sur la barre du bas.** Sur téléphone, des flèches ‹ et › apparaissent aux bords de la barre tant qu'il reste des outils de ce côté ; un toucher fait défiler la barre. La flèche de droite bouge doucement au démarrage pour attirer l'œil.
+- **Indice de défilement.** Au premier lancement sur téléphone, la barre du bas glisse brièvement puis revient, pour montrer qu'elle contient d'autres outils (une seule fois, désactivé si les animations sont réduites).
+
 ## 3.14 — 23 novembre 2026
 
 - **Barre du bas défilante.** Sur téléphone, la roue est remplacée par une barre qui contient tous les outils (Accueil, Analyse, Promo, Assortiment, Com, Cours, Marge, Saison) et qu'on fait glisser du doigt ; l'onglet ouvert est ramené au centre, les bords en fondu signalent qu'il y a d'autres outils.
