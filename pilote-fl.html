@@ -1336,7 +1336,7 @@ th.sorted .th-sort { color: var(--text); }
             <div class="panel span-12">
               <div class="ph"><h3>À propos</h3></div>
               <div class="actions" id="st-update-box" style="margin-bottom:10px" hidden><button type="button" id="st-update">Vérifier les mises à jour</button><span class="note" id="st-update-msg" role="status"></span></div>
-              <p class="note" style="margin:0">Pilote F&amp;L · version <span id="st-version">3.11</span> · boîte à outils du category manager fruits et légumes. Cours réels : Commission européenne, Agri-food Data Portal (données publiques). Les prix, volumes et cours affichés comme « exemple » sont fictifs et servent uniquement à la démonstration. Site et mises à jour : <a href="https://tristanderoquefeuil-tech.github.io/pilote-fl/" target="_blank" rel="noopener">tristanderoquefeuil-tech.github.io/pilote-fl</a>.</p>
+              <p class="note" style="margin:0">Pilote F&amp;L · version <span id="st-version">3.12</span> · boîte à outils du category manager fruits et légumes. Cours réels : Commission européenne, Agri-food Data Portal (données publiques). Les prix, volumes et cours affichés comme « exemple » sont fictifs et servent uniquement à la démonstration. Site et mises à jour : <a href="https://tristanderoquefeuil-tech.github.io/pilote-fl/" target="_blank" rel="noopener">tristanderoquefeuil-tech.github.io/pilote-fl</a>.</p>
             </div>
           </div>
         </div>
@@ -1455,9 +1455,17 @@ th.sorted .th-sort { color: var(--text); }
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="fiche-title" id="fiche-sheet"></div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script>
 (() => {
+  // Lecture Excel : bibliothèque chargée à la demande (≈ 900 Ko), pas au démarrage
+  const XLSX_SRC = "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js";
+  let xlsxP = null;
+  const loadXLSX = () => window.XLSX ? Promise.resolve(window.XLSX) : (xlsxP = xlsxP || new Promise((res, rej) => {
+    const sc = document.createElement("script"); sc.src = XLSX_SRC; sc.async = true;
+    sc.onload = () => (window.XLSX ? res(window.XLSX) : rej(new Error("x")));
+    sc.onerror = () => { xlsxP = null; sc.remove(); rej(new Error("x")); };
+    document.head.appendChild(sc);
+  }));
   // ================= Données produits =================
   // mois : 12 chiffres janv → déc (2 pleine saison France, 1 début/fin, 0 import)
   // pa, pv, freinte, dem : valeurs d'exemple pour le simulateur (€ HT/kg, € TTC/kg, %, %)
@@ -1583,6 +1591,7 @@ th.sorted .th-sort { color: var(--text); }
     const v = VIEWS.includes(h) ? h : "accueil";
     if (v !== "reglages") lastView = v;
     VIEWS.forEach((name) => { $("view-" + name).hidden = name !== v; });
+    if (v === "analyse") setTimeout(() => loadXLSX().catch(() => {}), 400); // préchargement discret
     const pg = $("view-" + v).querySelector(".page");
     if (pg) { pg.classList.remove("enter"); void pg.offsetWidth; pg.classList.add("enter"); }
     if (v === "marche") setTimeout(() => drawChart(), 0);
@@ -2067,6 +2076,13 @@ th.sorted .th-sort { color: var(--text); }
         `<div><b>${eur.format(pa)}</b><span>achat HT / kg${ar ? " (cours)" : ""}</span></div><div><b>${eur.format(p.pv)}</b><span>vente TTC / kg</span></div>` +
         `<div><b>${pct(m.tauxReel)}</b><span>marge réelle</span></div><div><b>${eur.format(m.pvConseilTTC)}</b><span>prix conseillé</span></div></div>` +
         (ar ? `<p class="note" style="margin:0">Achat : ${ar.label}. Prix de vente, freinte et démarque : valeurs d'exemple.</p>` : "") +
+        // Repère de négociation : prix d'achat maximum pour tenir la marge visée au prix de vente actuel
+        (() => {
+          const mx = (p.pv / (1 + (parseFloat($("m-tva").value) || 5.5) / 100)) * m.kgVendus * (1 - m.cible);
+          if (!(mx > 0)) return "";
+          const pos = !ar ? "" : pa > mx ? " Le cours le dépasse : demander une participation au fournisseur ou revoir le prix de vente." : pa > mx * 0.9 ? " Le cours en est proche : peu de marge de négociation." : " Le cours est en dessous : marge de négociation confortable.";
+          return `<p class="note" style="margin:6px 0 0">Achat maximum pour ${pct(m.cible, 0)} de marge réelle à ${eur.format(p.pv)} TTC : <b>${eur.format(mx)} HT / kg</b>.${pos}</p>`;
+        })() +
         `<div class="actions"><button type="button" data-sim="${esc(p.nom)}">Ouvrir dans le simulateur</button><button type="button" data-mkgo="${esc(p.nom)}">Voir le cours</button></div></section>`;
     }
     // Cours d'achat du produit : réels, saisis ou d'exemple (toujours signalé)
@@ -2815,7 +2831,7 @@ th.sorted .th-sort { color: var(--text); }
         try { txt = new TextDecoder("utf-8", { fatal: true }).decode(buf); } catch { txt = new TextDecoder("windows-1252").decode(buf); }
         loadTable(parseDelimited(txt), f.name);
       } else {
-        if (!window.XLSX) throw new Error("La lecture Excel n'est pas disponible pour le moment (pas de connexion ?). Enregistrez le fichier en CSV ou copiez-collez les cellules.");
+        try { await loadXLSX(); } catch { throw new Error("La lecture Excel n'est pas disponible pour le moment (pas de connexion ?). Enregistrez le fichier en CSV ou copiez-collez les cellules."); }
         const wb = XLSX.read(await f.arrayBuffer(), { type: "array" });
         let best = null;
         wb.SheetNames.forEach((n) => { const t = XLSX.utils.sheet_to_json(wb.Sheets[n], { header: 1, raw: true, defval: "" }); if (!best || t.length > best.length) best = t; });
@@ -3752,6 +3768,17 @@ th.sorted .th-sort { color: var(--text); }
           const kg = (1 - p.freinte / 100) * (1 - p.dem / 100);
           const achatMax = (p.pv / 1.055) * kg * (1 - PREFS.cible / 100);
           parts.push(`prix d'achat maximum ${f2(achatMax)} € HT/kg pour ${PREFS.cible} % de marge réelle à ${f2(p.pv)} € TTC (exemple)`);
+          // Repère marché : cours réel récent, tendance sur 4 semaines et position de négociation
+          const ar = achatReel(p.nom);
+          if (ar) {
+            const d = seriesOf(p.nom).data, old = d.length > 4 ? d[d.length - 5].c : NaN;
+            const tr = isFinite(old) && old > 0 ? (ar.pa - old) / old : NaN;
+            const trTxt = isFinite(tr) ? (Math.abs(tr) < 0.03 ? ", stable sur 4 semaines" : `, ${sgnPct(tr)} sur 4 semaines`) : "";
+            const pos = ar.pa > achatMax ? "au-dessus de votre maximum : demander une participation ou revoir le prix de vente"
+              : ar.pa > achatMax * 0.9 ? "proche de votre maximum : peu de marge de négociation"
+              : "sous votre maximum : marge de négociation confortable";
+            parts.push(`cours du marché ${f2(ar.pa)} € HT/kg (${ar.label})${trTxt}, ${pos}`);
+          }
         }
         const a = R && R.P.filter((x) => x.ref && p && x.ref.nom === p.nom);
         if (a && a.length) {

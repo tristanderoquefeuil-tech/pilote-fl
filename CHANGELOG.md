@@ -4,6 +4,12 @@ Les améliorations sont regroupées par version publiée. La section « En prép
 
 ## En préparation
 
+## 3.12 — 23 novembre 2026
+
+- **Achat maximum dans la fiche produit.** La fiche indique le prix d'achat maximum pour tenir la marge visée au prix de vente actuel et, quand un cours réel existe, si le marché est au-dessus, proche ou en dessous.
+- **Démarrage plus léger.** La bibliothèque de lecture Excel (près de 900 Ko) n'est plus chargée à chaque ouverture de l'appli, mais seulement en ouvrant l'Analyse express (préchargement discret) ou au moment de lire un fichier.
+- **Cours du marché dans la fiche RDV fournisseur.** Pour chaque produit, la fiche de préparation ajoute le cours réel récent, sa tendance sur 4 semaines et la position de négociation : au-dessus, proche ou sous votre prix d'achat maximum.
+
 ## 3.11 — 23 novembre 2026
 
 - **Cours d'achat dans le mail hebdo.** « Remplir automatiquement » ajoute aux points d'attention les produits dont le cours réel a bougé d'au moins 10 % sur la semaine, avec une piste d'action (surveiller la marge en hausse, renforcer la mise en avant en baisse).
