@@ -1,6 +1,6 @@
 {
-  "versionCode": 20,
-  "versionName": "3.9",
+  "versionCode": 21,
+  "versionName": "3.10",
   "apk": "https://github.com/tristanderoquefeuil-tech/pilote-fl/releases/latest/download/PiloteFL.apk",
-  "notes": "Alerte revente à perte dans le Studio promo, tableau par famille triable, prix de rayon en ,x9 dans le simulateur de marge."
+  "notes": "Promo au cours du jour, rappel de sauvegarde sur le tableau de bord, tableau de bord sans débordement sur téléphone."
 }

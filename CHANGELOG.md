@@ -4,6 +4,12 @@ Les améliorations sont regroupées par version publiée. La section « En prép
 
 ## En préparation
 
+## 3.10 — 23 novembre 2026
+
+- **Tableau de bord sans débordement sur téléphone.** Le bloc « Cours d'achat de la semaine » dépassait de l'écran et faisait glisser la page de côté ; les noms longs sont maintenant raccourcis proprement.
+- **Rappel de sauvegarde.** Dans l'appli Android et sur le site, vos données ne sont gardées que sur l'appareil. Sans sauvegarde depuis 14 jours, le tableau de bord ajoute « Sauvegarder mes données » dans « À faire », avec un lien direct vers la sauvegarde.
+- **Promo au cours du jour.** Dans le Studio promo, un produit ajouté prend comme prix d'achat le cours réel (ou vos prix d'achat récents) quand il existe ; le prix promo proposé garde au moins 10 % de marge HT, arrondi à l'étiquette en ,x9.
+
 ## 3.9 — 23 novembre 2026
 
 - **Alerte revente à perte.** Dans le Studio promo, un produit dont le prix promo HT passe sous le prix d'achat est signalé (« sous l'achat ») avec un rappel : la revente à perte est interdite en France, sauf exceptions encadrées. Pistes : remonter le prix promo ou négocier une participation du fournisseur.

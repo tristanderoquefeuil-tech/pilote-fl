@@ -800,6 +800,12 @@ th.sorted .th-sort { color: var(--text); }
 .srp-alert { margin: 0 0 12px; padding: 10px 14px; border-radius: 14px; background: #FBE3D6; color: #7A2E10; font-size: 0.86rem; line-height: 1.45; }
 .srp-tag { display: block; font-size: 0.68rem; font-weight: 700; color: #B4441A; text-transform: uppercase; letter-spacing: 0.03em; }
 
+/* ---------- Tableau de bord : plus de débordement horizontal sur téléphone ---------- */
+.movers > *, .mv-col > * { min-width: 0; }
+.mv-row { min-width: 0; box-sizing: border-box; max-width: 100%; }
+.mv-row .mv-n { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mv-row > :not(.mv-n) { flex-shrink: 0; }
+
 
 /* ===== Onglet Marché : terminal sombre posé sur le fond menthe ===== */
 .mk { --mk-bg: #0f241b; --mk-card: #143024; --mk-line: #23402f; --mk-text: #d9e6e2; --mk-mute: #86a09a; --mk-hi: #f4f8f6; --mk-up: #3fd39a; --mk-dn: #ff7e5f; --mk-amber: #f2b33d; }
@@ -1330,7 +1336,7 @@ th.sorted .th-sort { color: var(--text); }
             <div class="panel span-12">
               <div class="ph"><h3>À propos</h3></div>
               <div class="actions" id="st-update-box" style="margin-bottom:10px" hidden><button type="button" id="st-update">Vérifier les mises à jour</button><span class="note" id="st-update-msg" role="status"></span></div>
-              <p class="note" style="margin:0">Pilote F&amp;L · version <span id="st-version">3.9</span> · boîte à outils du category manager fruits et légumes. Cours réels : Commission européenne, Agri-food Data Portal (données publiques). Les prix, volumes et cours affichés comme « exemple » sont fictifs et servent uniquement à la démonstration. Site et mises à jour : <a href="https://tristanderoquefeuil-tech.github.io/pilote-fl/" target="_blank" rel="noopener">tristanderoquefeuil-tech.github.io/pilote-fl</a>.</p>
+              <p class="note" style="margin:0">Pilote F&amp;L · version <span id="st-version">3.10</span> · boîte à outils du category manager fruits et légumes. Cours réels : Commission européenne, Agri-food Data Portal (données publiques). Les prix, volumes et cours affichés comme « exemple » sont fictifs et servent uniquement à la démonstration. Site et mises à jour : <a href="https://tristanderoquefeuil-tech.github.io/pilote-fl/" target="_blank" rel="noopener">tristanderoquefeuil-tech.github.io/pilote-fl</a>.</p>
             </div>
           </div>
         </div>
@@ -1918,6 +1924,14 @@ th.sorted .th-sort { color: var(--text); }
       if (dd <= 60 && !covered) todo.push({ date: addDays(ev.date, -60), late: false,
         html: `<button type="button" class="list-row" data-hev="${i}"><span class="pico sm txt fruit" aria-hidden="true">TF</span><span class="grow">Préparer « ${esc(ev.nom)} »<small>dans ${dd} jours · aucune opération créée</small></span><span class="st todo">À lancer</span></button>` });
     });
+    // Données gardées sur ce téléphone seulement : rappel de sauvegarde au bout de 14 jours
+    if (storeMode === "local") {
+      const nData = PROMOS.items.length + RDVS.items.length + RELEVES.items.length + prices.length;
+      const last = Number(local.get("pfl-last-backup", "0")) || 0;
+      const days = last ? Math.floor((Date.now() - last) / 86400000) : null;
+      if (nData > 0 && (days === null || days >= 14)) todo.push({ date: addDays(todayDay, -1), late: false,
+        html: `<button type="button" class="list-row" data-go="reglages"><span class="pico sm txt" aria-hidden="true">SV</span><span class="grow">Sauvegarder mes données<small>${days === null ? "aucune sauvegarde pour l'instant" : `dernière sauvegarde il y a ${days} jours`} · ${nData} élément${nData > 1 ? "s gardés" : " gardé"} sur ce téléphone seulement</small></span><span class="st todo">À faire</span></button>` });
+    }
     todo.sort((a, b) => (b.late - a.late) || (a.date - b.date));
     $("h-todo").innerHTML = todo.slice(0, 8).map((t) => t.html).join("") || `<p class="note">Rien d'urgent cette semaine. Créez une opération dans le Studio promo ou préparez un rendez-vous fournisseur.</p>`;
     $("h-todo-note").textContent = todo.length ? `${todo.length} élément${todo.length > 1 ? "s" : ""}` : "";
@@ -3368,7 +3382,16 @@ th.sorted .th-sort { color: var(--text); }
   const defaultLine = (nom) => {
     const p = findProd(nom);
     const pn = p ? p.pv : NaN;
-    return { nom: p ? p.nom : nom, pn: isFinite(pn) ? pn : "", pp: isFinite(pn) ? Math.max(0.29, Math.floor(pn * 0.8 * 10) / 10 + 0.09) : "", achat: p ? p.pa : "", meca: "Prix choc", plv: "Affiche et stop-rayon" };
+    // Achat : cours du jour (réel ou vos prix) quand il existe, sinon valeur d'exemple
+    const ar = p ? achatReel(p.nom) : null, achat = ar ? ar.pa : p ? p.pa : NaN;
+    let pp = isFinite(pn) ? Math.max(0.29, Math.floor(pn * 0.8 * 10) / 10 + 0.09) : NaN;
+    // Jamais sous l'achat : au moins 10 % de marge HT, arrondi à l'étiquette en ,x9 au-dessus
+    if (isFinite(pp) && isFinite(achat) && achat > 0) {
+      const mini = (achat / 0.9) * 1.055;
+      if (pp < mini) { const c = Math.round(mini * 100); let q = Math.floor(c / 10) * 10 + 9; if (q < c) q += 10; pp = q / 100; }
+      if (isFinite(pn) && pp >= pn) pp = NaN; // pas de remise possible sans vendre à marge trop faible : à fixer à la main
+    }
+    return { nom: p ? p.nom : nom, pn: isFinite(pn) ? pn : "", pp: isFinite(pp) ? pp : "", achat: isFinite(achat) ? achat : "", meca: "Prix choc", plv: "Affiche et stop-rayon" };
   };
   function selectedOp() { return PROMOS.items.find((o) => o.id === PR.sel) || null; }
   const saveOp = async (op) => {
@@ -3411,7 +3434,7 @@ th.sorted .th-sort { color: var(--text); }
       const sugg = PRODUITS.filter((p) => p.mois[s.getMonth()] === 2 && !lines.some((l) => l.nom === p.nom)).slice(0, 12);
       const marge = (l) => { const pp = toNum(l.pp), a = toNum(l.achat); if (!(pp > 0) || !(a > 0)) return NaN; const h = pp / 1.055; return (h - a) / h; };
       const sousAchat = lines.filter((l) => marge(l) < 0).map((l) => l.nom);
-      body = `<div class="panel"><div class="ph"><h3>Produits en promotion</h3><span class="note">prix d'achat préremplis avec des valeurs d'exemple, à remplacer</span></div>` +
+      body = `<div class="panel"><div class="ph"><h3>Produits en promotion</h3><span class="note">prix d'achat préremplis avec le cours du jour quand il existe (sinon valeur d'exemple), à vérifier</span></div>` +
         (sousAchat.length ? `<p class="srp-alert" role="alert"><b>Prix promo sous le prix d'achat :</b> ${sousAchat.map(esc).join(", ")}. La revente à perte est interdite en France (sauf exceptions encadrées, comme les produits périssables menacés d'altération rapide) : remontez le prix promo ou négociez une participation du fournisseur.</p>` : "") +
         `<div class="scroll"><table class="data" id="pr-lines"><thead><tr><th>Produit</th><th class="r">Prix normal TTC</th><th class="r">Prix promo TTC</th><th class="r">Remise</th><th class="r">Achat HT</th><th class="r">Marge promo</th><th>Mécanique</th><th>PLV</th><th></th></tr></thead><tbody>` +
         (lines.map((l, i) => { const pn = toNum(l.pn), pp = toNum(l.pp), mg = marge(l); const rem = pn > 0 && pp > 0 ? 1 - pp / pn : NaN;
@@ -4190,6 +4213,8 @@ th.sorted .th-sort { color: var(--text); }
     const btn = e.currentTarget, msg = $("st-data-msg");
     const text = JSON.stringify(backupData());
     const name = `pilote-fl-sauvegarde-${ymd(todayDay)}.json`;
+    local.set("pfl-last-backup", String(Date.now())); // date de la dernière sauvegarde (rappel du tableau de bord)
+    setTimeout(() => { try { renderHome(); } catch { /* tableau de bord pas encore prêt */ } }, 0);
     if (window.AndroidBridge && window.AndroidBridge.share) {
       window.AndroidBridge.share(text);
       msg.textContent = "Choisissez où envoyer la sauvegarde : e-mail, Drive ou messagerie.";
