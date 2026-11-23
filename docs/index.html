@@ -1341,7 +1341,7 @@ th.sorted .th-sort { color: var(--text); }
             <div class="panel span-12">
               <div class="ph"><h3>À propos</h3></div>
               <div class="actions" id="st-update-box" style="margin-bottom:10px" hidden><button type="button" id="st-update">Vérifier les mises à jour</button><span class="note" id="st-update-msg" role="status"></span></div>
-              <p class="note" style="margin:0">Pilote F&amp;L · version <span id="st-version">3.10</span> · boîte à outils du category manager fruits et légumes. Cours réels : Commission européenne, Agri-food Data Portal (données publiques). Les prix, volumes et cours affichés comme « exemple » sont fictifs et servent uniquement à la démonstration. Site et mises à jour : <a href="https://tristanderoquefeuil-tech.github.io/pilote-fl/" target="_blank" rel="noopener">tristanderoquefeuil-tech.github.io/pilote-fl</a>.</p>
+              <p class="note" style="margin:0">Pilote F&amp;L · version <span id="st-version">3.11</span> · boîte à outils du category manager fruits et légumes. Cours réels : Commission européenne, Agri-food Data Portal (données publiques). Les prix, volumes et cours affichés comme « exemple » sont fictifs et servent uniquement à la démonstration. Site et mises à jour : <a href="https://tristanderoquefeuil-tech.github.io/pilote-fl/" target="_blank" rel="noopener">tristanderoquefeuil-tech.github.io/pilote-fl</a>.</p>
             </div>
           </div>
         </div>
@@ -1506,7 +1506,12 @@ th.sorted .th-sort { color: var(--text); }
     ["Rhubarbe", "Fruit", "000122100000", "Pays-Bas", "", 2.50, 5.49, 8, 6],
   ].map(([nom, famille, mois, origine, icon, pa, pv, freinte, dem]) => ({ nom, famille, mois: [...mois].map(Number), origine, icon, pa, pv, freinte, dem }));
   const BY_NAME = Object.fromEntries(PRODUITS.map((p) => [p.nom.toLowerCase(), p]));
-  const findProd = (n) => BY_NAME[String(n || "").trim().toLowerCase()] || null;
+  // Clé tolérante : sans accents, ni pluriel, ni ponctuation (« clementines » = « Clémentine », « chou fleur » = « Chou-fleur »)
+  const prodKey = (s) => String(s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim()
+    .split(" ").map((w) => (w.length > 3 ? w.replace(/[sx]$/, "") : w)).join(" ");
+  const BY_KEY = {};
+  PRODUITS.forEach((p) => { BY_KEY[prodKey(p.nom)] = p; p.nom.split(" / ").forEach((part) => { const k = prodKey(part); if (!BY_KEY[k]) BY_KEY[k] = p; }); });
+  const findProd = (n) => BY_NAME[String(n || "").trim().toLowerCase()] || BY_KEY[prodKey(n)] || null;
 
   const MOIS = ["Janv", "Févr", "Mars", "Avr", "Mai", "Juin", "Juil", "Août", "Sept", "Oct", "Nov", "Déc"];
   const MOIS_LONG = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
@@ -2135,7 +2140,13 @@ th.sorted .th-sort { color: var(--text); }
   $("gsearch").addEventListener("keydown", (e) => {
     if (e.key !== "Enter") return;
     const q = $("gsearch").value.trim().toLowerCase();
-    if (!findProd(q)) { const m = PRODUITS.find((p) => p.nom.toLowerCase().startsWith(q)) || PRODUITS.find((p) => p.nom.toLowerCase().includes(q)); if (m) $("gsearch").value = m.nom; }
+    if (!findProd(q)) {
+      // Tolérant aux accents, aux pluriels et à la ponctuation : « clementine », « pommes », « chataignes »
+      const key = (s) => normH(s).replace(/[^a-z0-9]+/g, " ").trim().split(" ").map((w) => (w.length > 3 ? w.replace(/[sx]$/, "") : w)).join(" ");
+      const k = key(q);
+      const m = k && (PRODUITS.find((p) => key(p.nom) === k) || PRODUITS.find((p) => key(p.nom).startsWith(k)) || PRODUITS.find((p) => key(p.nom).includes(k)));
+      if (m) $("gsearch").value = m.nom;
+    }
     searchGo();
   });
   document.addEventListener("click", (e) => {
@@ -3965,6 +3976,13 @@ th.sorted .th-sort { color: var(--text); }
       .forEach((p) => att.push(`• ${p.nom} : ${sgnPct(p.ev)} par rapport à N-1. Vérifier disponibilité, qualité et prix.`));
     (AS.vpIdx || []).filter((x) => x.i < 95).forEach((x) => att.push(`• Veille prix : ${x.e} est ${Math.round(100 - x.i)} % moins cher que nous sur les produits relevés.`));
     getAlerts().filter(alertHit).forEach((a) => att.push(`• Cours de gros : ${alertText(a)} (cours actuel ${f2(lastOf(seriesOf(a.produit).data))} €).`));
+    // Fortes variations des cours réels de la semaine (au moins 10 %, cotations de moins de 3 semaines)
+    const alerted = new Set(getAlerts().filter(alertHit).map((a) => a.produit));
+    PRODUITS.map((p) => { const s = seriesOf(p.nom), d = s.data, lp = d[d.length - 1]; return { nom: p.nom, src: s.src, last: lastOf(d), ch: chgOf(d), recent: lp && lp.d && daysUntil(parseDay(lp.d)) > -24 }; })
+      .filter((x) => (x.src === "ue" || x.src === "user") && x.recent && isFinite(x.ch) && Math.abs(x.ch) >= 10 && !alerted.has(x.nom))
+      .sort((a, b) => Math.abs(b.ch) - Math.abs(a.ch)).slice(0, 3)
+      .forEach((x) => att.push(`• Cours d'achat : ${x.nom.toLowerCase()} ${sgn(x.ch, 0)} % sur la semaine (${f2(x.last)} €/kg). ${x.ch > 0 ? "Surveiller la marge et le prix de vente, limiter la mise en avant." : "Opportunité : renforcer la mise en avant ou négocier une opération."}`));
+    if (att.some((t) => t.startsWith("• Cours d'achat"))) src.push("l'évolution des cours d'achat");
     $("mlt-attention").value = att.join("\n");
     $("mlt-fin").value = "Merci à tous pour votre mobilisation. N'hésitez pas à remonter vos questions et vos retours terrain.\n\nBonne semaine," + (PREFS.nom ? "\n" + PREFS.nom : "") + (PREFS.ens ? "\n" + PREFS.ens : "");
     ML_SECTIONS.forEach(([k]) => { $("mlc-" + k).checked = !!$("mlt-" + k).value.trim(); });

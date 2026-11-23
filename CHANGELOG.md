@@ -4,6 +4,12 @@ Les améliorations sont regroupées par version publiée. La section « En prép
 
 ## En préparation
 
+## 3.11 — 23 novembre 2026
+
+- **Cours d'achat dans le mail hebdo.** « Remplir automatiquement » ajoute aux points d'attention les produits dont le cours réel a bougé d'au moins 10 % sur la semaine, avec une piste d'action (surveiller la marge en hausse, renforcer la mise en avant en baisse).
+- **Produits reconnus partout, même mal orthographiés.** Toutes les saisies de produit (ajout en promo, prix d'achat, relevés de prix, fiche produit) reconnaissent les noms sans accents, au pluriel ou avec d'autres séparateurs : « clementines » ajoute bien la Clémentine, avec son cours du jour.
+- **Recherche de produit tolérante.** La recherche en haut de l'écran trouve le produit même sans accents, au pluriel ou avec d'autres séparateurs : « clementine », « pommes », « chataigne », « CHOU FLEUR », « nectarines ».
+
 ## 3.10 — 23 novembre 2026
 
 - **Tableau de bord sans débordement sur téléphone.** Le bloc « Cours d'achat de la semaine » dépassait de l'écran et faisait glisser la page de côté ; les noms longs sont maintenant raccourcis proprement.
