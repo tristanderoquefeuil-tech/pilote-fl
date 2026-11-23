@@ -1,0 +1,7 @@
+# Fichiers produits par la compilation de l'appli Android
+android/build/
+*.apk
+
+# Outils de travail locaux
+.claude/
+*.idsig
