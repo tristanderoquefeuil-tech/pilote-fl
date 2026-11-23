@@ -1,6 +1,6 @@
 {
-  "versionCode": 23,
-  "versionName": "3.12",
+  "versionCode": 24,
+  "versionName": "3.13",
   "apk": "https://github.com/tristanderoquefeuil-tech/pilote-fl/releases/latest/download/PiloteFL.apk",
-  "notes": "Cours du marché et position de négociation dans la fiche RDV et la fiche produit ; démarrage plus léger."
+  "notes": "Import Excel plus robuste, restauration d'une sauvegarde collée depuis un mail, accords au singulier."
 }

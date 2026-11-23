@@ -1336,7 +1336,7 @@ th.sorted .th-sort { color: var(--text); }
             <div class="panel span-12">
               <div class="ph"><h3>À propos</h3></div>
               <div class="actions" id="st-update-box" style="margin-bottom:10px" hidden><button type="button" id="st-update">Vérifier les mises à jour</button><span class="note" id="st-update-msg" role="status"></span></div>
-              <p class="note" style="margin:0">Pilote F&amp;L · version <span id="st-version">3.12</span> · boîte à outils du category manager fruits et légumes. Cours réels : Commission européenne, Agri-food Data Portal (données publiques). Les prix, volumes et cours affichés comme « exemple » sont fictifs et servent uniquement à la démonstration. Site et mises à jour : <a href="https://tristanderoquefeuil-tech.github.io/pilote-fl/" target="_blank" rel="noopener">tristanderoquefeuil-tech.github.io/pilote-fl</a>.</p>
+              <p class="note" style="margin:0">Pilote F&amp;L · version <span id="st-version">3.13</span> · boîte à outils du category manager fruits et légumes. Cours réels : Commission européenne, Agri-food Data Portal (données publiques). Les prix, volumes et cours affichés comme « exemple » sont fictifs et servent uniquement à la démonstration. Site et mises à jour : <a href="https://tristanderoquefeuil-tech.github.io/pilote-fl/" target="_blank" rel="noopener">tristanderoquefeuil-tech.github.io/pilote-fl</a>.</p>
             </div>
           </div>
         </div>
@@ -1514,6 +1514,7 @@ th.sorted .th-sort { color: var(--text); }
     .split(" ").map((w) => (w.length > 3 ? w.replace(/[sx]$/, "") : w)).join(" ");
   const BY_KEY = {};
   PRODUITS.forEach((p) => { BY_KEY[prodKey(p.nom)] = p; p.nom.split(" / ").forEach((part) => { const k = prodKey(part); if (!BY_KEY[k]) BY_KEY[k] = p; }); });
+  const pl = (n, one, many) => (Math.abs(Number(n)) >= 2 ? many : one);
   const findProd = (n) => BY_NAME[String(n || "").trim().toLowerCase()] || BY_KEY[prodKey(n)] || null;
 
   const MOIS = ["Janv", "Févr", "Mars", "Avr", "Mai", "Juin", "Juil", "Août", "Sept", "Oct", "Nov", "Déc"];
@@ -1917,11 +1918,11 @@ th.sorted .th-sort { color: var(--text); }
     const kpis = [];
     if (R && R.P.length) {
       const ev = R.flags.ca1 ? (R.T.ca - R.T.ca1) / R.T.ca1 : NaN;
-      kpis.push({ l: "Dernière analyse", v: eur0.format(R.T.ca), s: R.flags.ca1 ? `${sgnPct(ev)} vs N-1` : `${R.P.length} produits`, c: isFinite(ev) ? (ev >= 0 ? "good" : "bad") : "" });
+      kpis.push({ l: "Dernière analyse", v: eur0.format(R.T.ca), s: R.flags.ca1 ? `${sgnPct(ev)} vs N-1` : `${R.P.length} ${pl(R.P.length, "produit", "produits")}`, c: isFinite(ev) ? (ev >= 0 ? "good" : "bad") : "" });
     } else kpis.push({ l: "Dernière analyse", v: "–", s: "déposez l'export de la semaine" });
     if (nextOp) { const dd = daysUntil(nextOp.s); kpis.push({ l: "Prochaine opération", v: dd > 0 ? `J-${dd}` : "En cours", s: nextOp.op.nom }); }
     else kpis.push({ l: "Prochaine opération", v: "–", s: "aucune opération prévue" });
-    kpis.push({ l: "Étapes promo en retard", v: String(lateSteps.length), s: `sur ${allSteps.filter((x) => !x.done).length} étapes à faire`, c: lateSteps.length ? "bad" : "good" });
+    kpis.push({ l: "Étapes promo en retard", v: String(lateSteps.length), s: `sur ${allSteps.filter((x) => !x.done).length} ${pl(allSteps.filter((x) => !x.done).length, "étape", "étapes")} à faire`, c: lateSteps.length ? "bad" : "good" });
     if (nextRdv) { const dd = daysUntil(parseDay(nextRdv.date)); kpis.push({ l: "Prochain RDV fournisseur", v: dd === 0 ? "Aujourd'hui" : `J-${dd}`, s: nextRdv.fournisseur }); }
     else kpis.push({ l: "Prochain RDV fournisseur", v: "–", s: "aucun rendez-vous prévu" });
     $("h-kpis").innerHTML = kpis.map((k) => `<div class="kpi ${k.c || ""}"><span class="eyebrow">${k.l}</span><span class="v">${k.v}</span><span class="s">${esc(k.s)}</span></div>`).join("");
@@ -1936,7 +1937,7 @@ th.sorted .th-sort { color: var(--text); }
       const dd = daysUntil(ev.date);
       const covered = ops.some((op) => normH(op.nom).includes(normH(ev.nom)));
       if (dd <= 60 && !covered) todo.push({ date: addDays(ev.date, -60), late: false,
-        html: `<button type="button" class="list-row" data-hev="${i}"><span class="pico sm txt fruit" aria-hidden="true">TF</span><span class="grow">Préparer « ${esc(ev.nom)} »<small>dans ${dd} jours · aucune opération créée</small></span><span class="st todo">À lancer</span></button>` });
+        html: `<button type="button" class="list-row" data-hev="${i}"><span class="pico sm txt fruit" aria-hidden="true">TF</span><span class="grow">Préparer « ${esc(ev.nom)} »<small>dans ${dd} ${pl(dd, "jour", "jours")} · aucune opération créée</small></span><span class="st todo">À lancer</span></button>` });
     });
     // Données gardées sur ce téléphone seulement : rappel de sauvegarde au bout de 14 jours
     if (storeMode === "local") {
@@ -1979,7 +1980,7 @@ th.sorted .th-sort { color: var(--text); }
     }
 
     // Temps forts
-    $("h-ev").innerHTML = UPCOMING.slice(0, 4).map((e, i) => `<div class="ev-row"><div class="ev-date">${e.date.getDate()}<small>${MOIS[e.date.getMonth()]}</small></div><div class="ev-body"><b>${esc(e.nom)}</b><span>dans ${daysUntil(e.date)} jours</span></div><button type="button" data-hev="${i}">Préparer</button></div>`).join("");
+    $("h-ev").innerHTML = UPCOMING.slice(0, 4).map((e, i) => `<div class="ev-row"><div class="ev-date">${e.date.getDate()}<small>${MOIS[e.date.getMonth()]}</small></div><div class="ev-body"><b>${esc(e.nom)}</b><span>dans ${daysUntil(e.date)} ${pl(daysUntil(e.date), "jour", "jours")}</span></div><button type="button" data-hev="${i}">Préparer</button></div>`).join("");
   }
 
   // ================= Météo =================
@@ -2304,7 +2305,7 @@ th.sorted .th-sort { color: var(--text); }
   }
   function renderLive(msg) {
     const n = Object.keys(COURS).length, d = coursMaj();
-    $("mk-live").textContent = msg || (n ? `${n} produits en cours réels · mis à jour le ${d ? d.toLocaleDateString("fr-FR", { day: "numeric", month: "short" }) : "–"}` : "cours d'exemple");
+    $("mk-live").textContent = msg || (n ? `${n} ${pl(n, "produit en cours réel", "produits en cours réels")} · mis à jour le ${d ? d.toLocaleDateString("fr-FR", { day: "numeric", month: "short" }) : "–"}` : "cours d'exemple");
     $("mk-live").className = "mk-live" + (n && !msg ? " on" : "");
     $("mk-refresh").hidden = !canRefreshCours();
     $("mk-refresh").disabled = coursBusy;
@@ -2577,7 +2578,7 @@ th.sorted .th-sort { color: var(--text); }
     const rows = real.length ? real : all;
     const weeks = real.map((x) => x.sem).filter(Boolean).sort();
     $("h-movers-note").textContent = real.length
-      ? `${real.length} produits en cours réels · semaine ${weeks.length ? weeks[weeks.length - 1].split("-S")[1] : "–"} · variation sur une semaine`
+      ? `${real.length} ${pl(real.length, "produit en cours réel", "produits en cours réels")} · semaine ${weeks.length ? weeks[weeks.length - 1].split("-S")[1] : "–"} · variation sur une semaine`
       : "cours d'exemple, fictifs";
     const up = rows.filter((x) => x.ch > 0).sort((a, b) => b.ch - a.ch).slice(0, 4);
     const dn = rows.filter((x) => x.ch < 0).sort((a, b) => a.ch - b.ch).slice(0, 4);
@@ -2764,6 +2765,10 @@ th.sorted .th-sort { color: var(--text); }
     if (v == null) return NaN;
     let s = String(v).replace(/[\s  €]/g, "").replace(/%$/, "");
     if (!s) return NaN;
+    // Format comptable d'Excel : (120) = −120 ; signe moins typographique « − » accepté
+    const par = s.match(/^\((.*)\)$/);
+    if (par) { const n0 = toNum(par[1]); return isFinite(n0) ? -Math.abs(n0) : NaN; }
+    s = s.replace(/^[−–]/, "-");
     if (/,\d+$/.test(s) && s.includes(".")) s = s.replace(/\./g, "");
     else if (/\.\d+$/.test(s) && s.includes(",")) s = s.replace(/,/g, "");
     s = s.replace(",", ".");
@@ -2952,7 +2957,7 @@ th.sorted .th-sort { color: var(--text); }
     const ev = flags.ca1 ? (T.ca - T.ca1) / T.ca1 : NaN;
     let lead;
     if (flags.ca1) lead = `Le périmètre réalise <b>${eur0.format(T.ca)}</b> de chiffre d'affaires, <span class="${cls(ev)}">${ev >= 0 ? "en hausse" : "en baisse"} de ${sgnPct(ev).replace(/^[+−]/, "")}</span> par rapport à N-1 (<span class="${cls(ev)}">${sgnEur(T.ca - T.ca1)}</span>).`;
-    else lead = `Le périmètre réalise <b>${eur0.format(T.ca)}</b> de chiffre d'affaires sur ${P.length} produits.`;
+    else lead = `Le périmètre réalise <b>${eur0.format(T.ca)}</b> de chiffre d'affaires sur ${P.length} ${pl(P.length, "produit", "produits")}.`;
     add(`<p class="lead">${lead}</p>`, strip(lead));
     if (pv) {
       const main = Math.abs(pv.ev) >= Math.abs(pv.ep) ? "La variation vient d'abord des volumes vendus." : "La variation vient surtout des prix (hausse des prix, mix produit ou promotions).";
@@ -3033,7 +3038,7 @@ th.sorted .th-sort { color: var(--text); }
     const R = computeAnalyse();
     AN.res = R;
     const { P, T, fams, pv, flags, mags, skipped } = R;
-    $("an-rows").textContent = `${P.length} produits analysés${skipped ? ` · ${skipped} lignes ignorées (totaux, vides)` : ""}`;
+    $("an-rows").textContent = `${P.length} produit${P.length > 1 ? "s analysés" : " analysé"}${skipped ? ` · ${skipped} ligne${skipped > 1 ? "s ignorées" : " ignorée"} (totaux, vides)` : ""}`;
     const sel = $("an-mag");
     sel.hidden = mags.length < 2;
     if (mags.length > 1) sel.innerHTML = `<option value="">Tous les magasins</option>` + mags.map((x) => `<option ${x === AN.mag ? "selected" : ""}>${esc(x)}</option>`).join("");
@@ -3041,7 +3046,7 @@ th.sorted .th-sort { color: var(--text); }
     const ev = flags.ca1 ? (T.ca - T.ca1) / T.ca1 : NaN;
     const dn = P.filter((p) => p.d < 0).length;
     $("an-kpis").innerHTML = [
-      { l: "Chiffre d'affaires", v: eur0.format(T.ca), s: flags.ca1 ? `N-1 : ${eur0.format(T.ca1)}` : `${P.length} produits` },
+      { l: "Chiffre d'affaires", v: eur0.format(T.ca), s: flags.ca1 ? `N-1 : ${eur0.format(T.ca1)}` : `${P.length} ${pl(P.length, "produit", "produits")}` },
       flags.ca1 ? { l: "Évolution vs N-1", v: sgnPct(ev), s: sgnEur(T.ca - T.ca1), c: ev >= 0 ? "good" : "bad" } : null,
       flags.marge ? { l: "Taux de marge", v: pct1(T.mg / T.ca), s: `${eur0.format(T.mg)} de marge` } : null,
       flags.obj ? { l: "Atteinte objectif", v: pct(T.ca / T.obj, 1), s: sgnEur(T.ca - T.obj), c: T.ca >= T.obj ? "good" : "bad" } : null,
@@ -3387,7 +3392,7 @@ th.sorted .th-sort { color: var(--text); }
   function renderEvents() {
     $("pr-events").innerHTML = UPCOMING.map((e, i) => {
       const dd = daysUntil(e.date);
-      return `<div class="ev-row"><div class="ev-date">${e.date.getDate()}<small>${MOIS[e.date.getMonth()]}</small></div><div class="ev-body"><b>${esc(e.nom)}</b><span>${dd === 0 ? "aujourd'hui" : `dans ${dd} jours`} · ${e.produits.slice(0, 3).map(esc).join(", ")}</span></div><button type="button" data-ev="${i}">Préparer</button></div>`;
+      return `<div class="ev-row"><div class="ev-date">${e.date.getDate()}<small>${MOIS[e.date.getMonth()]}</small></div><div class="ev-body"><b>${esc(e.nom)}</b><span>${dd === 0 ? "aujourd'hui" : `dans ${dd} ${pl(dd, "jour", "jours")}`} · ${e.produits.slice(0, 3).map(esc).join(", ")}</span></div><button type="button" data-ev="${i}">Préparer</button></div>`;
     }).join("");
   }
   function openPromoDrawer(prefill) {
@@ -3432,7 +3437,7 @@ th.sorted .th-sort { color: var(--text); }
       const st = stepsOf(op), done = st.filter((s) => s.done).length, late = st.filter((s) => s.state === "late").length;
       const { s, e } = opDates(op), dd = daysUntil(s);
       const when = dd > 0 ? `J-${dd}` : daysUntil(e) >= 0 ? "En cours" : "Terminée";
-      return `<button type="button" class="op-card" data-op="${esc(op.id)}" aria-current="${op.id === PR.sel}"><span class="t"><span>${esc(op.nom)}</span><span class="st ${late ? "late" : dd <= 14 && dd >= 0 ? "week" : "todo"}">${late ? `${late} en retard` : when}</span></span><span class="meta"><span>${dayShort(s)} → ${dayShort(e)}</span><span>${done}/${st.length} étapes</span></span><span class="progress"><i style="width:${(done / st.length) * 100}%"></i></span></button>`;
+      return `<button type="button" class="op-card" data-op="${esc(op.id)}" aria-current="${op.id === PR.sel}"><span class="t"><span>${esc(op.nom)}</span><span class="st ${late ? "late" : dd <= 14 && dd >= 0 ? "week" : "todo"}">${late ? `${late} en retard` : when}</span></span><span class="meta"><span>${dayShort(s)} → ${dayShort(e)}</span><span>${done}/${st.length} ${pl(st.length, "étape", "étapes")}</span></span><span class="progress"><i style="width:${(done / st.length) * 100}%"></i></span></button>`;
     }).join("") || `<p class="note">Aucune opération. Créez-en une, ou partez d'un temps fort ci-dessous.</p>`;
   }
 
@@ -3454,7 +3459,7 @@ th.sorted .th-sort { color: var(--text); }
     let body;
     if (PR.tab === "plan") {
       const lab = { late: "En retard", week: "Cette semaine", todo: "À venir", done: "Fait" };
-      body = `<div class="panel"><div class="ph"><h3>Rétroplanning</h3><span class="note">${st.filter((x) => x.done).length} sur ${st.length} étapes faites</span><button type="button" class="push" id="pr-copy-plan">Copier pour un mail</button><button type="button" id="pr-copy-xls">Copier pour Excel</button></div><div class="timeline">` +
+      body = `<div class="panel"><div class="ph"><h3>Rétroplanning</h3><span class="note">${st.filter((x) => x.done).length} sur ${st.length} ${pl(st.length, "étape faite", "étapes faites")}</span><button type="button" class="push" id="pr-copy-plan">Copier pour un mail</button><button type="button" id="pr-copy-xls">Copier pour Excel</button></div><div class="timeline">` +
         st.map((x) => `<label class="tl-row ${x.done ? "done" : ""} ${x.milestone ? "milestone" : ""}"><input type="checkbox" data-step="${x.key}" ${x.done ? "checked" : ""} aria-label="${esc(x.titre)} fait"><span class="tl-date"><b>${dayLong(x.date)}</b>S${isoWeek(x.date).split("-S")[1]}</span><span class="tl-title">${esc(x.titre)}<span class="tl-who">${esc(x.who)}</span>${x.detail ? `<small>${esc(x.detail)}</small>` : ""}</span><span class="st ${x.state}">${lab[x.state]}</span></label>`).join("") + `</div></div>`;
     } else {
       const lines = op.produits || [];
@@ -3716,7 +3721,7 @@ th.sorted .th-sort { color: var(--text); }
       `<div class="kpi ${count("question") ? "warn" : "good"}"><span class="eyebrow">À questionner</span><span class="v">${count("question")}</span><span class="s">candidats à une évolution</span></div></div>` +
       `<div class="mx-grid"><div class="panel"><div class="ph"><h3>Matrice</h3><span class="note">taille des bulles = poids dans le CA</span></div><svg class="mx-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="Matrice d'assortiment">${svg}</svg></div>` +
       `<div class="an-stack"><div class="panel"><div class="ph"><h3>Quadrants</h3>${AS.quad ? `<button type="button" class="link" data-quad="">Tout afficher</button>` : ""}</div><div class="quads">${quadBtn("pepite")}${quadBtn("pilier")}${quadBtn("question")}${quadBtn("trafic")}</div></div>` +
-      `<div class="panel"><div class="ph"><h3>Synthèse</h3><button type="button" class="push" id="mx-copy">Copier les préconisations</button></div><p class="note" style="margin:0">${nA} produits font 80 % du chiffre d'affaires. ${count("question")} produit${count("question") > 1 ? "s sont" : " est"} à questionner, ${count("pepite")} à développer, ${count("trafic")} à optimiser.</p></div></div></div>` +
+      `<div class="panel"><div class="ph"><h3>Synthèse</h3><button type="button" class="push" id="mx-copy">Copier les préconisations</button></div><p class="note" style="margin:0">${nA} ${pl(nA, "produit fait", "produits font")} 80 % du chiffre d'affaires. ${count("question")} produit${count("question") > 1 ? "s sont" : " est"} à questionner, ${count("pepite")} à développer, ${count("trafic")} à optimiser.</p></div></div></div>` +
       `<div class="panel"><div class="ph"><h3>Préconisations par produit</h3><span class="note">${AS.quad ? esc(Q[AS.quad][0]) : "tous les produits"} · ${list.length}</span></div><div class="scroll"><table class="data"><thead><tr><th>ABC</th><th>Produit</th><th class="r">Poids CA</th><th class="r">${useMarge ? "Marge" : "Évol."}</th><th>Saison</th><th>Action</th><th>Pourquoi</th></tr></thead><tbody>` +
       list.map((p) => `<tr><td><span class="abc ${p.abc}">${p.abc}</span></td><td>${p.ref ? `<button type="button" class="prod-btn" data-prod="${esc(p.ref.nom)}">${pico(p.ref.nom, "sm")}<span>${esc(p.nom)}</span></button>` : `<b>${esc(p.nom)}</b>`}</td><td class="r num">${pct(p.w, 1)}</td><td class="r num">${useMarge ? pct1(p.tm) : sgnPct(p.ev)}</td><td>${seasonPill(p.ref)}</td><td><span class="act q-${p.quad}">${p.action}</span></td><td class="note" style="min-width:260px">${esc(p.why)}</td></tr>`).join("") +
       `</tbody></table></div></div>`;
@@ -3883,7 +3888,7 @@ th.sorted .th-sort { color: var(--text); }
     }).filter((x) => isFinite(x.i)).sort((a, b) => a.i - b.i);
     const dearer = prods.filter((p) => { const o = ourPrice(p).v; return ens.some((e) => last[p + "|" + e] && toNum(last[p + "|" + e].prix) < o); }).length;
     $("vp-kpis").innerHTML = [
-      { l: "Relevés", v: String(rel.length), s: `${prods.length} produits suivis` },
+      { l: "Relevés", v: String(rel.length), s: `${prods.length} ${pl(prods.length, "produit suivi", "produits suivis")}` },
       { l: "Enseignes suivies", v: String(ens.length), s: ens.slice(0, 3).join(", ") || "aucune" },
       { l: "Enseigne la moins chère", v: idx[0] ? esc(idx[0].e) : "–", s: idx[0] ? `indice ${Math.round(idx[0].i)}` : "", c: idx[0] && idx[0].i < 100 ? "bad" : "" },
       { l: "Produits où un concurrent est moins cher", v: `${dearer} / ${prods.length}`, s: "sur le dernier relevé", c: dearer ? "warn" : "good" },
@@ -4287,7 +4292,12 @@ th.sorted .th-sort { color: var(--text); }
   async function restoreData(text) {
     const msg = $("st-data-msg");
     let d;
-    try { d = JSON.parse(text); } catch { msg.textContent = "Ce fichier n'est pas une sauvegarde valide. Utilisez le fichier créé par « Sauvegarder toutes mes données »."; return; }
+    try { d = JSON.parse(text); } catch {
+      // Sauvegarde collée depuis un mail : on extrait le bloc { … } entouré d'autre texte (salutations, signature)
+      const s = String(text || ""), i = s.indexOf('{"app"'), j = s.lastIndexOf("}");
+      try { d = i >= 0 && j > i ? JSON.parse(s.slice(i, j + 1)) : null; } catch { d = null; }
+      if (!d) { msg.textContent = "Ce texte ne contient pas de sauvegarde valide. Utilisez le fichier ou le texte complet créé par « Sauvegarder toutes mes données »."; return; }
+    }
     if (!d || d.app !== "Pilote F&L") { msg.textContent = "Ce fichier n'est pas une sauvegarde de Pilote F&L."; return; }
     if (storeMode === "none") { msg.textContent = "La restauration n'est pas disponible ici : ouvrez la page connecté à claude.ai."; return; }
     msg.textContent = "Restauration en cours…";
@@ -4302,10 +4312,10 @@ th.sorted .th-sort { color: var(--text); }
       if (Array.isArray(d.alertes)) setAlerts(d.alertes);
       if (d.prefs && typeof d.prefs === "object") { Object.assign(PREFS, d.prefs); savePrefs(); applyPrefs(); }
       $("st-paste").hidden = true; $("st-paste-txt").value = "";
-      msg.textContent = `Sauvegarde restaurée : ${n} éléments.`;
+      msg.textContent = `Sauvegarde restaurée : ${n} élément${n > 1 ? "s" : ""}.`;
       renderSettings(); renderPromo(); renderMarket(); renderHome();
     } catch (err) {
-      msg.textContent = `La restauration s'est arrêtée après ${n} éléments. Réessayez.`;
+      msg.textContent = `La restauration s'est arrêtée après ${n} ${pl(n, "élément", "éléments")}. Réessayez.`;
     }
   }
 

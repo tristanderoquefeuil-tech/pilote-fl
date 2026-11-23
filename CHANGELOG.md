@@ -4,6 +4,12 @@ Les améliorations sont regroupées par version publiée. La section « En prép
 
 ## En préparation
 
+## 3.13 — 23 novembre 2026
+
+- **Accords au singulier partout.** Tableau de bord, Analyse express, Studio promo, assortiment et cours : « 1 produit », « dans 1 jour », « 0 étape à faire », « 1 étape faite » au lieu des pluriels systématiques.
+- **Restauration depuis un mail.** Une sauvegarde collée avec le texte du mail autour (salutations, signature « Envoyé de mon téléphone ») est maintenant reconnue et restaurée ; le message d'erreur est plus clair quand le texte ne contient pas de sauvegarde.
+- **Import plus robuste.** L'Analyse express lit les nombres négatifs au format comptable d'Excel, « (120) », et le signe moins typographique « −50 » : ces lignes étaient auparavant ignorées. Accord corrigé : « 1 produit analysé », « 1 ligne ignorée ».
+
 ## 3.12 — 23 novembre 2026
 
 - **Achat maximum dans la fiche produit.** La fiche indique le prix d'achat maximum pour tenir la marge visée au prix de vente actuel et, quand un cours réel existe, si le marché est au-dessus, proche ou en dessous.
