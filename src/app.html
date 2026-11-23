@@ -456,7 +456,7 @@
             <div class="panel span-12">
               <div class="ph"><h3>À propos</h3></div>
               <div class="actions" id="st-update-box" style="margin-bottom:10px" hidden><button type="button" id="st-update">Vérifier les mises à jour</button><span class="note" id="st-update-msg" role="status"></span></div>
-              <p class="note" style="margin:0">Pilote F&amp;L · version <span id="st-version">3.15</span> · boîte à outils du category manager fruits et légumes. Cours réels : Commission européenne, Agri-food Data Portal (données publiques). Les prix, volumes et cours affichés comme « exemple » sont fictifs et servent uniquement à la démonstration. Site et mises à jour : <a href="https://tristanderoquefeuil-tech.github.io/pilote-fl/" target="_blank" rel="noopener">tristanderoquefeuil-tech.github.io/pilote-fl</a>.</p>
+              <p class="note" style="margin:0">Pilote F&amp;L · version <span id="st-version">3.16</span> · boîte à outils du category manager fruits et légumes. Cours réels : Commission européenne, Agri-food Data Portal (données publiques). Les prix, volumes et cours affichés comme « exemple » sont fictifs et servent uniquement à la démonstration. Site et mises à jour : <a href="https://tristanderoquefeuil-tech.github.io/pilote-fl/" target="_blank" rel="noopener">tristanderoquefeuil-tech.github.io/pilote-fl</a>.</p>
             </div>
           </div>
         </div>
@@ -1274,6 +1274,11 @@
     setTimeout(upd, 0); setTimeout(upd, 4500);
     window.__pflNavArrows = upd;
   })();
+  // Téléphone : pendant la saisie (clavier ouvert), la barre du bas se retire pour libérer l'écran
+  const isTyping = (el) => el && (el.tagName === "TEXTAREA" || el.tagName === "SELECT" || (el.tagName === "INPUT" && !/^(checkbox|radio|button|submit|file|range|color)$/i.test(el.type)));
+  let kbTimer = null;
+  document.addEventListener("focusin", (e) => { if (!wideMq.matches && isTyping(e.target)) { clearTimeout(kbTimer); document.body.classList.add("kb-open"); } });
+  document.addEventListener("focusout", () => { clearTimeout(kbTimer); kbTimer = setTimeout(() => { if (!isTyping(document.activeElement)) document.body.classList.remove("kb-open"); }, 120); });
   // Bouton Retour d'Android : referme d'abord ce qui est ouvert ; renvoie vrai si la page a géré le retour
   window.__pflBack = () => {
     if (!$("more-sheet").hidden) { closeMore(true); return true; }
@@ -1679,6 +1684,7 @@
     $("mk-star").textContent = inWatch ? "★" : "☆";
     $("mk-star").setAttribute("aria-label", inWatch ? "Retirer de ma liste" : "Ajouter à ma liste");
     $("mk-px-title").textContent = `Vos prix · ${MK.cur}`;
+    if (window.__pflAlSuggest) window.__pflAlSuggest();
     const cmpOn = MK.cmp && MK.cmp !== MK.cur;
     $("mk-legend").innerHTML = cmpOn
       ? `<span><i style="background:#3fd39a"></i>${esc(MK.cur)}</span><span><i style="background:#f2b33d"></i>${esc(MK.cmp)}</span><span>Évolution en % depuis le début de la période</span>`
@@ -1783,9 +1789,22 @@
     setWatch(w.includes(MK.cur) ? w.filter((x) => x !== MK.cur) : w.concat(MK.cur));
     renderMarket();
   });
+  // Seuil proposé : cours actuel −10 % (passe sous) ou +10 % (passe au-dessus) ; validé tel quel si le champ reste vide
+  const alSuggest = () => {
+    try {
+      const cur = lastOf(seriesOf(MK.cur).data);
+      const v = isFinite(cur) && cur > 0 ? Math.round(cur * ($("mk-al-sens").value === "sous" ? 0.9 : 1.1) * 100) / 100 : NaN;
+      $("mk-al-prix").placeholder = isFinite(v) ? f2(v) : "1,50";
+      $("mk-al-prix").dataset.suggest = isFinite(v) ? String(v) : "";
+      $("mk-al-prix").title = isFinite(v) ? `Cours actuel ${f2(cur)} € : seuil proposé ${f2(v)} € (${$("mk-al-sens").value === "sous" ? "−" : "+"}10 %)` : "";
+    } catch { /* cours pas encore chargés */ }
+  };
+  $("mk-al-sens").addEventListener("change", alSuggest);
+  window.__pflAlSuggest = alSuggest;
   $("mk-al-form").addEventListener("submit", (e) => {
     e.preventDefault();
-    const prix = parseFloat(String($("mk-al-prix").value).replace(",", "."));
+    const raw = String($("mk-al-prix").value).trim() || $("mk-al-prix").dataset.suggest || "";
+    const prix = parseFloat(raw.replace(",", "."));
     if (!(prix > 0)) { $("mk-al-msg").textContent = "Indiquez un prix en € par kg, par exemple 1,50."; return; }
     const a = { id: newId(), produit: MK.cur, sens: $("mk-al-sens").value, prix };
     setAlerts(getAlerts().concat(a));
@@ -2614,7 +2633,11 @@
         st.map((x) => `<label class="tl-row ${x.done ? "done" : ""} ${x.milestone ? "milestone" : ""}"><input type="checkbox" data-step="${x.key}" ${x.done ? "checked" : ""} aria-label="${esc(x.titre)} fait"><span class="tl-date"><b>${dayLong(x.date)}</b>S${isoWeek(x.date).split("-S")[1]}</span><span class="tl-title">${esc(x.titre)}<span class="tl-who">${esc(x.who)}</span>${x.detail ? `<small>${esc(x.detail)}</small>` : ""}</span><span class="st ${x.state}">${lab[x.state]}</span></label>`).join("") + `</div></div>`;
     } else {
       const lines = op.produits || [];
-      const sugg = PRODUITS.filter((p) => p.mois[s.getMonth()] === 2 && !lines.some((l) => l.nom === p.nom)).slice(0, 12);
+      // Suggestions : pleine saison, classées par cours réel récent (les baisses de prix d'abord, idéales pour une promo)
+      const trendOf = (nom) => { const sr = seriesOf(nom), d = sr.data, lp = d[d.length - 1]; return (sr.src === "ue" || sr.src === "user") && lp && lp.d && daysUntil(parseDay(lp.d)) > -24 ? chgOf(d) : NaN; };
+      const sugg = PRODUITS.filter((p) => p.mois[s.getMonth()] === 2 && !lines.some((l) => l.nom === p.nom))
+        .map((p) => ({ ...p, tr: trendOf(p.nom) }))
+        .sort((a, b) => (isFinite(a.tr) ? a.tr : 0) - (isFinite(b.tr) ? b.tr : 0)).slice(0, 12);
       const marge = (l) => { const pp = toNum(l.pp), a = toNum(l.achat); if (!(pp > 0) || !(a > 0)) return NaN; const h = pp / 1.055; return (h - a) / h; };
       const sousAchat = lines.filter((l) => marge(l) < 0).map((l) => l.nom);
       body = `<div class="panel"><div class="ph"><h3>Produits en promotion</h3><span class="note">prix d'achat préremplis avec le cours du jour quand il existe (sinon valeur d'exemple), à vérifier</span></div>` +
@@ -2632,7 +2655,7 @@
             `<td><button type="button" class="ghost icon-btn" data-ldel="${i}" aria-label="Retirer ${esc(l.nom)}">Retirer</button></td></tr>`; }).join("") ||
           `<tr><td colspan="9" class="empty">Aucun produit. Ajoutez-en ci-dessous.</td></tr>`) + `</tbody></table></div>` +
         `<div class="mk-form" style="margin-top:12px"><input id="pr-add" list="produits-list" placeholder="Ajouter un produit" aria-label="Ajouter un produit" style="max-width:240px"><button type="button" id="pr-add-go">Ajouter</button></div>` +
-        (sugg.length ? `<div class="sub-h">En pleine saison en ${MOIS_LONG[s.getMonth()]} : suggestions</div><div class="chips">${sugg.map((p) => `<button type="button" class="chip" data-addp="${esc(p.nom)}">+ ${p.icon || ""} ${esc(p.nom)}</button>`).join("")}</div>` : "") +
+        (sugg.length ? `<div class="sub-h">En pleine saison en ${MOIS_LONG[s.getMonth()]} : suggestions, les cours en baisse d'abord</div><div class="chips">${sugg.map((p) => `<button type="button" class="chip" data-addp="${esc(p.nom)}"${isFinite(p.tr) ? ` title="Cours d'achat ${sgn(p.tr)} % sur la semaine"` : ""}>+ ${p.icon || ""} ${esc(p.nom)}${isFinite(p.tr) && Math.abs(p.tr) >= 1 ? ` <small class="${p.tr < 0 ? "pos" : "neg"}">cours ${sgn(p.tr, 0)} %</small>` : ""}</button>`).join("")}</div>` : "") +
         `</div><div class="panel"><div class="ph"><h3>Kit magasin</h3><span class="note">à envoyer aux magasins</span><button type="button" class="push primary" id="pr-copy-kit">Copier le kit</button></div><div class="kit" id="pr-kit">${esc(kitText(op))}</div></div>`;
     }
     $("pr-main").innerHTML = head + body;

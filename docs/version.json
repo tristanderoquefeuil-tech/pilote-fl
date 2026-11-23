@@ -1,6 +1,6 @@
 {
-  "versionCode": 26,
-  "versionName": "3.15",
+  "versionCode": 27,
+  "versionName": "3.16",
   "apk": "https://github.com/tristanderoquefeuil-tech/pilote-fl/releases/latest/download/PiloteFL.apk",
-  "notes": "Flèches aux bords de la barre du bas pour montrer qu'elle défile."
+  "notes": "Barre du bas retirée pendant la saisie, suggestions promo guidées par les cours, seuil d'alerte proposé."
 }

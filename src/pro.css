@@ -833,3 +833,8 @@ th.sorted .th-sort { color: var(--text); }
     @keyframes nav-nudge { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(3px); } }
   }
 }
+
+/* ---------- Téléphone : barre du bas retirée pendant la saisie ---------- */
+@media (max-width: 900px) {
+  body.kb-open .side { display: none; }
+}

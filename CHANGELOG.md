@@ -4,6 +4,12 @@ Les améliorations sont regroupées par version publiée. La section « En prép
 
 ## En préparation
 
+## 3.16 — 23 novembre 2026
+
+- **Seuil d'alerte proposé.** Dans les cours d'achat, le champ d'alerte propose le cours actuel −10 % (« passe sous ») ou +10 % (« passe au-dessus ») ; valider sans rien saisir crée l'alerte à ce seuil.
+- **Suggestions promo guidées par les cours.** Dans le Studio promo, les produits de pleine saison suggérés sont classés selon leur cours réel de la semaine : les baisses de prix d'abord (les plus faciles à promouvoir), avec la variation affichée.
+- **Plus de place pendant la saisie.** Sur téléphone, la barre du bas se retire quand on tape dans un champ (clavier ouvert) et revient dès qu'on a fini : elle ne cache plus le champ ni le bouton juste au-dessus du clavier.
+
 ## 3.15 — 23 novembre 2026
 
 - **Flèches sur la barre du bas.** Sur téléphone, des flèches ‹ et › apparaissent aux bords de la barre tant qu'il reste des outils de ce côté ; un toucher fait défiler la barre. La flèche de droite bouge doucement au démarrage pour attirer l'œil.
