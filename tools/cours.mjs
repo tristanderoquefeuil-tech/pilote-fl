@@ -35,14 +35,17 @@ function isoWeek(yy, mm, dd) {
 }
 
 async function getProduct(prod, begin) {
+  let last = "";
   for (let i = 0; i < 6; i++) {
     await sleep(2500 + i * 4000); // l'API limite les appels trop rapprochés
     try {
-      const r = await fetch(`${API}?memberStateCodes=FR&products=${encodeURIComponent(prod)}&beginDate=${begin}`);
-      const j = await r.json();
-      if (Array.isArray(j)) return j;
-    } catch { /* nouvel essai */ }
+      const r = await fetch(`${API}?memberStateCodes=FR&products=${encodeURIComponent(prod)}&beginDate=${begin}`, { headers: { Accept: "application/json" } });
+      const t = await r.text();
+      try { const j = JSON.parse(t); if (Array.isArray(j)) return j; } catch { /* réponse non JSON */ }
+      last = `HTTP ${r.status} ${t.slice(0, 80).replace(/\s+/g, " ")}`;
+    } catch (e) { last = e.message; }
   }
+  console.log(`  (${prod} : ${last})`);
   return null;
 }
 
@@ -54,8 +57,18 @@ const maj = new Date().toISOString();
 const produits = [];
 let ok = 0;
 
-for (const [nom, [prod, variete, label]] of Object.entries(MAP)) {
-  const arr = await getProduct(prod, begin);
+// Premier passage, puis un second passage plus tard pour les produits en échec
+const results = {};
+for (const [nom, [prod]] of Object.entries(MAP)) results[nom] = await getProduct(prod, begin);
+const echecs = Object.keys(MAP).filter((n) => !results[n]);
+if (echecs.length) {
+  console.log(`Second passage dans 30 s pour : ${echecs.join(", ")}`);
+  await sleep(30000);
+  for (const nom of echecs) results[nom] = await getProduct(MAP[nom][0], begin);
+}
+
+for (const [nom, [, variete, label]] of Object.entries(MAP)) {
+  const arr = results[nom];
   if (!arr) {
     console.log(`ÉCHEC ${nom} : cours précédents conservés`);
     if (prevByName[nom]) produits.push(prevByName[nom]);

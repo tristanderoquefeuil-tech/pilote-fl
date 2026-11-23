@@ -625,3 +625,11 @@ nav.tabs .side-label:first-child { margin-top: 0; }
 .upd-banner small { color: var(--muted); font-size: 0.78rem; }
 .upd-logo { width: 38px; height: 38px; border-radius: 11px; flex: none; background: #eef5ee url("__LOGO__") center / cover no-repeat; }
 @media (max-width: 480px) { .upd-banner { flex-wrap: wrap; } .upd-banner .grow { flex-basis: calc(100% - 50px); } }
+
+/* Téléphone : les 8 onglets tiennent dans la barre du bas, sans défilement */
+@media (max-width: 900px) {
+  nav.tabs { overflow: hidden; gap: 0; }
+  nav.tabs a { flex: 1 1 0; min-width: 0; padding: 7px 0 6px; gap: 3px; }
+  nav.tabs svg { width: 18px; height: 18px; }
+  nav.tabs .short { display: block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.56rem; letter-spacing: -0.01em; }
+}

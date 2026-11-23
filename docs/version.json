@@ -1,6 +1,6 @@
 {
-  "versionCode": 15,
-  "versionName": "3.4",
+  "versionCode": 16,
+  "versionName": "3.5",
   "apk": "https://github.com/tristanderoquefeuil-tech/pilote-fl/releases/latest/download/PiloteFL.apk",
-  "notes": "Cours mis à jour chaque jour par GitHub, mises à jour de l'appli proposées automatiquement, Paramètres en haut à droite."
+  "notes": "Cours d'achat réels sur le tableau de bord et dans les fiches produit, 8 onglets visibles sur téléphone, matrice d'assortiment lisible sur petit écran."
 }
