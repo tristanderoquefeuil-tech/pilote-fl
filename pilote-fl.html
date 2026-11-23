@@ -1183,7 +1183,7 @@ nav.tabs .side-label:first-child { margin-top: 0; }
               <div class="field">
                 <label for="m-produit">Produit</label>
                 <select id="m-produit"></select>
-                <span class="hint">Préremplit des valeurs d'exemple, toutes modifiables.</span>
+                <span class="hint" id="m-hint">Préremplit des valeurs d'exemple, toutes modifiables.</span>
               </div>
               <div class="grid2">
                 <div class="field"><label for="m-pa">Achat € HT/kg</label><input id="m-pa" type="number" step="0.01" min="0" inputmode="decimal"></div>
@@ -1406,6 +1406,7 @@ nav.tabs .side-label:first-child { margin-top: 0; }
     if (v === "assort") setTimeout(() => renderAssort(), 0);
     if (v === "accueil") setTimeout(() => renderHome(), 0);
     if (v === "reglages") setTimeout(() => renderSettings(), 0);
+    if (v === "marge") setTimeout(() => { if (!margeTouched) loadType(); }, 0);
     const [t, sub] = PAGE_TITLES[v];
     $("tb-title").textContent = t;
     $("tb-sub").textContent = sub;
@@ -1520,10 +1521,24 @@ nav.tabs .side-label:first-child { margin-top: 0; }
   sel.innerHTML = ["Fruit", "Légume"].map((f) => `<optgroup label="${f}s">` +
     PRODUITS.filter((p) => p.famille === f).map((p) => `<option>${esc(p.nom)}</option>`).join("") + "</optgroup>").join("");
   sel.value = "Tomate";
+  // Prix d'achat de référence : cours réel ou vos prix s'ils sont récents (moins de 6 semaines), sinon rien
+  function achatReel(nom) {
+    try {
+      const sr = seriesOf(nom), d = sr.data, lp = d[d.length - 1];
+      if (!lp || (sr.src !== "ue" && sr.src !== "user")) return null;
+      if (lp.d && daysUntil(parseDay(lp.d)) < -42) return null;
+      const src = sr.src === "ue" ? "cours réel départ station, hors transport" : "vos prix d'achat";
+      return { pa: Math.round(lp.c * 100) / 100, label: `${src}, semaine ${lp.sem.split("-S")[1]}` };
+    } catch { return null; } // données pas encore chargées au démarrage
+  }
+  let margeTouched = false; // vrai dès que l'utilisateur modifie une valeur à la main
   function loadType() {
     const t = findProd(sel.value);
     if (!t) return;
-    $("m-pa").value = t.pa; $("m-pv").value = t.pv; $("m-freinte").value = t.freinte; $("m-dem").value = t.dem;
+    const r = achatReel(t.nom);
+    $("m-pa").value = r ? r.pa : t.pa; $("m-pv").value = t.pv; $("m-freinte").value = t.freinte; $("m-dem").value = t.dem;
+    $("m-hint").textContent = r ? `Achat prérempli avec le ${r.label}. Vente, freinte et démarque : valeurs d'exemple.` : "Préremplit des valeurs d'exemple, toutes modifiables.";
+    margeTouched = false;
     computeMarge();
   }
   function computeMarge() {
@@ -1555,7 +1570,7 @@ nav.tabs .side-label:first-child { margin-top: 0; }
       : "Saisissez un prix d'achat pour lancer le calcul.";
   }
   sel.addEventListener("change", loadType);
-  $("marge-form").addEventListener("input", (e) => { if (e.target !== sel) computeMarge(); });
+  $("marge-form").addEventListener("input", (e) => { if (e.target !== sel) { margeTouched = true; computeMarge(); } });
   $("marge-form").addEventListener("submit", (e) => e.preventDefault());
   loadType();
 
@@ -1733,10 +1748,12 @@ nav.tabs .side-label:first-child { margin-top: 0; }
     if (p) {
       html += `<section><h3>Saisonnalité</h3><div class="months">${p.mois.map((v, i) => `<div class="${i === now ? "now" : ""}"><i class="m${v}" title="${MOIS_LONG[i]} : ${SAISON_LABEL[v]}"></i>${MOIS[i].slice(0, 1)}</div>`).join("")}</div>` +
         `<p class="note">En ${MOIS_LONG[now]} : <b>${SAISON_LABEL[p.mois[now]]}</b>. Import principal : ${esc(p.origine)}.</p></section>`;
-      const m = calcMarge({ pa: p.pa, pv: p.pv, freinte: p.freinte, dem: p.dem, tva: parseFloat($("m-tva").value) || 5.5, cible: parseFloat($("m-cible").value) || 30 });
-      html += `<section><h3>Marge (valeurs d'exemple)</h3><div class="mini-kpis">` +
-        `<div><b>${eur.format(p.pa)}</b><span>achat HT / kg</span></div><div><b>${eur.format(p.pv)}</b><span>vente TTC / kg</span></div>` +
+      const ar = achatReel(p.nom), pa = ar ? ar.pa : p.pa;
+      const m = calcMarge({ pa, pv: p.pv, freinte: p.freinte, dem: p.dem, tva: parseFloat($("m-tva").value) || 5.5, cible: parseFloat($("m-cible").value) || 30 });
+      html += `<section><h3>Marge ${ar ? "au cours du jour" : "(valeurs d'exemple)"}</h3><div class="mini-kpis">` +
+        `<div><b>${eur.format(pa)}</b><span>achat HT / kg${ar ? " (cours)" : ""}</span></div><div><b>${eur.format(p.pv)}</b><span>vente TTC / kg</span></div>` +
         `<div><b>${pct(m.tauxReel)}</b><span>marge réelle</span></div><div><b>${eur.format(m.pvConseilTTC)}</b><span>prix conseillé</span></div></div>` +
+        (ar ? `<p class="note" style="margin:0">Achat : ${ar.label}. Prix de vente, freinte et démarque : valeurs d'exemple.</p>` : "") +
         `<div class="actions"><button type="button" data-sim="${esc(p.nom)}">Ouvrir dans le simulateur</button><button type="button" data-mkgo="${esc(p.nom)}">Voir le cours</button></div></section>`;
     }
     // Cours d'achat du produit : réels, saisis ou d'exemple (toujours signalé)
