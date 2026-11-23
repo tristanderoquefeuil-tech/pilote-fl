@@ -4,6 +4,12 @@ Les améliorations sont regroupées par version publiée. La section « En prép
 
 ## En préparation
 
+## 3.17 — 23 novembre 2026
+
+- **Cours dans la Saisonnalité.** Les produits « En pleine saison » affichent la variation de leur cours réel de la semaine (baisse en vert, hausse en rouge) : on voit d'un coup d'œil quoi mettre en avant.
+- **Styles allégés.** Les styles de l'ancienne roue et de l'ancien panneau « Plus » sont retirés (85 lignes) : feuille de style plus légère, affichage inchangé sur tous les écrans.
+- **Nettoyage de l'ancienne roue.** Le code de la roue des outils, inutilisé depuis la barre défilante, est retiré (110 lignes, un écouteur de mouvement du doigt en moins) : appli plus légère, sans effet de bord possible.
+
 ## 3.16 — 23 novembre 2026
 
 - **Seuil d'alerte proposé.** Dans les cours d'achat, le champ d'alerte propose le cours actuel −10 % (« passe sous ») ou +10 % (« passe au-dessus ») ; valider sans rien saisir crée l'alerte à ce seuil.

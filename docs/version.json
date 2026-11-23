@@ -1,6 +1,6 @@
 {
-  "versionCode": 27,
-  "versionName": "3.16",
+  "versionCode": 28,
+  "versionName": "3.17",
   "apk": "https://github.com/tristanderoquefeuil-tech/pilote-fl/releases/latest/download/PiloteFL.apk",
-  "notes": "Barre du bas retirée pendant la saisie, suggestions promo guidées par les cours, seuil d'alerte proposé."
+  "notes": "Cours de la semaine sur les produits de saison ; appli allégée."
 }

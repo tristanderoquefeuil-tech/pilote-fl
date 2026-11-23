@@ -671,7 +671,7 @@ nav.tabs a { position: relative; }
 @media (max-width: 900px) {
   .side-toggle { display: none; }
   nav.tabs a.m-more { display: none; }
-  nav.tabs a, .nav-more { flex: 1 1 0; min-width: 0; padding: 8px 0 7px; gap: 3px; }
+  nav.tabs a { flex: 1 1 0; min-width: 0; padding: 8px 0 7px; gap: 3px; }
   .nav-more {
     display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;
     background: transparent; border: 0; border-radius: 9px; color: var(--side-text); font-weight: 500; box-shadow: none;
@@ -681,102 +681,17 @@ nav.tabs a { position: relative; }
   .nav-more svg { width: 19px; height: 19px; }
   nav.tabs svg { width: 19px; height: 19px; }
   nav.tabs .short { font-size: 0.64rem; letter-spacing: 0; }
-  nav.tabs .nav-badge, .nav-more .nav-badge { position: absolute; top: 2px; left: calc(50% + 4px); margin: 0; min-width: 17px; height: 17px; font-size: 0.62rem; padding: 0 4px; }
-}
-/* Panneau « Tous les outils » */
-.more-overlay { align-items: flex-end; padding: 0; }
-.more-panel {
-  width: min(560px, 100%); background: var(--surface); border-radius: 22px 22px 0 0;
-  padding: 8px max(16px, env(safe-area-inset-right, 0px)) calc(96px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
-  box-shadow: 0 -18px 50px rgba(15, 42, 29, 0.25);
-}
-.more-grip { width: 40px; height: 5px; border-radius: 3px; background: var(--line); margin: 2px auto 10px; }
-.more-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-.more-head h3 { margin: 0; font-size: 1.05rem; font-weight: 700; }
-.more-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.more-item {
-  position: relative; display: flex; gap: 12px; align-items: center; padding: 14px 12px; min-height: 64px;
-  border-radius: 14px; border: 1px solid var(--line); background: var(--surface-2); color: var(--text); text-decoration: none;
-}
-.more-item svg { width: 22px; height: 22px; color: var(--leaf); flex: none; }
-.more-item b { display: block; font-size: 0.88rem; font-weight: 600; line-height: 1.25; }
-.more-item small { display: block; color: var(--muted); font-size: 0.72rem; line-height: 1.3; margin-top: 2px; }
-.more-item[aria-current="page"] { border-color: var(--leaf); background: var(--leaf-soft); }
-.more-item:focus-visible { outline: 2px solid rgba(31, 122, 77, 0.5); }
-.more-item .nav-badge { position: absolute; top: 8px; right: 8px; box-shadow: none; }
-@media (max-width: 360px) { .more-grid { grid-template-columns: 1fr; } }
-@media (prefers-reduced-motion: no-preference) {
-  .more-panel { animation: more-up 0.22s ease; }
-  @keyframes more-up { from { transform: translateY(24px); } to { transform: none; } }
-}
-/* Le panneau « Plus » passe sous la barre du bas : elle reste visible et « Plus » le referme */
-@media (max-width: 900px) { .more-overlay { z-index: 15; } }
-
-/* ---------- Roue tournante (téléphone) ---------- */
-.wheel-overlay { align-items: stretch; padding: 0; background: rgba(15, 42, 29, 0.42); touch-action: none; user-select: none; -webkit-user-select: none; }
-.wheel-wrap { position: absolute; inset: 0; }
-.wheel { position: absolute; left: 50%; bottom: calc(44px + env(safe-area-inset-bottom, 0px)); width: 0; height: 0; }
-.wheel-disc {
-  position: absolute; left: -175px; top: -175px; width: 350px; height: 350px; border-radius: 50%;
-  background:
-    repeating-conic-gradient(from 0deg, rgba(255, 255, 255, 0.10) 0deg 1deg, transparent 1deg 40deg),
-    radial-gradient(circle, rgba(255, 255, 255, 0.10) 0 52px, rgba(238, 246, 238, 0.92) 53px 100%);
-  border: 1px solid rgba(255, 255, 255, 0.7); box-shadow: 0 -16px 50px rgba(15, 42, 29, 0.25);
-}
-.wheel-ring { position: absolute; left: 0; top: 0; }
-.wheel-item {
-  position: absolute; left: -31px; top: -31px; width: 62px; height: 62px; border-radius: 50%;
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
-  background: var(--surface); color: var(--ink); text-decoration: none; border: 1px solid var(--line);
-  box-shadow: 0 6px 16px rgba(15, 42, 29, 0.18); -webkit-tap-highlight-color: transparent;
-}
-.wheel-item svg { width: 21px; height: 21px; color: var(--leaf); }
-.wheel-item span { font-size: 0.58rem; font-weight: 600; line-height: 1.1; max-width: 56px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.wheel-item.sel { background: var(--leaf); color: #ffffff; border-color: var(--leaf); box-shadow: 0 10px 24px rgba(31, 122, 77, 0.45); }
-.wheel-item.sel svg { color: #ffffff; }
-.wheel-item[aria-current="page"]:not(.sel) { border: 2px solid var(--leaf); }
-.wheel-item:focus-visible { outline: 3px solid #ffffff; outline-offset: 2px; }
-.wheel-item .nav-badge { position: absolute; top: -4px; right: -4px; margin: 0; min-width: 18px; height: 18px; font-size: 0.62rem; font-style: normal; padding: 0 4px; box-shadow: 0 0 0 2px var(--surface); }
-.wheel.snap .wheel-item, .wheel.snap .wheel-disc { transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.25, 1.1), opacity 0.3s ease; }
-.wheel-info {
-  position: absolute; left: 50%; transform: translateX(-50%); width: min(320px, calc(100% - 32px));
-  bottom: calc(44px + env(safe-area-inset-bottom, 0px) + 230px);
-  text-align: center; color: #ffffff; display: grid; gap: 3px; pointer-events: none;
-}
-.wheel-info b { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.01em; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.25); }
-.wheel-info small { font-size: 0.82rem; opacity: 0.9; }
-.wheel-hint { font-size: 0.7rem; opacity: 0.7; margin-top: 6px; }
-@media (max-width: 900px) {
-  .wheel-overlay { z-index: 15; }
-  /* Ordre de la barre : Accueil, Promo, [roue], Assortiment, Cours */
-  nav.tabs a[data-view="accueil"] { order: 1; }
-  nav.tabs a[data-view="promo"] { order: 2; }
-  .nav-more { order: 3; }
-  nav.tabs a[data-view="assort"] { order: 4; }
-  nav.tabs a[data-view="marche"] { order: 5; }
-  .nav-more {
-    flex: 0 0 58px; width: 58px; height: 58px; margin: -20px 4px 0; padding: 0; border-radius: 50%;
-    background: linear-gradient(150deg, #8cc95a 0%, #1f7a4d 60%, #14532d 100%) !important; color: #ffffff;
-    box-shadow: 0 8px 22px rgba(15, 42, 29, 0.45), 0 0 0 4px var(--side);
-  }
-  .nav-more svg.wheel-icon { width: 28px; height: 28px; transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.25, 1.1); }
-  .nav-more[aria-expanded="true"] svg.wheel-icon { transform: rotate(160deg); }
-  .nav-more.on { box-shadow: 0 8px 22px rgba(15, 42, 29, 0.45), 0 0 0 4px var(--side), 0 0 0 6px var(--sprout); }
-  .nav-more .nav-badge { top: -2px; left: auto; right: -2px; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .wheel.snap .wheel-item, .wheel.snap .wheel-disc, .nav-more svg.wheel-icon { transition: none; }
+  nav.tabs .nav-badge .nav-badge { position: absolute; top: 2px; left: calc(50% + 4px); margin: 0; min-width: 17px; height: 17px; font-size: 0.62rem; padding: 0 4px; }
 }
 
 /* ---------- Ressenti appli native ---------- */
 html, body { overscroll-behavior-y: none; }
-a, button, input, select, textarea, label, summary, .list-row, .mv-row, .op-card, .chip, .quad, .wheel-item, .dot { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
-nav.tabs, .topbar .tb-title, button, .seg, .side, .nav-more, .wheel-wrap, .eyebrow, .sub-h, .status, .chip, .kpi .eyebrow { -webkit-user-select: none; user-select: none; }
-button, .list-row, .mv-row, .op-card, .chip, nav.tabs a, .wheel-item, .ev-row button, .quad, .prod-btn, .tb-icon { transition-property: background, border-color, box-shadow, color, transform; transition-duration: 0.12s; }
+a, button, input, select, textarea, label, summary, .list-row, .mv-row, .op-card, .chip, .quad, .dot { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+nav.tabs, .topbar .tb-title, button, .seg, .side, .eyebrow, .sub-h, .status, .chip, .kpi .eyebrow { -webkit-user-select: none; user-select: none; }
+button, .list-row, .mv-row, .op-card, .chip, nav.tabs a, .ev-row button, .quad, .prod-btn, .tb-icon { transition-property: background, border-color, box-shadow, color, transform; transition-duration: 0.12s; }
 @media (hover: none) {
   button:active, .list-row:active, .mv-row:active, .op-card:active, button.chip:active, .quad:active, .tb-icon:active, .prod-btn:active { transform: scale(0.97); }
   nav.tabs a:active { transform: scale(0.92); }
-  .nav-more:active { transform: scale(0.94); }
 }
 .topbar { transition: box-shadow 0.2s ease; }
 .topbar.scrolled { box-shadow: 0 6px 18px rgba(15, 42, 29, 0.10); }
@@ -952,7 +867,6 @@ th.sorted .th-sort { color: var(--text); }
       <a href="#marche" data-view="marche"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3v18M17 3v18"/><rect x="5" y="7" width="4" height="8" rx="1"/><rect x="15" y="5" width="4" height="10" rx="1"/></svg><span class="full">Cours d'achat</span><span class="short">Cours</span></a>
       <a href="#marge" data-view="marge" class="m-more"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 6.5A6.5 6.5 0 1 0 17 17.5"/><path d="M4 10h9M4 14h9"/></svg><span class="full">Simulateur de marge</span><span class="short">Marge</span></a>
       <a href="#saison" data-view="saison" class="m-more"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span class="full">Saisonnalité</span><span class="short">Saison</span></a>
-      <button type="button" class="nav-more" id="nav-more" aria-label="Tous les outils" title="Tous les outils" aria-haspopup="dialog" aria-expanded="false" aria-controls="more-sheet"><svg class="wheel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.6"/><path d="M12 3v6.4M12 14.6V21M3 12h6.4M14.6 12H21M5.6 5.6l4.6 4.6M13.8 13.8l4.6 4.6M18.4 5.6l-4.6 4.6M10.2 13.8l-4.6 4.6"/></svg><span class="nav-badge" id="more-badge" hidden></span></button>
     </nav>
     <button type="button" class="nav-arrow l" id="nav-arrow-l" aria-label="Outils précédents" tabindex="-1" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
     <button type="button" class="nav-arrow r" id="nav-arrow-r" aria-label="Autres outils" tabindex="-1" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
@@ -1377,7 +1291,7 @@ th.sorted .th-sort { color: var(--text); }
             <div class="panel span-12">
               <div class="ph"><h3>À propos</h3></div>
               <div class="actions" id="st-update-box" style="margin-bottom:10px" hidden><button type="button" id="st-update">Vérifier les mises à jour</button><span class="note" id="st-update-msg" role="status"></span></div>
-              <p class="note" style="margin:0">Pilote F&amp;L · version <span id="st-version">3.16</span> · boîte à outils du category manager fruits et légumes. Cours réels : Commission européenne, Agri-food Data Portal (données publiques). Les prix, volumes et cours affichés comme « exemple » sont fictifs et servent uniquement à la démonstration. Site et mises à jour : <a href="https://tristanderoquefeuil-tech.github.io/pilote-fl/" target="_blank" rel="noopener">tristanderoquefeuil-tech.github.io/pilote-fl</a>.</p>
+              <p class="note" style="margin:0">Pilote F&amp;L · version <span id="st-version">3.17</span> · boîte à outils du category manager fruits et légumes. Cours réels : Commission européenne, Agri-food Data Portal (données publiques). Les prix, volumes et cours affichés comme « exemple » sont fictifs et servent uniquement à la démonstration. Site et mises à jour : <a href="https://tristanderoquefeuil-tech.github.io/pilote-fl/" target="_blank" rel="noopener">tristanderoquefeuil-tech.github.io/pilote-fl</a>.</p>
             </div>
           </div>
         </div>
@@ -1453,12 +1367,6 @@ th.sorted .th-sort { color: var(--text); }
 
 <datalist id="produits-list"></datalist>
 
-<div class="overlay wheel-overlay" id="more-sheet" hidden>
-  <div class="wheel-wrap" role="dialog" aria-modal="true" aria-labelledby="wheel-title">
-    <div class="wheel-info" aria-live="polite"><b id="wheel-title"></b><small id="wheel-desc"></small><span class="wheel-hint">Faites tourner la roue, puis touchez un outil</span></div>
-    <div class="wheel" id="wheel"><div class="wheel-disc" aria-hidden="true"></div><div class="wheel-ring" id="wheel-ring"></div></div>
-  </div>
-</div>
 
 <div class="upd-banner" id="upd" role="status" hidden><span class="upd-logo" aria-hidden="true"></span><span class="grow"><b id="upd-title">Nouvelle version disponible</b><small id="upd-notes"></small></span><button type="button" class="ghost" id="upd-later">Plus tard</button><button type="button" class="primary" id="upd-go">Installer</button></div>
 
@@ -1627,12 +1535,12 @@ th.sorted .th-sort { color: var(--text); }
   };
   let lastView = "accueil"; // dernier onglet ouvert avant les Paramètres
   // Outils regroupés dans le panneau « Plus » sur téléphone
-  const MORE_VIEWS = ["analyse", "com", "marge", "saison", "reglages"];
   function route() {
     const h = location.hash.replace("#", "");
     const v = VIEWS.includes(h) ? h : "accueil";
     if (v !== "reglages") lastView = v;
     VIEWS.forEach((name) => { $("view-" + name).hidden = name !== v; });
+    if (v === "saison") setTimeout(renderPeak, 0); // cours à jour sur les produits de saison
     // Téléphone : la barre du bas défile ; l'onglet ouvert est ramené au centre
     setTimeout(() => { const nav = document.querySelector("nav.tabs"), cur = nav && nav.querySelector(`a[data-view=\"${v}\"]`); if (nav && cur && nav.scrollWidth > nav.clientWidth) { const nr = nav.getBoundingClientRect(), cr = cur.getBoundingClientRect(); nav.scrollTo({ left: nav.scrollLeft + (cr.left - nr.left) - (nr.width - cr.width) / 2 }); } }, 0);
     if (v === "analyse") setTimeout(() => loadXLSX().catch(() => {}), 400); // préchargement discret
@@ -1648,9 +1556,6 @@ th.sorted .th-sort { color: var(--text); }
     $("tb-title").textContent = t;
     $("tb-sub").textContent = sub;
     document.title = `${t} · Pilote F&L`;
-    $("nav-more").classList.toggle("on", MORE_VIEWS.includes(v));
-    document.querySelectorAll("#wheel-ring a").forEach((a) => { if (a.dataset.view === v) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
-    closeMore();
     document.querySelectorAll("nav.tabs a, .tb-icon").forEach((a) => {
       if (a.dataset.view === v) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
     });
@@ -1660,103 +1565,7 @@ th.sorted .th-sort { color: var(--text); }
     window.scrollTo(0, 0);
     if (focusId) setTimeout(() => { const el = $(focusId); if (el) { el.scrollIntoView({ block: "center" }); el.focus(); } }, 60);
   }
-  // Roue tournante : tous les outils disposés en cercle ; on la fait tourner, l'outil du haut est mis en avant
-  const WHEEL_VIEWS = ["accueil", "analyse", "promo", "assort", "com", "marche", "marge", "saison", "reglages"];
-  const WHEEL_DESC = { accueil: "Ce qui demande votre attention", analyse: "Résultats de ventes et bilan d'opération", promo: "Rétroplannings et kits magasin", assort: "Matrice, RDV fournisseurs, veille prix", com: "Mail hebdo et affiches promo", marche: "Cours réels et alertes de prix", marge: "Marge réelle après pertes", saison: "Calendrier des fruits et légumes", reglages: "Préférences, sauvegarde et guide" };
-  const WSTEP = 360 / WHEEL_VIEWS.length;
-  const W = { angle: 0, items: [], dragging: false, moved: false, x0: 0, a0: 0 };
-  function buildMore() {
-    $("wheel-ring").innerHTML = WHEEL_VIEWS.map((v) => {
-      const src = v === "reglages" ? document.querySelector(".tb-icon") : document.querySelector(`nav.tabs a[data-view="${v}"]`);
-      const titre = v === "reglages" ? "Paramètres" : src.querySelector(".short").textContent;
-      return `<a href="#${v}" data-view="${v}" class="wheel-item" draggable="false">${src.querySelector("svg").outerHTML}<span>${titre}</span><i class="nav-badge" data-badge-for="${v}" hidden></i></a>`;
-    }).join("");
-    W.items = [...$("wheel-ring").querySelectorAll(".wheel-item")];
-  }
-  const wheelRadius = () => Math.min(150, (innerWidth - 80) / 2);
-  function placeWheel() {
-    const R = wheelRadius();
-    let best = null, bestD = 999;
-    W.items.forEach((el, i) => {
-      const deg = i * WSTEP + W.angle, rad = (deg * Math.PI) / 180;
-      const x = R * Math.sin(rad), y = -R * Math.cos(rad);
-      const visible = y < R * 0.25;
-      const top = Math.abs((((deg % 360) + 540) % 360) - 180); // écart en degrés avec la position du haut (0 = en haut)
-      el.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px) scale(${top < WSTEP / 2 ? 1.14 : 1})`;
-      el.style.opacity = visible ? String(Math.max(0.25, 1 - Math.max(0, y + R * 0.2) / (R * 0.6))) : "0";
-      el.style.pointerEvents = visible ? "" : "none";
-      el.tabIndex = visible ? 0 : -1;
-      if (top < bestD) { bestD = top; best = el; }
-    });
-    W.items.forEach((el) => el.classList.toggle("sel", el === best));
-    if (best) { const v = best.dataset.view; $("wheel-title").textContent = v === "reglages" ? "Paramètres et guide" : document.querySelector(`nav.tabs a[data-view="${v}"] .full`).textContent; $("wheel-desc").textContent = WHEEL_DESC[v]; }
-    $("wheel").querySelector(".wheel-disc").style.transform = `rotate(${W.angle}deg)`;
-  }
-  function snapWheel(toIndex) {
-    const i = toIndex != null ? toIndex : Math.round(-W.angle / WSTEP);
-    W.angle = -i * WSTEP;
-    $("wheel").classList.add("snap"); placeWheel();
-    if (typeof haptic === "function") haptic(5);
-    setTimeout(() => $("wheel").classList.remove("snap"), 320);
-  }
-  function openMore() {
-    const cur = (location.hash.replace("#", "") || "accueil");
-    const i = Math.max(0, WHEEL_VIEWS.indexOf(cur));
-    $("more-sheet").hidden = false; $("nav-more").setAttribute("aria-expanded", "true"); document.body.classList.add("modal-open");
-    // Ouverture : la roue arrive en tournant jusqu'à l'onglet ouvert
-    W.angle = -i * WSTEP - 120; placeWheel();
-    setTimeout(() => snapWheel(i), 30);
-    setTimeout(() => { const sel = $("wheel-ring").querySelector(".sel"); if (sel) sel.focus({ preventScroll: true }); }, 350);
-  }
-  function closeMore(restoreFocus) {
-    if (!$("more-sheet") || $("more-sheet").hidden) return;
-    $("more-sheet").hidden = true; $("nav-more").setAttribute("aria-expanded", "false");
-    if (restoreFocus) $("nav-more").focus({ preventScroll: true });
-    if ($("fiche").hidden) document.body.classList.remove("modal-open");
-  }
-  $("nav-more").addEventListener("click", () => ($("more-sheet").hidden ? openMore() : closeMore()));
-  // Tab reste dans la roue tant qu'elle est ouverte (lecteurs d'écran, clavier)
-  $("more-sheet").addEventListener("keydown", (e) => {
-    if (e.key !== "Tab") return;
-    const items = [...$("wheel-ring").querySelectorAll("a")];
-    if (!items.length) return;
-    const i = items.indexOf(document.activeElement);
-    const next = e.shiftKey ? (i <= 0 ? items.length - 1 : i - 1) : (i < 0 || i === items.length - 1 ? 0 : i + 1);
-    e.preventDefault();
-    snapWheel(next);
-    items[next].focus({ preventScroll: true });
-  });
-  // Faire tourner au doigt (ou à la souris)
-  $("more-sheet").addEventListener("pointerdown", (e) => {
-    if (e.button > 0) return;
-    W.dragging = true; W.moved = false; W.x0 = e.clientX; W.a0 = W.angle;
-  });
-  window.addEventListener("pointermove", (e) => {
-    if (!W.dragging) return;
-    const dx = e.clientX - W.x0;
-    if (Math.abs(dx) > 6) W.moved = true;
-    if (W.moved) { W.angle = W.a0 + dx * 0.45; placeWheel(); }
-  });
-  window.addEventListener("pointerup", () => {
-    if (!W.dragging) return; W.dragging = false;
-    if (W.moved) { snapWheel(); setTimeout(() => { W.moved = false; }, 60); } // le clic qui suit un glissement est ignoré, pas le suivant
-  });
-  // Un glissement ne doit pas ouvrir l'outil sous le doigt
-  $("more-sheet").addEventListener("click", (e) => {
-    if (W.moved) { e.preventDefault(); e.stopPropagation(); W.moved = false; return; }
-    if (e.target.id === "more-sheet" || e.target.classList.contains("wheel-wrap")) closeMore(true);
-  }, true);
-  // Molette et flèches du clavier
-  $("more-sheet").addEventListener("wheel", (e) => { e.preventDefault(); snapWheel(Math.round(-W.angle / WSTEP) + (e.deltaY > 0 || e.deltaX > 0 ? 1 : -1)); }, { passive: false });
-  $("more-sheet").addEventListener("keydown", (e) => {
-    const cur = Math.round(-W.angle / WSTEP);
-    if (e.key === "ArrowRight" || e.key === "ArrowDown") { e.preventDefault(); snapWheel(cur + 1); setTimeout(() => $("wheel-ring").querySelector(".sel").focus({ preventScroll: true }), 330); }
-    if (e.key === "ArrowLeft" || e.key === "ArrowUp") { e.preventDefault(); snapWheel(cur - 1); setTimeout(() => $("wheel-ring").querySelector(".sel").focus({ preventScroll: true }), 330); }
-  });
-  window.addEventListener("resize", () => { if (!$("more-sheet").hidden) placeWheel(); });
-  // Sur grand écran, tous les onglets sont visibles : le panneau n'a plus lieu d'être
-  const wideMq = matchMedia("(min-width: 901px)");
-  if (wideMq.addEventListener) wideMq.addEventListener("change", (e) => { if (e.matches) closeMore(); });
+  const wideMq = matchMedia("(min-width: 901px)"); // grand écran : barre latérale
   // Barre latérale réductible (ordinateur), choix mémorisé
   function setMini(on) {
     document.body.classList.toggle("side-mini", on);
@@ -1768,7 +1577,6 @@ th.sorted .th-sort { color: var(--text); }
   $("side-toggle").addEventListener("click", () => setMini(!document.body.classList.contains("side-mini")));
   // Infobulles : le nom complet de l'onglet, utile quand la barre est réduite
   document.querySelectorAll("nav.tabs a").forEach((a) => { a.title = a.querySelector(".full").textContent; });
-  buildMore();
   if (local.get("pfl-side-mini", "") === "1") setMini(true);
   window.addEventListener("hashchange", () => { route(); window.scrollTo(0, 0); });
   // L'engrenage ouvre les Paramètres ; un second clic les referme et revient à l'onglet précédent
@@ -1829,7 +1637,17 @@ th.sorted .th-sort { color: var(--text); }
   $("now-label").textContent = "En " + MOIS_LONG[now];
   $("next-label").textContent = "En " + MOIS_LONG[next];
   $("next-label2").textContent = "En " + MOIS_LONG[next];
-  $("chips-peak").innerHTML = peak.map((p) => chipBtn(p.nom)).join("") || none;
+  // Pleine saison : chaque produit porte la variation de son cours réel de la semaine (si cotation récente)
+  function renderPeak() {
+    const tr = (nom) => { try { const sr = seriesOf(nom), d = sr.data, lp = d[d.length - 1]; return (sr.src === "ue" || sr.src === "user") && lp && lp.d && daysUntil(parseDay(lp.d)) > -24 ? chgOf(d) : NaN; } catch { return NaN; } };
+    $("chips-peak").innerHTML = peak.map((p) => {
+      const t = tr(p.nom);
+      return isFinite(t) && Math.abs(t) >= 1
+        ? `<button type="button" class="chip" data-prod="${esc(p.nom)}" title="Cours d'achat ${sgn(t)} % sur la semaine">${p.icon || ""} ${esc(p.nom)} <small class="${t < 0 ? "pos" : "neg"}">${sgn(t, 0)} %</small></button>`
+        : chipBtn(p.nom);
+    }).join("") || none;
+  }
+  setTimeout(renderPeak, 0);
   $("chips-in").innerHTML = arriving.map((p) => chipBtn(p.nom, "soft")).join("") || none;
   $("chips-out").innerHTML = leaving.map((p) => chipBtn(p.nom, "out")).join("") || none;
   $("season-head").innerHTML = '<th style="text-align:left">Produit</th>' +
@@ -2202,7 +2020,6 @@ th.sorted .th-sort { color: var(--text); }
   document.addEventListener("focusout", () => { clearTimeout(kbTimer); kbTimer = setTimeout(() => { if (!isTyping(document.activeElement)) document.body.classList.remove("kb-open"); }, 120); });
   // Bouton Retour d'Android : referme d'abord ce qui est ouvert ; renvoie vrai si la page a géré le retour
   window.__pflBack = () => {
-    if (!$("more-sheet").hidden) { closeMore(true); return true; }
     if (!$("fiche").hidden) { closeFiche(); return true; }
     if (!$("pr-drawer").hidden) { closePromoDrawer(); return true; }
     if (!$("upd").hidden) { $("upd").hidden = true; return true; }
@@ -2210,13 +2027,12 @@ th.sorted .th-sort { color: var(--text); }
   };
   // Petite vibration au changement d'onglet (téléphones Android ; sans effet ailleurs)
   const haptic = (ms = 8) => { try { const ua = navigator.userActivation; if (navigator.vibrate && (!ua || ua.isActive)) navigator.vibrate(ms); } catch { /* non pris en charge */ } };
-  document.addEventListener("click", (e) => { if (e.target.closest("nav.tabs a, .nav-more, .tb-icon, .wheel-item")) haptic(); }, true);
+  document.addEventListener("click", (e) => { if (e.target.closest("nav.tabs a, .tb-icon, .nav-arrow")) haptic(); }, true);
   // Ombre sous la barre du haut dès qu'on fait défiler
   let tbShadow = false;
   window.addEventListener("scroll", () => { const on = window.scrollY > 4; if (on !== tbShadow) { tbShadow = on; document.querySelector(".topbar").classList.toggle("scrolled", on); } }, { passive: true });
   document.addEventListener("keydown", (e) => {
     if (e.key !== "Escape") return;
-    if (!$("more-sheet").hidden) closeMore(true);
     else if (!$("fiche").hidden) closeFiche();
     else if (!$("pr-drawer").hidden) closePromoDrawer();
   });
@@ -2381,6 +2197,7 @@ th.sorted .th-sort { color: var(--text); }
     } else renderLive("Cours non mis à jour : pas de connexion ?");
   }
   function renderLive(msg) {
+    if (!msg && !$("view-saison").hidden) setTimeout(renderPeak, 0); // cours arrivés : variations sur les produits de saison
     const n = Object.keys(COURS).length, d = coursMaj();
     $("mk-live").textContent = msg || (n ? `${n} ${pl(n, "produit en cours réel", "produits en cours réels")} · mis à jour le ${d ? d.toLocaleDateString("fr-FR", { day: "numeric", month: "short" }) : "–"}` : "cours d'exemple");
     $("mk-live").className = "mk-live" + (n && !msg ? " on" : "");
