@@ -2579,6 +2579,13 @@ nav.tabs a { position: relative; }
     AN.headers = Array.from({ length: width }, (_, i) => { const c = table[h][i]; return c == null || String(c).trim() === "" ? `Colonne ${i + 1}` : String(c).trim(); });
     AN.rows = table.slice(h + 1);
     AN.map = guessMap(AN.headers, AN.rows);
+    // Même format de fichier qu'une fois précédente : on reprend la correspondance corrigée à la main
+    AN.sig = AN.headers.map(normH).join("|");
+    AN.mapSaved = false;
+    try {
+      const saved = JSON.parse(local.get("pfl-colonnes", "{}"))[AN.sig];
+      if (saved && Object.values(saved).every((i) => Number.isInteger(i) && i >= 0 && i < AN.headers.length)) { AN.map = saved; AN.mapSaved = true; }
+    } catch { /* préférence illisible : détection automatique */ }
     AN.fname = fname; AN.mag = ""; AN.q = ""; AN.showAll = false; AN.sort = { k: "d", dir: 1 };
     $("an-drop").hidden = true; $("an-result").hidden = false;
     $("an-mapbox").open = AN.map.ca == null;
@@ -2785,7 +2792,7 @@ nav.tabs a { position: relative; }
     // Correspondance des colonnes
     $("an-map").innerHTML = ROLES.map(([k, lab]) => `<div class="field"><label for="map-${k}">${lab}</label><select id="map-${k}" data-role="${k}"><option value="">— aucune —</option>${AN.headers.map((h, i) => `<option value="${i}" ${AN.map[k] === i ? "selected" : ""}>${esc(h)}</option>`).join("")}</select></div>`).join("");
     const found = ROLES.filter(([k]) => AN.map[k] != null).length;
-    $("an-mapnote").textContent = `${found} sur ${ROLES.length} repérées · modifiez si besoin`;
+    $("an-mapnote").textContent = AN.mapSaved ? `${found} sur ${ROLES.length} · reprises de votre dernier fichier de ce format` : `${found} sur ${ROLES.length} repérées · modifiez si besoin`;
     $("an-fname").textContent = AN.fname;
     if (AN.map.ca == null) {
       $("an-rows").textContent = "";
@@ -2902,6 +2909,14 @@ nav.tabs a { position: relative; }
   $("an-map").addEventListener("change", (e) => {
     const r = e.target.dataset.role; if (!r) return;
     if (e.target.value === "") delete AN.map[r]; else AN.map[r] = +e.target.value;
+    // Mémorise la correspondance pour ce format (noms de colonnes uniquement, jamais les chiffres)
+    try {
+      const all = JSON.parse(local.get("pfl-colonnes", "{}"));
+      all[AN.sig] = AN.map;
+      const keys = Object.keys(all); if (keys.length > 10) delete all[keys[0]]; // 10 formats au plus
+      local.set("pfl-colonnes", JSON.stringify(all));
+      AN.mapSaved = true;
+    } catch { /* stockage indisponible : la correction vaut pour ce fichier seulement */ }
     renderAnalyse();
   });
   $("an-mag").addEventListener("change", (e) => { AN.mag = e.target.value; renderAnalyse(); });

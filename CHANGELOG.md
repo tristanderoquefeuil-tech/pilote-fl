@@ -4,7 +4,7 @@ Les améliorations sont regroupées par version publiée. La section « En prép
 
 ## En préparation
 
-(rien pour l'instant)
+- **Colonnes mémorisées.** L'Analyse express retient la correspondance des colonnes corrigée à la main pour chaque format de fichier (noms de colonnes seulement, jamais les chiffres) : l'export de la semaine suivante est reconnu directement.
 
 ## 3.6 — 23 novembre 2026
 
