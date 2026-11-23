@@ -712,6 +712,80 @@ nav.tabs a { position: relative; }
 /* Le panneau « Plus » passe sous la barre du bas : elle reste visible et « Plus » le referme */
 @media (max-width: 900px) { .more-overlay { z-index: 15; } }
 
+/* ---------- Roue tournante (téléphone) ---------- */
+.wheel-overlay { align-items: stretch; padding: 0; background: rgba(15, 42, 29, 0.42); touch-action: none; user-select: none; -webkit-user-select: none; }
+.wheel-wrap { position: absolute; inset: 0; }
+.wheel { position: absolute; left: 50%; bottom: calc(44px + env(safe-area-inset-bottom, 0px)); width: 0; height: 0; }
+.wheel-disc {
+  position: absolute; left: -175px; top: -175px; width: 350px; height: 350px; border-radius: 50%;
+  background:
+    repeating-conic-gradient(from 0deg, rgba(255, 255, 255, 0.10) 0deg 1deg, transparent 1deg 40deg),
+    radial-gradient(circle, rgba(255, 255, 255, 0.10) 0 52px, rgba(238, 246, 238, 0.92) 53px 100%);
+  border: 1px solid rgba(255, 255, 255, 0.7); box-shadow: 0 -16px 50px rgba(15, 42, 29, 0.25);
+}
+.wheel-ring { position: absolute; left: 0; top: 0; }
+.wheel-item {
+  position: absolute; left: -31px; top: -31px; width: 62px; height: 62px; border-radius: 50%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+  background: var(--surface); color: var(--ink); text-decoration: none; border: 1px solid var(--line);
+  box-shadow: 0 6px 16px rgba(15, 42, 29, 0.18); -webkit-tap-highlight-color: transparent;
+}
+.wheel-item svg { width: 21px; height: 21px; color: var(--leaf); }
+.wheel-item span { font-size: 0.58rem; font-weight: 600; line-height: 1.1; max-width: 56px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.wheel-item.sel { background: var(--leaf); color: #ffffff; border-color: var(--leaf); box-shadow: 0 10px 24px rgba(31, 122, 77, 0.45); }
+.wheel-item.sel svg { color: #ffffff; }
+.wheel-item[aria-current="page"]:not(.sel) { border: 2px solid var(--leaf); }
+.wheel-item:focus-visible { outline: 3px solid #ffffff; outline-offset: 2px; }
+.wheel-item .nav-badge { position: absolute; top: -4px; right: -4px; margin: 0; min-width: 18px; height: 18px; font-size: 0.62rem; font-style: normal; padding: 0 4px; box-shadow: 0 0 0 2px var(--surface); }
+.wheel.snap .wheel-item, .wheel.snap .wheel-disc { transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.25, 1.1), opacity 0.3s ease; }
+.wheel-info {
+  position: absolute; left: 50%; transform: translateX(-50%); width: min(320px, calc(100% - 32px));
+  bottom: calc(44px + env(safe-area-inset-bottom, 0px) + 230px);
+  text-align: center; color: #ffffff; display: grid; gap: 3px; pointer-events: none;
+}
+.wheel-info b { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.01em; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.25); }
+.wheel-info small { font-size: 0.82rem; opacity: 0.9; }
+.wheel-hint { font-size: 0.7rem; opacity: 0.7; margin-top: 6px; }
+@media (max-width: 900px) {
+  .wheel-overlay { z-index: 15; }
+  /* Ordre de la barre : Accueil, Promo, [roue], Assortiment, Cours */
+  nav.tabs a[data-view="accueil"] { order: 1; }
+  nav.tabs a[data-view="promo"] { order: 2; }
+  .nav-more { order: 3; }
+  nav.tabs a[data-view="assort"] { order: 4; }
+  nav.tabs a[data-view="marche"] { order: 5; }
+  .nav-more {
+    flex: 0 0 58px; width: 58px; height: 58px; margin: -20px 4px 0; padding: 0; border-radius: 50%;
+    background: linear-gradient(150deg, #8cc95a 0%, #1f7a4d 60%, #14532d 100%) !important; color: #ffffff;
+    box-shadow: 0 8px 22px rgba(15, 42, 29, 0.45), 0 0 0 4px var(--side);
+  }
+  .nav-more svg.wheel-icon { width: 28px; height: 28px; transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.25, 1.1); }
+  .nav-more[aria-expanded="true"] svg.wheel-icon { transform: rotate(160deg); }
+  .nav-more.on { box-shadow: 0 8px 22px rgba(15, 42, 29, 0.45), 0 0 0 4px var(--side), 0 0 0 6px var(--sprout); }
+  .nav-more .nav-badge { top: -2px; left: auto; right: -2px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wheel.snap .wheel-item, .wheel.snap .wheel-disc, .nav-more svg.wheel-icon { transition: none; }
+}
+
+/* ---------- Ressenti appli native ---------- */
+html, body { overscroll-behavior-y: none; }
+a, button, input, select, textarea, label, summary, .list-row, .mv-row, .op-card, .chip, .quad, .wheel-item, .dot { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+nav.tabs, .topbar .tb-title, button, .seg, .side, .nav-more, .wheel-wrap, .eyebrow, .sub-h, .status, .chip, .kpi .eyebrow { -webkit-user-select: none; user-select: none; }
+button, .list-row, .mv-row, .op-card, .chip, nav.tabs a, .wheel-item, .ev-row button, .quad, .prod-btn, .tb-icon { transition-property: background, border-color, box-shadow, color, transform; transition-duration: 0.12s; }
+@media (hover: none) {
+  button:active, .list-row:active, .mv-row:active, .op-card:active, button.chip:active, .quad:active, .tb-icon:active, .prod-btn:active { transform: scale(0.97); }
+  nav.tabs a:active { transform: scale(0.92); }
+  .nav-more:active { transform: scale(0.94); }
+}
+.topbar { transition: box-shadow 0.2s ease; }
+.topbar.scrolled { box-shadow: 0 6px 18px rgba(15, 42, 29, 0.10); }
+@media (prefers-reduced-motion: no-preference) {
+  .page.enter { animation: page-in 0.24s cubic-bezier(0.2, 0.8, 0.25, 1); }
+  @keyframes page-in { from { transform: translateY(10px); } to { transform: none; } }
+}
+input, select, textarea { font-size: max(16px, 1em); } /* évite le zoom automatique sur les champs (téléphone) */
+
 
 /* ===== Onglet Marché : terminal sombre posé sur le fond menthe ===== */
 .mk { --mk-bg: #0f241b; --mk-card: #143024; --mk-line: #23402f; --mk-text: #d9e6e2; --mk-mute: #86a09a; --mk-hi: #f4f8f6; --mk-up: #3fd39a; --mk-dn: #ff7e5f; --mk-amber: #f2b33d; }
@@ -819,7 +893,7 @@ nav.tabs a { position: relative; }
       <a href="#marche" data-view="marche"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3v18M17 3v18"/><rect x="5" y="7" width="4" height="8" rx="1"/><rect x="15" y="5" width="4" height="10" rx="1"/></svg><span class="full">Cours d'achat</span><span class="short">Cours</span></a>
       <a href="#marge" data-view="marge" class="m-more"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 6.5A6.5 6.5 0 1 0 17 17.5"/><path d="M4 10h9M4 14h9"/></svg><span class="full">Simulateur de marge</span><span class="short">Marge</span></a>
       <a href="#saison" data-view="saison" class="m-more"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span class="full">Saisonnalité</span><span class="short">Saison</span></a>
-      <button type="button" class="nav-more" id="nav-more" aria-haspopup="dialog" aria-expanded="false" aria-controls="more-sheet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><circle cx="17.5" cy="17.5" r="3.5"/></svg><span class="short">Plus</span><span class="nav-badge" id="more-badge" hidden></span></button>
+      <button type="button" class="nav-more" id="nav-more" aria-label="Tous les outils" title="Tous les outils" aria-haspopup="dialog" aria-expanded="false" aria-controls="more-sheet"><svg class="wheel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.6"/><path d="M12 3v6.4M12 14.6V21M3 12h6.4M14.6 12H21M5.6 5.6l4.6 4.6M13.8 13.8l4.6 4.6M18.4 5.6l-4.6 4.6M10.2 13.8l-4.6 4.6"/></svg><span class="nav-badge" id="more-badge" hidden></span></button>
     </nav>
     <div class="side-foot"><b id="side-week"></b><span id="side-day"></span><span class="mode" id="side-mode">Connexion…</span></div>
   </aside>
@@ -1241,7 +1315,7 @@ nav.tabs a { position: relative; }
             <div class="panel span-12">
               <div class="ph"><h3>À propos</h3></div>
               <div class="actions" id="st-update-box" style="margin-bottom:10px" hidden><button type="button" id="st-update">Vérifier les mises à jour</button><span class="note" id="st-update-msg" role="status"></span></div>
-              <p class="note" style="margin:0">Pilote F&amp;L · version <span id="st-version">3.6</span> · boîte à outils du category manager fruits et légumes. Cours réels : Commission européenne, Agri-food Data Portal (données publiques). Les prix, volumes et cours affichés comme « exemple » sont fictifs et servent uniquement à la démonstration. Site et mises à jour : <a href="https://tristanderoquefeuil-tech.github.io/pilote-fl/" target="_blank" rel="noopener">tristanderoquefeuil-tech.github.io/pilote-fl</a>.</p>
+              <p class="note" style="margin:0">Pilote F&amp;L · version <span id="st-version">3.7</span> · boîte à outils du category manager fruits et légumes. Cours réels : Commission européenne, Agri-food Data Portal (données publiques). Les prix, volumes et cours affichés comme « exemple » sont fictifs et servent uniquement à la démonstration. Site et mises à jour : <a href="https://tristanderoquefeuil-tech.github.io/pilote-fl/" target="_blank" rel="noopener">tristanderoquefeuil-tech.github.io/pilote-fl</a>.</p>
             </div>
           </div>
         </div>
@@ -1317,11 +1391,10 @@ nav.tabs a { position: relative; }
 
 <datalist id="produits-list"></datalist>
 
-<div class="overlay more-overlay" id="more-sheet" hidden>
-  <div class="more-panel" role="dialog" aria-modal="true" aria-labelledby="more-title">
-    <div class="more-grip" aria-hidden="true"></div>
-    <div class="more-head"><h3 id="more-title">Tous les outils</h3><button type="button" class="ghost icon-btn" id="more-close">Fermer</button></div>
-    <div class="more-grid" id="more-grid"></div>
+<div class="overlay wheel-overlay" id="more-sheet" hidden>
+  <div class="wheel-wrap" role="dialog" aria-modal="true" aria-labelledby="wheel-title">
+    <div class="wheel-info" aria-live="polite"><b id="wheel-title"></b><small id="wheel-desc"></small><span class="wheel-hint">Faites tourner la roue, puis touchez un outil</span></div>
+    <div class="wheel" id="wheel"><div class="wheel-disc" aria-hidden="true"></div><div class="wheel-ring" id="wheel-ring"></div></div>
   </div>
 </div>
 
@@ -1479,12 +1552,13 @@ nav.tabs a { position: relative; }
   let lastView = "accueil"; // dernier onglet ouvert avant les Paramètres
   // Outils regroupés dans le panneau « Plus » sur téléphone
   const MORE_VIEWS = ["analyse", "com", "marge", "saison", "reglages"];
-  const MORE_DESC = { analyse: "Résultats de ventes et bilan d'opération", com: "Mail hebdo et affiches promo", marge: "Marge réelle après pertes", saison: "Calendrier des fruits et légumes", reglages: "Préférences, sauvegarde et guide" };
   function route() {
     const h = location.hash.replace("#", "");
     const v = VIEWS.includes(h) ? h : "accueil";
     if (v !== "reglages") lastView = v;
     VIEWS.forEach((name) => { $("view-" + name).hidden = name !== v; });
+    const pg = $("view-" + v).querySelector(".page");
+    if (pg) { pg.classList.remove("enter"); void pg.offsetWidth; pg.classList.add("enter"); }
     if (v === "marche") setTimeout(() => drawChart(), 0);
     if (v === "com") setTimeout(() => comOnShow(), 0);
     if (v === "assort") setTimeout(() => renderAssort(), 0);
@@ -1496,7 +1570,7 @@ nav.tabs a { position: relative; }
     $("tb-sub").textContent = sub;
     document.title = `${t} · Pilote F&L`;
     $("nav-more").classList.toggle("on", MORE_VIEWS.includes(v));
-    document.querySelectorAll("#more-grid a").forEach((a) => { if (a.dataset.view === v) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+    document.querySelectorAll("#wheel-ring a").forEach((a) => { if (a.dataset.view === v) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
     closeMore();
     document.querySelectorAll("nav.tabs a, .tb-icon").forEach((a) => {
       if (a.dataset.view === v) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
@@ -1507,23 +1581,88 @@ nav.tabs a { position: relative; }
     window.scrollTo(0, 0);
     if (focusId) setTimeout(() => { const el = $(focusId); if (el) { el.scrollIntoView({ block: "center" }); el.focus(); } }, 60);
   }
-  // Panneau « Plus » : les outils secondaires, en grand, avec une description
+  // Roue tournante : tous les outils disposés en cercle ; on la fait tourner, l'outil du haut est mis en avant
+  const WHEEL_VIEWS = ["accueil", "analyse", "promo", "assort", "com", "marche", "marge", "saison", "reglages"];
+  const WHEEL_DESC = { accueil: "Ce qui demande votre attention", analyse: "Résultats de ventes et bilan d'opération", promo: "Rétroplannings et kits magasin", assort: "Matrice, RDV fournisseurs, veille prix", com: "Mail hebdo et affiches promo", marche: "Cours réels et alertes de prix", marge: "Marge réelle après pertes", saison: "Calendrier des fruits et légumes", reglages: "Préférences, sauvegarde et guide" };
+  const WSTEP = 360 / WHEEL_VIEWS.length;
+  const W = { angle: 0, items: [], dragging: false, moved: false, x0: 0, a0: 0 };
   function buildMore() {
-    $("more-grid").innerHTML = MORE_VIEWS.map((v) => {
+    $("wheel-ring").innerHTML = WHEEL_VIEWS.map((v) => {
       const src = v === "reglages" ? document.querySelector(".tb-icon") : document.querySelector(`nav.tabs a[data-view="${v}"]`);
-      const titre = v === "reglages" ? "Paramètres et guide" : src.querySelector(".full").textContent;
-      return `<a href="#${v}" data-view="${v}" class="more-item">${src.querySelector("svg").outerHTML}<span><b>${titre}</b><small>${MORE_DESC[v]}</small></span><span class="nav-badge" data-badge-for="${v}" hidden></span></a>`;
+      const titre = v === "reglages" ? "Paramètres" : src.querySelector(".short").textContent;
+      return `<a href="#${v}" data-view="${v}" class="wheel-item" draggable="false">${src.querySelector("svg").outerHTML}<span>${titre}</span><i class="nav-badge" data-badge-for="${v}" hidden></i></a>`;
     }).join("");
+    W.items = [...$("wheel-ring").querySelectorAll(".wheel-item")];
   }
-  function openMore() { $("more-sheet").hidden = false; $("nav-more").setAttribute("aria-expanded", "true"); document.body.classList.add("modal-open"); const a = $("more-grid").querySelector("a"); if (a) a.focus(); }
+  const wheelRadius = () => Math.min(150, (innerWidth - 80) / 2);
+  function placeWheel() {
+    const R = wheelRadius();
+    let best = null, bestD = 999;
+    W.items.forEach((el, i) => {
+      const deg = i * WSTEP + W.angle, rad = (deg * Math.PI) / 180;
+      const x = R * Math.sin(rad), y = -R * Math.cos(rad);
+      const visible = y < R * 0.25;
+      const top = Math.abs((((deg % 360) + 540) % 360) - 180); // écart en degrés avec la position du haut (0 = en haut)
+      el.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px) scale(${top < WSTEP / 2 ? 1.14 : 1})`;
+      el.style.opacity = visible ? String(Math.max(0.25, 1 - Math.max(0, y + R * 0.2) / (R * 0.6))) : "0";
+      el.style.pointerEvents = visible ? "" : "none";
+      el.tabIndex = visible ? 0 : -1;
+      if (top < bestD) { bestD = top; best = el; }
+    });
+    W.items.forEach((el) => el.classList.toggle("sel", el === best));
+    if (best) { const v = best.dataset.view; $("wheel-title").textContent = v === "reglages" ? "Paramètres et guide" : document.querySelector(`nav.tabs a[data-view="${v}"] .full`).textContent; $("wheel-desc").textContent = WHEEL_DESC[v]; }
+    $("wheel").querySelector(".wheel-disc").style.transform = `rotate(${W.angle}deg)`;
+  }
+  function snapWheel(toIndex) {
+    const i = toIndex != null ? toIndex : Math.round(-W.angle / WSTEP);
+    W.angle = -i * WSTEP;
+    $("wheel").classList.add("snap"); placeWheel();
+    if (typeof haptic === "function") haptic(5);
+    setTimeout(() => $("wheel").classList.remove("snap"), 320);
+  }
+  function openMore() {
+    const cur = (location.hash.replace("#", "") || "accueil");
+    const i = Math.max(0, WHEEL_VIEWS.indexOf(cur));
+    $("more-sheet").hidden = false; $("nav-more").setAttribute("aria-expanded", "true"); document.body.classList.add("modal-open");
+    // Ouverture : la roue arrive en tournant jusqu'à l'onglet ouvert
+    W.angle = -i * WSTEP - 120; placeWheel();
+    setTimeout(() => snapWheel(i), 30);
+    setTimeout(() => { const sel = $("wheel-ring").querySelector(".sel"); if (sel) sel.focus({ preventScroll: true }); }, 350);
+  }
   function closeMore() {
     if (!$("more-sheet") || $("more-sheet").hidden) return;
     $("more-sheet").hidden = true; $("nav-more").setAttribute("aria-expanded", "false");
     if ($("fiche").hidden) document.body.classList.remove("modal-open");
   }
   $("nav-more").addEventListener("click", () => ($("more-sheet").hidden ? openMore() : closeMore()));
-  $("more-close").addEventListener("click", closeMore);
-  $("more-sheet").addEventListener("click", (e) => { if (e.target.id === "more-sheet") closeMore(); });
+  // Faire tourner au doigt (ou à la souris)
+  $("more-sheet").addEventListener("pointerdown", (e) => {
+    if (e.button > 0) return;
+    W.dragging = true; W.moved = false; W.x0 = e.clientX; W.a0 = W.angle;
+  });
+  window.addEventListener("pointermove", (e) => {
+    if (!W.dragging) return;
+    const dx = e.clientX - W.x0;
+    if (Math.abs(dx) > 6) W.moved = true;
+    if (W.moved) { W.angle = W.a0 + dx * 0.45; placeWheel(); }
+  });
+  window.addEventListener("pointerup", () => {
+    if (!W.dragging) return; W.dragging = false;
+    if (W.moved) { snapWheel(); setTimeout(() => { W.moved = false; }, 60); } // le clic qui suit un glissement est ignoré, pas le suivant
+  });
+  // Un glissement ne doit pas ouvrir l'outil sous le doigt
+  $("more-sheet").addEventListener("click", (e) => {
+    if (W.moved) { e.preventDefault(); e.stopPropagation(); W.moved = false; return; }
+    if (e.target.id === "more-sheet" || e.target.classList.contains("wheel-wrap")) closeMore();
+  }, true);
+  // Molette et flèches du clavier
+  $("more-sheet").addEventListener("wheel", (e) => { e.preventDefault(); snapWheel(Math.round(-W.angle / WSTEP) + (e.deltaY > 0 || e.deltaX > 0 ? 1 : -1)); }, { passive: false });
+  $("more-sheet").addEventListener("keydown", (e) => {
+    const cur = Math.round(-W.angle / WSTEP);
+    if (e.key === "ArrowRight" || e.key === "ArrowDown") { e.preventDefault(); snapWheel(cur + 1); setTimeout(() => $("wheel-ring").querySelector(".sel").focus({ preventScroll: true }), 330); }
+    if (e.key === "ArrowLeft" || e.key === "ArrowUp") { e.preventDefault(); snapWheel(cur - 1); setTimeout(() => $("wheel-ring").querySelector(".sel").focus({ preventScroll: true }), 330); }
+  });
+  window.addEventListener("resize", () => { if (!$("more-sheet").hidden) placeWheel(); });
   // Sur grand écran, tous les onglets sont visibles : le panneau n'a plus lieu d'être
   const wideMq = matchMedia("(min-width: 901px)");
   if (wideMq.addEventListener) wideMq.addEventListener("change", (e) => { if (e.matches) closeMore(); });
@@ -1913,6 +2052,20 @@ nav.tabs a { position: relative; }
     const add = e.target.closest("[data-addfor]");
     if (add) { const n = add.dataset.addfor; closeFiche(); go("promo"); openPromoDrawer({ produits: [n] }); }
   });
+  // Bouton Retour d'Android : referme d'abord ce qui est ouvert ; renvoie vrai si la page a géré le retour
+  window.__pflBack = () => {
+    if (!$("more-sheet").hidden) { closeMore(); return true; }
+    if (!$("fiche").hidden) { closeFiche(); return true; }
+    if (!$("pr-drawer").hidden) { closePromoDrawer(); return true; }
+    if (!$("upd").hidden) { $("upd").hidden = true; return true; }
+    return false;
+  };
+  // Petite vibration au changement d'onglet (téléphones Android ; sans effet ailleurs)
+  const haptic = (ms = 8) => { try { const ua = navigator.userActivation; if (navigator.vibrate && (!ua || ua.isActive)) navigator.vibrate(ms); } catch { /* non pris en charge */ } };
+  document.addEventListener("click", (e) => { if (e.target.closest("nav.tabs a, .nav-more, .tb-icon, .wheel-item")) haptic(); }, true);
+  // Ombre sous la barre du haut dès qu'on fait défiler
+  let tbShadow = false;
+  window.addEventListener("scroll", () => { const on = window.scrollY > 4; if (on !== tbShadow) { tbShadow = on; document.querySelector(".topbar").classList.toggle("scrolled", on); } }, { passive: true });
   document.addEventListener("keydown", (e) => {
     if (e.key !== "Escape") return;
     if (!$("more-sheet").hidden) closeMore();

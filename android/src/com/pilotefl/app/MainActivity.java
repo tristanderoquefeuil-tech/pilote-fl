@@ -200,9 +200,18 @@ public class MainActivity extends Activity {
         web.saveState(outState);
     }
 
+    /**
+     * Bouton Retour : la page referme d'abord ce qui est ouvert (roue, fiche, panneau) ;
+     * sinon on revient à l'écran précédent, et depuis le premier écran on quitte l'appli.
+     */
     @Override
     public void onBackPressed() {
-        if (web.canGoBack()) web.goBack();
-        else super.onBackPressed();
+        web.evaluateJavascript("(window.__pflBack && window.__pflBack()) ? '1' : '0'", new ValueCallback<String>() {
+            @Override public void onReceiveValue(String handled) {
+                if ("\"1\"".equals(handled)) return;
+                if (web.canGoBack()) web.goBack();
+                else finish();
+            }
+        });
     }
 }

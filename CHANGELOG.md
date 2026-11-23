@@ -4,6 +4,10 @@ Les améliorations sont regroupées par version publiée. La section « En prép
 
 ## En préparation
 
+## 3.7 — 23 novembre 2026
+
+- **Roue des outils.** Le bouton « Plus » devient une roue qu'on fait tourner du doigt (ou à la molette et aux flèches) pour choisir un outil ; elle s'arrête sur l'outil le plus proche, avec son nom et sa description.
+- **Ressenti d'appli native.** Le bouton Retour d'Android referme d'abord la roue, la fiche produit ou le panneau ouvert ; petite vibration au changement d'onglet ; écrans qui glissent à l'ouverture ; boutons qui s'enfoncent au toucher ; ombre sous la barre du haut au défilement ; plus de rebond, de zoom sur les champs ni de sélection de texte accidentelle.
 - **Colonnes mémorisées.** L'Analyse express retient la correspondance des colonnes corrigée à la main pour chaque format de fichier (noms de colonnes seulement, jamais les chiffres) : l'export de la semaine suivante est reconnu directement.
 
 ## 3.6 — 23 novembre 2026
