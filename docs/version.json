@@ -1,6 +1,6 @@
 {
-  "versionCode": 16,
-  "versionName": "3.5",
+  "versionCode": 17,
+  "versionName": "3.6",
   "apk": "https://github.com/tristanderoquefeuil-tech/pilote-fl/releases/latest/download/PiloteFL.apk",
-  "notes": "Cours d'achat réels sur le tableau de bord et dans les fiches produit, 8 onglets visibles sur téléphone, matrice d'assortiment lisible sur petit écran."
+  "notes": "Barre de menu repensée : 4 onglets et un bouton « Plus » sur téléphone, pastilles d'alerte. Marge calculée au cours du jour."
 }

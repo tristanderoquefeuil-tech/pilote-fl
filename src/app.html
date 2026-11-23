@@ -18,19 +18,20 @@
 
 <div class="app">
   <aside class="side">
-    <div class="logo"><span class="logo-mark" aria-hidden="true"></span><span class="logo-text"><b>Pilote F&amp;L</b><small>Category management</small></span></div>
+    <div class="logo"><span class="logo-mark" aria-hidden="true"></span><span class="logo-text"><b>Pilote F&amp;L</b><small>Category management</small></span><button type="button" class="side-toggle" id="side-toggle" aria-label="Réduire le menu" title="Réduire le menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button></div>
     <nav class="tabs" aria-label="Modules">
       <div class="side-label">Pilotage</div>
       <a href="#accueil" data-view="accueil"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg><span class="full">Tableau de bord</span><span class="short">Accueil</span></a>
-      <a href="#analyse" data-view="analyse"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 17v-3M12 17v-6M15 17v-2"/></svg><span class="full">Analyse express</span><span class="short">Analyse</span></a>
+      <a href="#analyse" data-view="analyse" class="m-more"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 17v-3M12 17v-6M15 17v-2"/></svg><span class="full">Analyse express</span><span class="short">Analyse</span></a>
       <div class="side-label">Missions</div>
       <a href="#promo" data-view="promo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.5"/></svg><span class="full">Studio promo</span><span class="short">Promo</span></a>
       <a href="#assort" data-view="assort"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><span class="full">Atelier assortiment</span><span class="short">Assort.</span></a>
-      <a href="#com" data-view="com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg><span class="full">Atelier com</span><span class="short">Com</span></a>
+      <a href="#com" data-view="com" class="m-more"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg><span class="full">Atelier com</span><span class="short">Com</span></a>
       <div class="side-label">Outils</div>
       <a href="#marche" data-view="marche"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3v18M17 3v18"/><rect x="5" y="7" width="4" height="8" rx="1"/><rect x="15" y="5" width="4" height="10" rx="1"/></svg><span class="full">Cours d'achat</span><span class="short">Cours</span></a>
-      <a href="#marge" data-view="marge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 6.5A6.5 6.5 0 1 0 17 17.5"/><path d="M4 10h9M4 14h9"/></svg><span class="full">Simulateur de marge</span><span class="short">Marge</span></a>
-      <a href="#saison" data-view="saison"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span class="full">Saisonnalité</span><span class="short">Saison</span></a>
+      <a href="#marge" data-view="marge" class="m-more"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 6.5A6.5 6.5 0 1 0 17 17.5"/><path d="M4 10h9M4 14h9"/></svg><span class="full">Simulateur de marge</span><span class="short">Marge</span></a>
+      <a href="#saison" data-view="saison" class="m-more"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span class="full">Saisonnalité</span><span class="short">Saison</span></a>
+      <button type="button" class="nav-more" id="nav-more" aria-haspopup="dialog" aria-expanded="false" aria-controls="more-sheet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><circle cx="17.5" cy="17.5" r="3.5"/></svg><span class="short">Plus</span><span class="nav-badge" id="more-badge" hidden></span></button>
     </nav>
     <div class="side-foot"><b id="side-week"></b><span id="side-day"></span><span class="mode" id="side-mode">Connexion…</span></div>
   </aside>
@@ -452,7 +453,7 @@
             <div class="panel span-12">
               <div class="ph"><h3>À propos</h3></div>
               <div class="actions" id="st-update-box" style="margin-bottom:10px" hidden><button type="button" id="st-update">Vérifier les mises à jour</button><span class="note" id="st-update-msg" role="status"></span></div>
-              <p class="note" style="margin:0">Pilote F&amp;L · version <span id="st-version">3.5</span> · boîte à outils du category manager fruits et légumes. Cours réels : Commission européenne, Agri-food Data Portal (données publiques). Les prix, volumes et cours affichés comme « exemple » sont fictifs et servent uniquement à la démonstration. Site et mises à jour : <a href="https://tristanderoquefeuil-tech.github.io/pilote-fl/" target="_blank" rel="noopener">tristanderoquefeuil-tech.github.io/pilote-fl</a>.</p>
+              <p class="note" style="margin:0">Pilote F&amp;L · version <span id="st-version">3.6</span> · boîte à outils du category manager fruits et légumes. Cours réels : Commission européenne, Agri-food Data Portal (données publiques). Les prix, volumes et cours affichés comme « exemple » sont fictifs et servent uniquement à la démonstration. Site et mises à jour : <a href="https://tristanderoquefeuil-tech.github.io/pilote-fl/" target="_blank" rel="noopener">tristanderoquefeuil-tech.github.io/pilote-fl</a>.</p>
             </div>
           </div>
         </div>
@@ -527,6 +528,14 @@
 </div>
 
 <datalist id="produits-list"></datalist>
+
+<div class="overlay more-overlay" id="more-sheet" hidden>
+  <div class="more-panel" role="dialog" aria-modal="true" aria-labelledby="more-title">
+    <div class="more-grip" aria-hidden="true"></div>
+    <div class="more-head"><h3 id="more-title">Tous les outils</h3><button type="button" class="ghost icon-btn" id="more-close">Fermer</button></div>
+    <div class="more-grid" id="more-grid"></div>
+  </div>
+</div>
 
 <div class="upd-banner" id="upd" role="status" hidden><span class="upd-logo" aria-hidden="true"></span><span class="grow"><b id="upd-title">Nouvelle version disponible</b><small id="upd-notes"></small></span><button type="button" class="ghost" id="upd-later">Plus tard</button><button type="button" class="primary" id="upd-go">Installer</button></div>
 
@@ -680,6 +689,9 @@
     saison: ["Saisonnalité", "Production française et import, mois par mois"],
   };
   let lastView = "accueil"; // dernier onglet ouvert avant les Paramètres
+  // Outils regroupés dans le panneau « Plus » sur téléphone
+  const MORE_VIEWS = ["analyse", "com", "marge", "saison", "reglages"];
+  const MORE_DESC = { analyse: "Résultats de ventes et bilan d'opération", com: "Mail hebdo et affiches promo", marge: "Marge réelle après pertes", saison: "Calendrier des fruits et légumes", reglages: "Préférences, sauvegarde et guide" };
   function route() {
     const h = location.hash.replace("#", "");
     const v = VIEWS.includes(h) ? h : "accueil";
@@ -695,6 +707,9 @@
     $("tb-title").textContent = t;
     $("tb-sub").textContent = sub;
     document.title = `${t} · Pilote F&L`;
+    $("nav-more").classList.toggle("on", MORE_VIEWS.includes(v));
+    document.querySelectorAll("#more-grid a").forEach((a) => { if (a.dataset.view === v) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+    closeMore();
     document.querySelectorAll("nav.tabs a, .tb-icon").forEach((a) => {
       if (a.dataset.view === v) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
     });
@@ -704,6 +719,39 @@
     window.scrollTo(0, 0);
     if (focusId) setTimeout(() => { const el = $(focusId); if (el) { el.scrollIntoView({ block: "center" }); el.focus(); } }, 60);
   }
+  // Panneau « Plus » : les outils secondaires, en grand, avec une description
+  function buildMore() {
+    $("more-grid").innerHTML = MORE_VIEWS.map((v) => {
+      const src = v === "reglages" ? document.querySelector(".tb-icon") : document.querySelector(`nav.tabs a[data-view="${v}"]`);
+      const titre = v === "reglages" ? "Paramètres et guide" : src.querySelector(".full").textContent;
+      return `<a href="#${v}" data-view="${v}" class="more-item">${src.querySelector("svg").outerHTML}<span><b>${titre}</b><small>${MORE_DESC[v]}</small></span><span class="nav-badge" data-badge-for="${v}" hidden></span></a>`;
+    }).join("");
+  }
+  function openMore() { $("more-sheet").hidden = false; $("nav-more").setAttribute("aria-expanded", "true"); document.body.classList.add("modal-open"); const a = $("more-grid").querySelector("a"); if (a) a.focus(); }
+  function closeMore() {
+    if (!$("more-sheet") || $("more-sheet").hidden) return;
+    $("more-sheet").hidden = true; $("nav-more").setAttribute("aria-expanded", "false");
+    if ($("fiche").hidden) document.body.classList.remove("modal-open");
+  }
+  $("nav-more").addEventListener("click", () => ($("more-sheet").hidden ? openMore() : closeMore()));
+  $("more-close").addEventListener("click", closeMore);
+  $("more-sheet").addEventListener("click", (e) => { if (e.target.id === "more-sheet") closeMore(); });
+  // Sur grand écran, tous les onglets sont visibles : le panneau n'a plus lieu d'être
+  const wideMq = matchMedia("(min-width: 901px)");
+  if (wideMq.addEventListener) wideMq.addEventListener("change", (e) => { if (e.matches) closeMore(); });
+  // Barre latérale réductible (ordinateur), choix mémorisé
+  function setMini(on) {
+    document.body.classList.toggle("side-mini", on);
+    $("side-toggle").setAttribute("aria-label", on ? "Agrandir le menu" : "Réduire le menu");
+    $("side-toggle").title = on ? "Agrandir le menu" : "Réduire le menu";
+    local.set("pfl-side-mini", on ? "1" : "");
+    if (!$("view-marche").hidden) setTimeout(() => drawChart(), 220);
+  }
+  $("side-toggle").addEventListener("click", () => setMini(!document.body.classList.contains("side-mini")));
+  // Infobulles : le nom complet de l'onglet, utile quand la barre est réduite
+  document.querySelectorAll("nav.tabs a").forEach((a) => { a.title = a.querySelector(".full").textContent; });
+  buildMore();
+  if (local.get("pfl-side-mini", "") === "1") setMini(true);
   window.addEventListener("hashchange", () => { route(); window.scrollTo(0, 0); });
   // L'engrenage ouvre les Paramètres ; un second clic les referme et revient à l'onglet précédent
   document.querySelector(".tb-icon").addEventListener("click", (e) => {
@@ -1079,7 +1127,8 @@
   });
   document.addEventListener("keydown", (e) => {
     if (e.key !== "Escape") return;
-    if (!$("fiche").hidden) closeFiche();
+    if (!$("more-sheet").hidden) closeMore();
+    else if (!$("fiche").hidden) closeFiche();
     else if (!$("pr-drawer").hidden) closePromoDrawer();
   });
   // Recherche globale : ouvre la fiche du produit choisi
@@ -1486,6 +1535,7 @@
   }
 
   function renderAlerts() {
+    setTimeout(updateNavBadges, 0);
     const al = getAlerts();
     $("mk-al-list").innerHTML = al.map((a) => {
       const hit = alertHit(a);
@@ -2393,7 +2443,18 @@
     if (tsv) return ["Date\tSemaine\tÉtape\tResponsable\tDétail\tStatut", ...st.map((x) => [ymd(x.date), "S" + isoWeek(x.date).split("-S")[1], x.titre, x.who, x.detail, x.done ? "Fait" : "À faire"].join("\t"))].join("\n");
     return [`Rétroplanning · ${op.nom}`, `Opération du ${dayLong(s)} au ${dayLong(e)}`, "", ...st.map((x) => `${x.done ? "✓" : "○"} ${dayLong(x.date)} (S${isoWeek(x.date).split("-S")[1]}) : ${x.titre} · ${x.who}`)].join("\n");
   }
+  function updateNavBadges() {
+    try {
+      const late = PROMOS.items.reduce((n, op) => n + stepsOf(op).filter((x) => x.state === "late").length, 0);
+      const hits = getAlerts().filter(alertHit).length;
+      const set = (el, n, label) => { if (!el) return; el.hidden = !n; el.textContent = n > 9 ? "9+" : String(n); el.title = n ? label : ""; };
+      const badgeOf = (v) => { const a = document.querySelector(`nav.tabs a[data-view="${v}"]`); if (!a) return null; let b = a.querySelector(".nav-badge"); if (!b) { b = document.createElement("span"); b.className = "nav-badge"; a.appendChild(b); } return b; };
+      set(badgeOf("promo"), late, `${late} étape${late > 1 ? "s" : ""} en retard`);
+      set(badgeOf("marche"), hits, `${hits} alerte${hits > 1 ? "s" : ""} de prix déclenchée${hits > 1 ? "s" : ""}`);
+    } catch { /* données pas encore prêtes */ }
+  }
   function renderPromo() {
+    setTimeout(updateNavBadges, 0);
     renderPromoList();
     renderPromoMain();
   }

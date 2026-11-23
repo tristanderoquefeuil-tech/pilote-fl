@@ -2,8 +2,13 @@
 
 Les améliorations sont regroupées par version publiée. La section « En préparation » liste celles qui sont prêtes et testées mais pas encore publiées.
 
-## En préparation (3.6)
+## En préparation
 
+(rien pour l'instant)
+
+## 3.6 — 23 novembre 2026
+
+- **Barre de menu repensée.** Sur téléphone : 4 onglets principaux (Accueil, Promo, Assortiment, Cours) et un bouton « Plus » qui ouvre un panneau avec les autres outils, en grand et avec une description. Pastilles d'alerte sur les onglets (étapes promo en retard, alertes de prix déclenchées). Sur ordinateur : la barre latérale se réduit aux icônes (choix mémorisé), avec le nom complet en infobulle.
 - **Marge au cours du jour.** Le simulateur de marge et la fiche produit utilisent le cours réel (ou vos prix d'achat récents) comme prix d'achat quand il existe, avec la source et la semaine indiquées. Une valeur saisie à la main n'est plus écrasée en revenant sur le simulateur.
 
 ## 3.5 — 23 novembre 2026
