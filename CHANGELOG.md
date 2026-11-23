@@ -4,6 +4,10 @@ Les améliorations sont regroupées par version publiée. La section « En prép
 
 ## En préparation
 
+## 3.14 — 23 novembre 2026
+
+- **Barre du bas défilante.** Sur téléphone, la roue est remplacée par une barre qui contient tous les outils (Accueil, Analyse, Promo, Assortiment, Com, Cours, Marge, Saison) et qu'on fait glisser du doigt ; l'onglet ouvert est ramené au centre, les bords en fondu signalent qu'il y a d'autres outils.
+
 ## 3.13 — 23 novembre 2026
 
 - **Accords au singulier partout.** Tableau de bord, Analyse express, Studio promo, assortiment et cours : « 1 produit », « dans 1 jour », « 0 étape à faire », « 1 étape faite » au lieu des pluriels systématiques.

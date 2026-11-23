@@ -454,7 +454,7 @@
             <div class="panel span-12">
               <div class="ph"><h3>À propos</h3></div>
               <div class="actions" id="st-update-box" style="margin-bottom:10px" hidden><button type="button" id="st-update">Vérifier les mises à jour</button><span class="note" id="st-update-msg" role="status"></span></div>
-              <p class="note" style="margin:0">Pilote F&amp;L · version <span id="st-version">3.13</span> · boîte à outils du category manager fruits et légumes. Cours réels : Commission européenne, Agri-food Data Portal (données publiques). Les prix, volumes et cours affichés comme « exemple » sont fictifs et servent uniquement à la démonstration. Site et mises à jour : <a href="https://tristanderoquefeuil-tech.github.io/pilote-fl/" target="_blank" rel="noopener">tristanderoquefeuil-tech.github.io/pilote-fl</a>.</p>
+              <p class="note" style="margin:0">Pilote F&amp;L · version <span id="st-version">3.14</span> · boîte à outils du category manager fruits et légumes. Cours réels : Commission européenne, Agri-food Data Portal (données publiques). Les prix, volumes et cours affichés comme « exemple » sont fictifs et servent uniquement à la démonstration. Site et mises à jour : <a href="https://tristanderoquefeuil-tech.github.io/pilote-fl/" target="_blank" rel="noopener">tristanderoquefeuil-tech.github.io/pilote-fl</a>.</p>
             </div>
           </div>
         </div>
@@ -710,6 +710,8 @@
     const v = VIEWS.includes(h) ? h : "accueil";
     if (v !== "reglages") lastView = v;
     VIEWS.forEach((name) => { $("view-" + name).hidden = name !== v; });
+    // Téléphone : la barre du bas défile ; l'onglet ouvert est ramené au centre
+    setTimeout(() => { const nav = document.querySelector("nav.tabs"), cur = nav && nav.querySelector(`a[data-view=\"${v}\"]`); if (nav && cur && nav.scrollWidth > nav.clientWidth) { const nr = nav.getBoundingClientRect(), cr = cur.getBoundingClientRect(); nav.scrollTo({ left: nav.scrollLeft + (cr.left - nr.left) - (nr.width - cr.width) / 2 }); } }, 0);
     if (v === "analyse") setTimeout(() => loadXLSX().catch(() => {}), 400); // préchargement discret
     const pg = $("view-" + v).querySelector(".page");
     if (pg) { pg.classList.remove("enter"); void pg.offsetWidth; pg.classList.add("enter"); }

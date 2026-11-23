@@ -806,6 +806,22 @@ th.sorted .th-sort { color: var(--text); }
 .mv-row .mv-n { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .mv-row > :not(.mv-n) { flex-shrink: 0; }
 
+/* ---------- Téléphone : barre du bas défilante avec tous les outils (remplace la roue) ---------- */
+@media (max-width: 900px) {
+  .nav-more { display: none !important; }
+  nav.tabs {
+    overflow-x: auto; overflow-y: hidden; gap: 2px; scroll-snap-type: x proximity; scroll-behavior: smooth;
+    overscroll-behavior-x: contain; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 14px, #000 calc(100% - 14px), transparent 100%);
+            mask-image: linear-gradient(90deg, transparent 0, #000 14px, #000 calc(100% - 14px), transparent 100%);
+  }
+  nav.tabs::-webkit-scrollbar { display: none; }
+  nav.tabs a[data-view] { order: 0; } /* ordre naturel : Accueil, Analyse, Promo, Assortiment, Com, Cours, Marge, Saison */
+  nav.tabs a, nav.tabs a.m-more { display: flex; flex: 0 0 72px; min-width: 72px; scroll-snap-align: center; padding: 8px 0 7px; }
+  nav.tabs a:first-of-type { margin-left: 4px; }
+  nav.tabs a:last-of-type { margin-right: 4px; }
+}
+
 
 /* ===== Onglet Marché : terminal sombre posé sur le fond menthe ===== */
 .mk { --mk-bg: #0f241b; --mk-card: #143024; --mk-line: #23402f; --mk-text: #d9e6e2; --mk-mute: #86a09a; --mk-hi: #f4f8f6; --mk-up: #3fd39a; --mk-dn: #ff7e5f; --mk-amber: #f2b33d; }
@@ -1336,7 +1352,7 @@ th.sorted .th-sort { color: var(--text); }
             <div class="panel span-12">
               <div class="ph"><h3>À propos</h3></div>
               <div class="actions" id="st-update-box" style="margin-bottom:10px" hidden><button type="button" id="st-update">Vérifier les mises à jour</button><span class="note" id="st-update-msg" role="status"></span></div>
-              <p class="note" style="margin:0">Pilote F&amp;L · version <span id="st-version">3.13</span> · boîte à outils du category manager fruits et légumes. Cours réels : Commission européenne, Agri-food Data Portal (données publiques). Les prix, volumes et cours affichés comme « exemple » sont fictifs et servent uniquement à la démonstration. Site et mises à jour : <a href="https://tristanderoquefeuil-tech.github.io/pilote-fl/" target="_blank" rel="noopener">tristanderoquefeuil-tech.github.io/pilote-fl</a>.</p>
+              <p class="note" style="margin:0">Pilote F&amp;L · version <span id="st-version">3.14</span> · boîte à outils du category manager fruits et légumes. Cours réels : Commission européenne, Agri-food Data Portal (données publiques). Les prix, volumes et cours affichés comme « exemple » sont fictifs et servent uniquement à la démonstration. Site et mises à jour : <a href="https://tristanderoquefeuil-tech.github.io/pilote-fl/" target="_blank" rel="noopener">tristanderoquefeuil-tech.github.io/pilote-fl</a>.</p>
             </div>
           </div>
         </div>
@@ -1592,6 +1608,8 @@ th.sorted .th-sort { color: var(--text); }
     const v = VIEWS.includes(h) ? h : "accueil";
     if (v !== "reglages") lastView = v;
     VIEWS.forEach((name) => { $("view-" + name).hidden = name !== v; });
+    // Téléphone : la barre du bas défile ; l'onglet ouvert est ramené au centre
+    setTimeout(() => { const nav = document.querySelector("nav.tabs"), cur = nav && nav.querySelector(`a[data-view=\"${v}\"]`); if (nav && cur && nav.scrollWidth > nav.clientWidth) { const nr = nav.getBoundingClientRect(), cr = cur.getBoundingClientRect(); nav.scrollTo({ left: nav.scrollLeft + (cr.left - nr.left) - (nr.width - cr.width) / 2 }); } }, 0);
     if (v === "analyse") setTimeout(() => loadXLSX().catch(() => {}), 400); // préchargement discret
     const pg = $("view-" + v).querySelector(".page");
     if (pg) { pg.classList.remove("enter"); void pg.offsetWidth; pg.classList.add("enter"); }
