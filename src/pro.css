@@ -779,3 +779,13 @@ button, .list-row, .mv-row, .op-card, .chip, nav.tabs a, .wheel-item, .ev-row bu
   @keyframes page-in { from { transform: translateY(10px); } to { transform: none; } }
 }
 input, select, textarea { font-size: max(16px, 1em); } /* évite le zoom automatique sur les champs (téléphone) */
+
+/* ---------- Pastille hors ligne ---------- */
+.net-pill { display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; border-radius: 999px; background: #FBE3D6; color: #8A3B17; font-size: 0.75rem; font-weight: 600; white-space: nowrap; -webkit-user-select: none; user-select: none; }
+.net-pill[hidden] { display: none; }
+.net-pill i { width: 7px; height: 7px; border-radius: 50%; background: #E07A4D; }
+
+/* ---------- En-têtes de tri (boutons accessibles) ---------- */
+.th-sort { all: unset; cursor: pointer; font: inherit; color: inherit; text-transform: inherit; letter-spacing: inherit; border-radius: 6px; padding: 2px 4px; margin: -2px -4px; }
+.th-sort:focus-visible { outline: 2px solid var(--brand, #1F7A4D); outline-offset: 2px; }
+th.sorted .th-sort { color: var(--text); }

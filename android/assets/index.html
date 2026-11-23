@@ -791,6 +791,16 @@ button, .list-row, .mv-row, .op-card, .chip, nav.tabs a, .wheel-item, .ev-row bu
 }
 input, select, textarea { font-size: max(16px, 1em); } /* évite le zoom automatique sur les champs (téléphone) */
 
+/* ---------- Pastille hors ligne ---------- */
+.net-pill { display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; border-radius: 999px; background: #FBE3D6; color: #8A3B17; font-size: 0.75rem; font-weight: 600; white-space: nowrap; -webkit-user-select: none; user-select: none; }
+.net-pill[hidden] { display: none; }
+.net-pill i { width: 7px; height: 7px; border-radius: 50%; background: #E07A4D; }
+
+/* ---------- En-têtes de tri (boutons accessibles) ---------- */
+.th-sort { all: unset; cursor: pointer; font: inherit; color: inherit; text-transform: inherit; letter-spacing: inherit; border-radius: 6px; padding: 2px 4px; margin: -2px -4px; }
+.th-sort:focus-visible { outline: 2px solid var(--brand, #1F7A4D); outline-offset: 2px; }
+th.sorted .th-sort { color: var(--text); }
+
 
 /* ===== Onglet Marché : terminal sombre posé sur le fond menthe ===== */
 .mk { --mk-bg: #0f241b; --mk-card: #143024; --mk-line: #23402f; --mk-text: #d9e6e2; --mk-mute: #86a09a; --mk-hi: #f4f8f6; --mk-up: #3fd39a; --mk-dn: #ff7e5f; --mk-amber: #f2b33d; }
@@ -907,6 +917,7 @@ input, select, textarea { font-size: max(16px, 1em); } /* évite le zoom automat
     <header class="topbar">
       <span class="logo-mark" aria-hidden="true"></span>
       <div class="tb-title"><h1 id="tb-title">Tableau de bord</h1><span id="tb-sub"></span></div>
+      <span class="net-pill" id="net-pill" role="status" hidden title="Les cours et les mises à jour reprendront au retour du réseau"><i aria-hidden="true"></i>Hors ligne</span>
       <label class="tb-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="gsearch" type="search" list="produits-list" placeholder="Rechercher un produit" aria-label="Rechercher un produit" autocomplete="off"></label>
       <button type="button" class="primary tb-cta" data-go="analyse" aria-label="Analyser un export de ventes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg><span class="lbl">Analyser un export</span></button>
       <a href="#reglages" class="tb-icon" data-view="reglages" aria-label="Paramètres et guide" title="Paramètres et guide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></a>
@@ -1320,7 +1331,7 @@ input, select, textarea { font-size: max(16px, 1em); } /* évite le zoom automat
             <div class="panel span-12">
               <div class="ph"><h3>À propos</h3></div>
               <div class="actions" id="st-update-box" style="margin-bottom:10px" hidden><button type="button" id="st-update">Vérifier les mises à jour</button><span class="note" id="st-update-msg" role="status"></span></div>
-              <p class="note" style="margin:0">Pilote F&amp;L · version <span id="st-version">3.7</span> · boîte à outils du category manager fruits et légumes. Cours réels : Commission européenne, Agri-food Data Portal (données publiques). Les prix, volumes et cours affichés comme « exemple » sont fictifs et servent uniquement à la démonstration. Site et mises à jour : <a href="https://tristanderoquefeuil-tech.github.io/pilote-fl/" target="_blank" rel="noopener">tristanderoquefeuil-tech.github.io/pilote-fl</a>.</p>
+              <p class="note" style="margin:0">Pilote F&amp;L · version <span id="st-version">3.8</span> · boîte à outils du category manager fruits et légumes. Cours réels : Commission européenne, Agri-food Data Portal (données publiques). Les prix, volumes et cours affichés comme « exemple » sont fictifs et servent uniquement à la démonstration. Site et mises à jour : <a href="https://tristanderoquefeuil-tech.github.io/pilote-fl/" target="_blank" rel="noopener">tristanderoquefeuil-tech.github.io/pilote-fl</a>.</p>
             </div>
           </div>
         </div>
@@ -1634,12 +1645,24 @@ input, select, textarea { font-size: max(16px, 1em); } /* évite le zoom automat
     setTimeout(() => snapWheel(i), 30);
     setTimeout(() => { const sel = $("wheel-ring").querySelector(".sel"); if (sel) sel.focus({ preventScroll: true }); }, 350);
   }
-  function closeMore() {
+  function closeMore(restoreFocus) {
     if (!$("more-sheet") || $("more-sheet").hidden) return;
     $("more-sheet").hidden = true; $("nav-more").setAttribute("aria-expanded", "false");
+    if (restoreFocus) $("nav-more").focus({ preventScroll: true });
     if ($("fiche").hidden) document.body.classList.remove("modal-open");
   }
   $("nav-more").addEventListener("click", () => ($("more-sheet").hidden ? openMore() : closeMore()));
+  // Tab reste dans la roue tant qu'elle est ouverte (lecteurs d'écran, clavier)
+  $("more-sheet").addEventListener("keydown", (e) => {
+    if (e.key !== "Tab") return;
+    const items = [...$("wheel-ring").querySelectorAll("a")];
+    if (!items.length) return;
+    const i = items.indexOf(document.activeElement);
+    const next = e.shiftKey ? (i <= 0 ? items.length - 1 : i - 1) : (i < 0 || i === items.length - 1 ? 0 : i + 1);
+    e.preventDefault();
+    snapWheel(next);
+    items[next].focus({ preventScroll: true });
+  });
   // Faire tourner au doigt (ou à la souris)
   $("more-sheet").addEventListener("pointerdown", (e) => {
     if (e.button > 0) return;
@@ -1658,7 +1681,7 @@ input, select, textarea { font-size: max(16px, 1em); } /* évite le zoom automat
   // Un glissement ne doit pas ouvrir l'outil sous le doigt
   $("more-sheet").addEventListener("click", (e) => {
     if (W.moved) { e.preventDefault(); e.stopPropagation(); W.moved = false; return; }
-    if (e.target.id === "more-sheet" || e.target.classList.contains("wheel-wrap")) closeMore();
+    if (e.target.id === "more-sheet" || e.target.classList.contains("wheel-wrap")) closeMore(true);
   }, true);
   // Molette et flèches du clavier
   $("more-sheet").addEventListener("wheel", (e) => { e.preventDefault(); snapWheel(Math.round(-W.angle / WSTEP) + (e.deltaY > 0 || e.deltaX > 0 ? 1 : -1)); }, { passive: false });
@@ -2059,7 +2082,7 @@ input, select, textarea { font-size: max(16px, 1em); } /* évite le zoom automat
   });
   // Bouton Retour d'Android : referme d'abord ce qui est ouvert ; renvoie vrai si la page a géré le retour
   window.__pflBack = () => {
-    if (!$("more-sheet").hidden) { closeMore(); return true; }
+    if (!$("more-sheet").hidden) { closeMore(true); return true; }
     if (!$("fiche").hidden) { closeFiche(); return true; }
     if (!$("pr-drawer").hidden) { closePromoDrawer(); return true; }
     if (!$("upd").hidden) { $("upd").hidden = true; return true; }
@@ -2073,7 +2096,7 @@ input, select, textarea { font-size: max(16px, 1em); } /* évite le zoom automat
   window.addEventListener("scroll", () => { const on = window.scrollY > 4; if (on !== tbShadow) { tbShadow = on; document.querySelector(".topbar").classList.toggle("scrolled", on); } }, { passive: true });
   document.addEventListener("keydown", (e) => {
     if (e.key !== "Escape") return;
-    if (!$("more-sheet").hidden) closeMore();
+    if (!$("more-sheet").hidden) closeMore(true);
     else if (!$("fiche").hidden) closeFiche();
     else if (!$("pr-drawer").hidden) closePromoDrawer();
   });
@@ -2189,6 +2212,11 @@ input, select, textarea { font-size: max(16px, 1em); } /* évite le zoom automat
       } else if (manual && msg) msg.textContent = "Vous avez la dernière version.";
     } catch { if (manual && msg) msg.textContent = "Vérification impossible : pas de connexion ?"; }
   }
+  // Connexion : pastille « Hors ligne », et mise à jour des cours dès le retour du réseau
+  const netState = () => { $("net-pill").hidden = navigator.onLine !== false; };
+  window.addEventListener("offline", netState);
+  window.addEventListener("online", () => { netState(); updateCours(false).catch(() => {}); });
+  netState();
   let coursBusy = false;
   async function refreshCours(force) {
     if (!canRefreshCours() || coursBusy) return;
@@ -3026,7 +3054,7 @@ input, select, textarea { font-size: max(16px, 1em); } /* évite le zoom automat
     });
     const total = list.length;
     if (!AN.showAll) list = list.slice(0, 25);
-    $("an-prod").innerHTML = `<thead><tr>${cols.map(([key, lab, right]) => `<th class="sortable ${right ? "r" : ""} ${key === k ? "sorted" : ""}" data-sort="${key}">${lab}${key === k ? (dir > 0 ? " ↑" : " ↓") : ""}</th>`).join("")}</tr></thead><tbody>` +
+    $("an-prod").innerHTML = `<thead><tr>${cols.map(([key, lab, right]) => `<th class="sortable ${right ? "r" : ""} ${key === k ? "sorted" : ""}" aria-sort="${key === k ? (dir > 0 ? "ascending" : "descending") : "none"}"><button type="button" class="th-sort" data-sort="${key}">${lab}<span aria-hidden="true">${key === k ? (dir > 0 ? " ↑" : " ↓") : ""}</span></button></th>`).join("")}</tr></thead><tbody>` +
       list.map((p) => `<tr>${cols.map(([key]) => {
         switch (key) {
           case "nom": return `<td>${p.ref ? `<button type="button" class="prod-btn" data-prod="${esc(p.ref.nom)}">${pico(p.ref.nom, "sm")}<span>${esc(p.nom)}</span></button>` : `<b>${esc(p.nom)}</b>`}</td>`;
@@ -3078,7 +3106,9 @@ input, select, textarea { font-size: max(16px, 1em); } /* évite le zoom automat
     const th = e.target.closest("[data-sort]"); if (!th) return;
     const k = th.dataset.sort;
     AN.sort = AN.sort.k === k ? { k, dir: -AN.sort.dir } : { k, dir: k === "nom" || k === "fam" ? 1 : k === "d" || k === "ev" ? 1 : -1 };
+    const hadFocus = document.activeElement === th;
     renderAnProducts();
+    if (hadFocus) { const b = $("an-prod").querySelector(`[data-sort="${k}"]`); if (b) b.focus({ preventScroll: true }); }
   });
   $("an-more").addEventListener("click", (e) => { if (e.target.id === "an-all") { AN.showAll = !AN.showAll; renderAnProducts(); } });
 

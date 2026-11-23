@@ -1,6 +1,6 @@
 {
-  "versionCode": 18,
-  "versionName": "3.7",
+  "versionCode": 19,
+  "versionName": "3.8",
   "apk": "https://github.com/tristanderoquefeuil-tech/pilote-fl/releases/latest/download/PiloteFL.apk",
-  "notes": "Roue des outils à faire tourner du doigt, bouton Retour d'Android, vibrations et transitions d'appli native, colonnes mémorisées dans l'Analyse express."
+  "notes": "Pastille « Hors ligne » et cours mis à jour au retour du réseau ; roue et tableau produits utilisables au clavier."
 }

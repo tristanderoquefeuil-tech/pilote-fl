@@ -4,6 +4,12 @@ Les améliorations sont regroupées par version publiée. La section « En prép
 
 ## En préparation
 
+## 3.8 — 23 novembre 2026
+
+- **Tri du tableau produits au clavier.** Dans l'Analyse express, les en-têtes du « Détail par produit » sont de vrais boutons : on trie avec Entrée ou Espace, le sens du tri est annoncé aux lecteurs d'écran et le focus reste sur la colonne triée.
+- **Roue utilisable au clavier et au lecteur d'écran.** Tab et Maj+Tab font tourner la roue d'un outil à l'autre sans en sortir ; à la fermeture (Échap, Retour, toucher à côté), le focus revient sur le bouton de la roue.
+- **Pastille « Hors ligne ».** Sans réseau, une pastille l'indique en haut de l'écran : on sait que les cours affichés ne sont pas rafraîchis. Au retour du réseau, elle disparaît et les cours se mettent à jour d'eux-mêmes.
+
 ## 3.7 — 23 novembre 2026
 
 - **Roue des outils.** Le bouton « Plus » devient une roue qu'on fait tourner du doigt (ou à la molette et aux flèches) pour choisir un outil ; elle s'arrête sur l'outil le plus proche, avec son nom et sa description.
