@@ -4,6 +4,12 @@ Les améliorations sont regroupées par version publiée. La section « En prép
 
 ## En préparation
 
+## 3.9 — 23 novembre 2026
+
+- **Alerte revente à perte.** Dans le Studio promo, un produit dont le prix promo HT passe sous le prix d'achat est signalé (« sous l'achat ») avec un rappel : la revente à perte est interdite en France, sauf exceptions encadrées. Pistes : remonter le prix promo ou négocier une participation du fournisseur.
+- **Tableau par famille triable.** Dans l'Analyse express, le tableau des familles se trie comme le détail par produit (CA, écart N-1, évolution, poids, marge, nom), au clic ou au clavier : on repère d'un coup la famille qui recule le plus.
+- **Prix de rayon dans le simulateur de marge.** À côté du prix conseillé, l'appli propose l'étiquette en ,x9 juste au-dessus (ex. 2,43 € → 2,49 €) et la marge réelle obtenue à ce prix.
+
 ## 3.8 — 23 novembre 2026
 
 - **Tri du tableau produits au clavier.** Dans l'Analyse express, les en-têtes du « Détail par produit » sont de vrais boutons : on trie avec Entrée ou Espace, le sens du tri est annoncé aux lecteurs d'écran et le focus reste sur la colonne triée.

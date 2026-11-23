@@ -789,3 +789,7 @@ input, select, textarea { font-size: max(16px, 1em); } /* évite le zoom automat
 .th-sort { all: unset; cursor: pointer; font: inherit; color: inherit; text-transform: inherit; letter-spacing: inherit; border-radius: 6px; padding: 2px 4px; margin: -2px -4px; }
 .th-sort:focus-visible { outline: 2px solid var(--brand, #1F7A4D); outline-offset: 2px; }
 th.sorted .th-sort { color: var(--text); }
+
+/* ---------- Alerte revente à perte (Studio promo) ---------- */
+.srp-alert { margin: 0 0 12px; padding: 10px 14px; border-radius: 14px; background: #FBE3D6; color: #7A2E10; font-size: 0.86rem; line-height: 1.45; }
+.srp-tag { display: block; font-size: 0.68rem; font-weight: 700; color: #B4441A; text-transform: uppercase; letter-spacing: 0.03em; }

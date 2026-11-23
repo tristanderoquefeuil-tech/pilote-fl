@@ -796,6 +796,10 @@ input, select, textarea { font-size: max(16px, 1em); } /* évite le zoom automat
 .th-sort:focus-visible { outline: 2px solid var(--brand, #1F7A4D); outline-offset: 2px; }
 th.sorted .th-sort { color: var(--text); }
 
+/* ---------- Alerte revente à perte (Studio promo) ---------- */
+.srp-alert { margin: 0 0 12px; padding: 10px 14px; border-radius: 14px; background: #FBE3D6; color: #7A2E10; font-size: 0.86rem; line-height: 1.45; }
+.srp-tag { display: block; font-size: 0.68rem; font-weight: 700; color: #B4441A; text-transform: uppercase; letter-spacing: 0.03em; }
+
 
 /* ===== Onglet Marché : terminal sombre posé sur le fond menthe ===== */
 .mk { --mk-bg: #0f241b; --mk-card: #143024; --mk-line: #23402f; --mk-text: #d9e6e2; --mk-mute: #86a09a; --mk-hi: #f4f8f6; --mk-up: #3fd39a; --mk-dn: #ff7e5f; --mk-amber: #f2b33d; }
@@ -1326,7 +1330,7 @@ th.sorted .th-sort { color: var(--text); }
             <div class="panel span-12">
               <div class="ph"><h3>À propos</h3></div>
               <div class="actions" id="st-update-box" style="margin-bottom:10px" hidden><button type="button" id="st-update">Vérifier les mises à jour</button><span class="note" id="st-update-msg" role="status"></span></div>
-              <p class="note" style="margin:0">Pilote F&amp;L · version <span id="st-version">3.8</span> · boîte à outils du category manager fruits et légumes. Cours réels : Commission européenne, Agri-food Data Portal (données publiques). Les prix, volumes et cours affichés comme « exemple » sont fictifs et servent uniquement à la démonstration. Site et mises à jour : <a href="https://tristanderoquefeuil-tech.github.io/pilote-fl/" target="_blank" rel="noopener">tristanderoquefeuil-tech.github.io/pilote-fl</a>.</p>
+              <p class="note" style="margin:0">Pilote F&amp;L · version <span id="st-version">3.9</span> · boîte à outils du category manager fruits et légumes. Cours réels : Commission européenne, Agri-food Data Portal (données publiques). Les prix, volumes et cours affichés comme « exemple » sont fictifs et servent uniquement à la démonstration. Site et mises à jour : <a href="https://tristanderoquefeuil-tech.github.io/pilote-fl/" target="_blank" rel="noopener">tristanderoquefeuil-tech.github.io/pilote-fl</a>.</p>
             </div>
           </div>
         </div>
@@ -1827,11 +1831,19 @@ th.sorted .th-sort { color: var(--text); }
     const n = (id) => parseFloat($(id).value) || 0;
     const m = calcMarge({ pa: n("m-pa"), pv: n("m-pv"), freinte: n("m-freinte"), dem: n("m-dem"), tva: n("m-tva"), cible: n("m-cible") });
     const cls = m.tauxReel < 0 ? "bad" : m.tauxReel < m.cible ? "warn" : "good";
+    // Prix de rayon : première étiquette en ,x9 au-dessus du prix conseillé (ex. 3,47 € → 3,49 €)
+    let psy = NaN, psyTaux = NaN;
+    if (isFinite(m.pvConseilTTC) && m.pvConseilTTC > 0) {
+      const c = Math.round(m.pvConseilTTC * 100);
+      let p = Math.floor(c / 10) * 10 + 9; if (p < c) p += 10;
+      psy = p / 100;
+      psyTaux = calcMarge({ pa: n("m-pa"), pv: psy, freinte: n("m-freinte"), dem: n("m-dem"), tva: n("m-tva"), cible: n("m-cible") }).tauxReel;
+    }
     $("m-kpis").innerHTML = [
       { l: "Taux de marge réel", v: pct(m.tauxReel), s: "sur CA HT, après pertes", c: cls },
       { l: "Taux de marge théorique", v: pct(m.tauxTheo), s: "sans freinte ni démarque" },
       { l: "Coefficient", v: isFinite(m.coef) ? m.coef.toFixed(2).replace(".", ",") : "–", s: "prix TTC / prix d'achat HT" },
-      { l: "Prix conseillé", v: isFinite(m.pvConseilTTC) ? eur.format(m.pvConseilTTC) : "–", s: `TTC / kg pour ${pct(m.cible, 0)} de marge réelle` },
+      { l: "Prix conseillé", v: isFinite(m.pvConseilTTC) ? eur.format(m.pvConseilTTC) : "–", s: `TTC / kg pour ${pct(m.cible, 0)} de marge réelle` + (isFinite(psy) ? ` · en rayon : <b>${eur.format(psy)}</b> (${pct(psyTaux)})` : "") },
     ].map((k) => `<div class="kpi ${k.c || ""}"><span class="eyebrow">${k.l}</span><span class="v">${k.v}</span><span class="s">${k.s}</span></div>`).join("");
     const max = Math.max(m.caTheo, m.pa, 0.01);
     const w = (x) => (Math.max(0, x) / max) * 100;
@@ -2762,7 +2774,7 @@ th.sorted .th-sort { color: var(--text); }
       const saved = JSON.parse(local.get("pfl-colonnes", "{}"))[AN.sig];
       if (saved && Object.values(saved).every((i) => Number.isInteger(i) && i >= 0 && i < AN.headers.length)) { AN.map = saved; AN.mapSaved = true; }
     } catch { /* préférence illisible : détection automatique */ }
-    AN.fname = fname; AN.mag = ""; AN.q = ""; AN.showAll = false; AN.sort = { k: "d", dir: 1 };
+    AN.fname = fname; AN.mag = ""; AN.q = ""; AN.showAll = false; AN.sort = { k: "d", dir: 1 }; AN.famSort = null;
     $("an-drop").hidden = true; $("an-result").hidden = false;
     $("an-mapbox").open = AN.map.ca == null;
     renderAnalyse();
@@ -3025,11 +3037,19 @@ th.sorted .th-sort { color: var(--text); }
 
     // Familles
     $("an-fam-box").hidden = !flags.fam;
-    if (flags.fam) {
-      $("an-fam").innerHTML = `<thead><tr><th>Famille</th><th class="r">CA</th>${flags.ca1 ? '<th class="r">Écart N-1</th><th class="r">Évol.</th>' : ""}<th class="r">Poids</th>${flags.marge ? '<th class="r">Taux de marge</th>' : ""}</tr></thead><tbody>` +
+    if (flags.fam) renderAnFams();
+    renderAnProducts();
+  }
+  // Tableau par famille, triable par en-têtes accessibles (comme le détail par produit)
+  function renderAnFams() {
+    const { fams: all, flags } = AN.res;
+    const cols = [["nom", "Famille", false], ["ca", "CA", true], ["d", "Écart N-1", true, flags.ca1], ["ev", "Évol.", true, flags.ca1], ["w", "Poids", true], ["tm", "Taux de marge", true, flags.marge]].filter((c) => c[3] !== false);
+    const { k, dir } = AN.famSort || { k: "ca", dir: -1 };
+    const fams = [...all].sort((a, b) => (typeof a[k] === "string" ? a[k].localeCompare(b[k]) : (isFinite(a[k]) ? a[k] : -Infinity) - (isFinite(b[k]) ? b[k] : -Infinity)) * dir);
+    {
+      $("an-fam").innerHTML = `<thead><tr>${cols.map(([key, lab, right]) => `<th class="sortable ${right ? "r" : ""} ${key === k ? "sorted" : ""}" aria-sort="${key === k ? (dir > 0 ? "ascending" : "descending") : "none"}"><button type="button" class="th-sort" data-sort="${key}">${lab}<span aria-hidden="true">${key === k ? (dir > 0 ? " ↑" : " ↓") : ""}</span></button></th>`).join("")}</tr></thead><tbody>` +
         fams.map((f) => `<tr><td><b>${esc(f.nom)}</b> <span class="note">· ${f.n}</span></td><td class="r num">${eur0.format(f.ca)}</td>${flags.ca1 ? `<td class="r num ${cls(f.d)}">${sgnEur(f.d)}</td><td class="r num ${cls(f.d)}">${sgnPct(f.ev)}</td>` : ""}<td class="r num">${pct(f.w, 1)}</td>${flags.marge ? `<td class="r num">${pct1(f.tm)}</td>` : ""}</tr>`).join("") + "</tbody>";
     }
-    renderAnProducts();
   }
   function renderAnProducts() {
     const R = AN.res; if (!R) return;
@@ -3104,6 +3124,14 @@ th.sorted .th-sort { color: var(--text); }
     const hadFocus = document.activeElement === th;
     renderAnProducts();
     if (hadFocus) { const b = $("an-prod").querySelector(`[data-sort="${k}"]`); if (b) b.focus({ preventScroll: true }); }
+  });
+  $("an-fam").addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-sort]"); if (!btn || !AN.res) return;
+    const k = btn.dataset.sort, cur = AN.famSort || { k: "ca", dir: -1 };
+    AN.famSort = cur.k === k ? { k, dir: -cur.dir } : { k, dir: k === "nom" ? 1 : -1 };
+    const hadFocus = document.activeElement === btn;
+    renderAnFams();
+    if (hadFocus) { const b = $("an-fam").querySelector(`[data-sort="${k}"]`); if (b) b.focus({ preventScroll: true }); }
   });
   $("an-more").addEventListener("click", (e) => { if (e.target.id === "an-all") { AN.showAll = !AN.showAll; renderAnProducts(); } });
 
@@ -3382,7 +3410,9 @@ th.sorted .th-sort { color: var(--text); }
       const lines = op.produits || [];
       const sugg = PRODUITS.filter((p) => p.mois[s.getMonth()] === 2 && !lines.some((l) => l.nom === p.nom)).slice(0, 12);
       const marge = (l) => { const pp = toNum(l.pp), a = toNum(l.achat); if (!(pp > 0) || !(a > 0)) return NaN; const h = pp / 1.055; return (h - a) / h; };
+      const sousAchat = lines.filter((l) => marge(l) < 0).map((l) => l.nom);
       body = `<div class="panel"><div class="ph"><h3>Produits en promotion</h3><span class="note">prix d'achat préremplis avec des valeurs d'exemple, à remplacer</span></div>` +
+        (sousAchat.length ? `<p class="srp-alert" role="alert"><b>Prix promo sous le prix d'achat :</b> ${sousAchat.map(esc).join(", ")}. La revente à perte est interdite en France (sauf exceptions encadrées, comme les produits périssables menacés d'altération rapide) : remontez le prix promo ou négociez une participation du fournisseur.</p>` : "") +
         `<div class="scroll"><table class="data" id="pr-lines"><thead><tr><th>Produit</th><th class="r">Prix normal TTC</th><th class="r">Prix promo TTC</th><th class="r">Remise</th><th class="r">Achat HT</th><th class="r">Marge promo</th><th>Mécanique</th><th>PLV</th><th></th></tr></thead><tbody>` +
         (lines.map((l, i) => { const pn = toNum(l.pn), pp = toNum(l.pp), mg = marge(l); const rem = pn > 0 && pp > 0 ? 1 - pp / pn : NaN;
           return `<tr><td>${findProd(l.nom) ? prodBtn(l.nom) : `<b>${esc(l.nom)}</b>`}</td>` +
@@ -3390,7 +3420,7 @@ th.sorted .th-sort { color: var(--text); }
             `<td class="tight"><input data-li="${i}" data-f="pp" value="${esc(String(l.pp).replace(".", ","))}" inputmode="decimal" aria-label="Prix promo ${esc(l.nom)}"></td>` +
             `<td class="r num">${isFinite(rem) ? "−" + pct(rem, 0) : "–"}</td>` +
             `<td class="tight"><input data-li="${i}" data-f="achat" value="${esc(String(l.achat).replace(".", ","))}" inputmode="decimal" aria-label="Prix d'achat ${esc(l.nom)}"></td>` +
-            `<td class="r num ${isFinite(mg) ? (mg < 0.1 ? "neg" : "pos") : ""}">${pct1(mg)}</td>` +
+            `<td class="r num ${isFinite(mg) ? (mg < 0.1 ? "neg" : "pos") : ""}">${pct1(mg)}${mg < 0 ? '<span class="srp-tag">sous l\'achat</span>' : ""}</td>` +
             `<td class="tight"><input data-li="${i}" data-f="meca" value="${esc(l.meca || "")}" aria-label="Mécanique ${esc(l.nom)}"></td>` +
             `<td class="tight"><input data-li="${i}" data-f="plv" value="${esc(l.plv || "")}" aria-label="PLV ${esc(l.nom)}"></td>` +
             `<td><button type="button" class="ghost icon-btn" data-ldel="${i}" aria-label="Retirer ${esc(l.nom)}">Retirer</button></td></tr>`; }).join("") ||

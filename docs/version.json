@@ -1,6 +1,6 @@
 {
-  "versionCode": 19,
-  "versionName": "3.8",
+  "versionCode": 20,
+  "versionName": "3.9",
   "apk": "https://github.com/tristanderoquefeuil-tech/pilote-fl/releases/latest/download/PiloteFL.apk",
-  "notes": "Pastille « Hors ligne » et cours mis à jour au retour du réseau ; roue et tableau produits utilisables au clavier."
+  "notes": "Alerte revente à perte dans le Studio promo, tableau par famille triable, prix de rayon en ,x9 dans le simulateur de marge."
 }
