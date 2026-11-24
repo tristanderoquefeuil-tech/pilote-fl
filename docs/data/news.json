@@ -1,5 +1,5 @@
 {
- "maj": "2026-11-24T09:17:41.159Z",
+ "maj": "2026-11-24T09:29:44.051Z",
  "articles": [
   {
    "titre": "Des pommes de terre vendues chez Auchan, E.Leclerc et Lidl rappelées dans toute la France en raison d'un risque d'intoxication",
@@ -303,17 +303,6 @@
    ]
   },
   {
-   "titre": "Fruits et légumes : le Vietnam vise 20 milliards de dollars d'exportations",
-   "source": "Vietnam+ (VietnamPlus)",
-   "date": "2026-11-22T08:34:12.000Z",
-   "lien": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPa1pINmwxSk9KT2lPTTBsdFlDVE9TbG9sd2xjQk9jeW9lMEtEb2w4TzhUbWZyLUNIdW1zTFkxY2xFeGRvRk9FRjlUaDdtT3F1RWpzbGp0WEI0MVloRi1XQTZRUFdCMkdDeERGQ2xCZkRiVFMtXzByU0pDLUtvUUFYS3VwYmpDT1RXN29vVGY0TXdjTEZwRUt1QmEyRDdBaHVKXzJSNWhEd3NHOHBfT3ZndVBB?oc=5",
-   "resume": "",
-   "img": "",
-   "cats": [
-    "fl"
-   ]
-  },
-  {
    "titre": "« Un maximum de produits locaux » : dans les Côtes-d’Armor, elle propose la livraison de fruits et légumes à domicile",
    "source": "Ouest-France",
    "date": "2026-11-22T07:02:04.000Z",
@@ -424,6 +413,17 @@
    ]
   },
   {
+   "titre": "Fini l’ouverture à 8h30 : Lidl change les horaires de ses magasins, les clients vont adorer",
+   "source": "Presse-citron",
+   "date": "2026-11-20T12:51:11.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQb01DTkF5d0ZQZnBlSWxVb3FVeHotYS1YRUp2aV9ET1Vac213ZXJrS0Y0NERjSEt5SlVLRTFjZFJtSnZ2NzhpR08yTVNpdFZwN2dRMFMwYjFrX2tOZnJtSk9IWWJMMlM3cEJfN0xOa3otc0hXNE15Z2Nqam9ZY05UMDM2bGlZX1JOeUFGM3ZLNTczaFNBUzVkTGp5Q19EcjN6ZkVyN2ZDSEExeER3aUdSTWxBbThhdGt0aUE?oc=5",
+   "resume": "",
+   "img": "",
+   "cats": [
+    "gms"
+   ]
+  },
+  {
    "titre": "Inflation | Maroc : Légumes, viandes et carburants font grimper la facture des ménages",
    "source": "Article19.ma",
    "date": "2026-11-20T12:11:38.000Z",
@@ -432,6 +432,17 @@
    "img": "",
    "cats": [
     "fl"
+   ]
+  },
+  {
+   "titre": "Attention à ce air fryer d'une grande marque: des bouts de sa grille peuvent se mélanger avec vos aliments",
+   "source": "RMC",
+   "date": "2026-11-20T10:55:16.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMikAJBVV95cUxQakJQQTg2b0R4cmlrUnJCb2VDZUNYLWJ3SHp4cjNPYU1DOTctdEMtU3o2bFFkNEgyV3l2VDZuWHZPWDczZXZ3a0pOSzZjQS03ZlVyRjNYX2ttakNsTVp6b3JhLXBDVV8xMDBDVkJybDlhemFxODRfeVI4ajRiZHdUbU1DMy0tOVVnVEFmZF9UbS1UMGhNbURtdTNiWGN0bUVjREtjN1N2M1VHT2t1LWdEcmlwTUlLT3dvT2oyUE9yQl8zRkRTRWdreTJSSEN5cWc4OTMtaWgtQmhJR2NYaUpYVEJpNzZxRHhVcmtYTVJveE12WjFXV1BMSElHcnFBVk1sdzh2MHdrTi14ZnVmTm5fSQ?oc=5",
+   "resume": "",
+   "img": "",
+   "cats": [
+    "gms"
    ]
   },
   {
@@ -476,17 +487,6 @@
    "img": "",
    "cats": [
     "fl"
-   ]
-  },
-  {
-   "titre": "Grande distribution : Intermarché continue de caracoler en tête, U et E.Leclerc suivent, Auchan décroche et Carrefour souffre [Octobre, parts de marché Worldpanel]",
-   "source": "LSA conso",
-   "date": "2026-11-19T17:28:42.000Z",
-   "lien": "https://news.google.com/rss/articles/CBMi2wJBVV95cUxPZjlJNlVzUjVuTlA0ZEFISktNOG1kWnRLQ01ZU0RYR0ZUdWg0Skw4MUs5VzJBVFNVRUs3bmJFa3NQQ1hWRnZoSFFSVE14SmZnMHh4am90TmViWm1XSGYwUDR1RkFtZ185czVMYmNnbTNGV3JtTERqdUpLaVNCbFdfWXZHUVBKRUpwWU11TU9LSmlIVFdPR05LZDc3X1ExcWFLS2FfbTZjTlFjNEl4VWhtdkN1VzNKOUUyaGtEYkh0cFI3SnZBVmRnRlEyOWlmNS1KQjVyd1AwVWxySjdpaGxxNjFISWVBc204NVFNenJQNVF6U2k1VU42dmw4ZjR4bXRaRnlMVmdxbEg0UzNZZU9lME1hRUN6ZHBPNFpROE56MlNySTZ0YXB4VDQ2VE9BYzR6RUZneXJmMktUV0Zlamh1UEg3S1pyRzFyUGFOVzQzTEFaX1dfTkdhM2l0NA?oc=5",
-   "resume": "",
-   "img": "",
-   "cats": [
-    "gms"
    ]
   },
   {
@@ -567,6 +567,17 @@
    ]
   },
   {
+   "titre": "Il n’y aura pas de peluche du loup « mal-aimé » d’Intermarché à Noël",
+   "source": "20 Minutes",
+   "date": "2026-11-19T06:32:00.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNMVVXZGo0ZjBUTHdCQW02a0dhVFVTZXFZaUtfT3k1ejNBYVUtX0U2aDEwT0d5RGtoMGFGMU5aMVdBOFdUbDFHSklwUHJJb2MtaDNCWG5USG1WUHB4Q21kYmVuMk1wS1NOTzlvRHhsYUUwM3BxUHoyazhTSGxVQ2lDalViTVBhcHJSVk85RV9UTmFKeFBrNU1JTFV3Z3U2cUlvVFE?oc=5",
+   "resume": "",
+   "img": "",
+   "cats": [
+    "gms"
+   ]
+  },
+  {
    "titre": "Comment Carrefour choisit ses combats au non-al",
    "source": "Olivier Dauvers",
    "date": "2026-11-19T00:44:57.000Z",
@@ -598,6 +609,17 @@
    "img": "",
    "cats": [
     "fl"
+   ]
+  },
+  {
+   "titre": "Le loup de la pub d’Intermarché ne sera finalement pas en vente à temps pour Noël",
+   "source": "Libération",
+   "date": "2026-11-18T18:14:00.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxQd2tmWEc5VzJpREVHSmFLaTlUQllzSk04MWs5VGxxT1NiMC1YTmJZM2FvcjFMYUFqbVZyLUpiTGlIZmhobkRpcjd3VXRJMEdSc3BFRHphVklQamVXY3U3U3Y5UnpjQy1wTzFsXzZVaGU5RzZNejRIWW9uR1ZOTmNtcmRSTWprbzBrS0FFUU9DTVU5Vl9CTkxtSXJGYjBmbWltamVmR0dyQUFqcWtFZGtoSmhlYjdlRGFrRWhGTHllRGFQbXFvSDBBV1B3aml4VU1nZzJYTVcxbUdhZlJ1T2s2YmtNcHdqY25oM05MVVlnZw?oc=5",
+   "resume": "",
+   "img": "",
+   "cats": [
+    "gms"
    ]
   },
   {
@@ -645,6 +667,17 @@
    ]
   },
   {
+   "titre": "Intermarché ouvrira plus tard que prévu au centre commercial Saint-Jacques à Metz : voici la nouvelle date",
+   "source": "Actu.fr",
+   "date": "2026-11-18T09:55:40.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxQMTJpZGlnRjVFMWJfWER4RnFHR2pFaTlCdVZUdlFJUExVUzU0RmNKbzMyZjlOWEoySVpMR1RjQzRsa0lacThuWmVGeV9zREZrbWFEcHBYaUsyYmN2MTBUa2xPVVRvcUdlU05idzRoam9IQmtZdlBJMzFhUDRuLWNuSElYN3E4S1V5QjBoM1ZxeTdjamJmVkVhUTRGNk05VVZnaXhHNU5mdTV1U2IzNTZ4Y0VaWXZVdVF2YWlUZjNsNlNxLW00X1U4N3EtM2Q4Y0pwaDRmU2ZBWmprQzl6andSQmxIczZLcllpSmI4?oc=5",
+   "resume": "",
+   "img": "",
+   "cats": [
+    "gms"
+   ]
+  },
+  {
    "titre": "Lidl et Intermarché se livrent une bataille judiciaire pour une histoire de... concombres",
    "source": "RMC",
    "date": "2026-11-18T09:23:15.000Z",
@@ -653,6 +686,17 @@
    "img": "",
    "cats": [
     "gms"
+   ]
+  },
+  {
+   "titre": "Zones de culture maraîchère spécialisées – inquiétudes concernant l’instabilité des prix de vente.",
+   "source": "Vietnam.vn",
+   "date": "2026-11-18T05:58:03.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMiekFVX3lxTFBOLVZBM21tUFExMmZBOVNTeTMzRHdzc0swVEt6OGhka0lHX2JmdmhsMVozcEpLWUE5Znh3bm83c3FJSmJxUkdQdVNtLVM2c19jSFBCT2pnS2dIdzdLNEVxbVRkazFvVjlvVWVDVTRNWktYa051U2hlZDln?oc=5",
+   "resume": "",
+   "img": "",
+   "cats": [
+    "fl"
    ]
   },
   {
@@ -678,28 +722,6 @@
    ]
   },
   {
-   "titre": "Carrefour : comment le groupe veut relancer 100 hypermarchés en France d’ici à 2030",
-   "source": "LSA conso",
-   "date": "2026-11-17T18:44:18.000Z",
-   "lien": "https://news.google.com/rss/articles/CBMihAJBVV95cUxPNDdLdll1blAxaFhneVFqelBqOVVyOXZGWklyeHpUeGxPS3gyN3FjZVhYTTRhdHFid2x5Vmlpd2g0SDhXX3AzRTlFOEZWeS1DTUlDdlFvdS1TdW56Tno4VmVuY1ZpdEhFTXRxY3VhNlMzV1B5VHZSNzZCY1hkTU5FT1JEYVE2NWcybEV6bm5jVUZ4OWZMajZDRUVGaUVJQ2kwTFREdXBjbGtzeUdnT1o0YUFHd1BaX2tkSGE5REJ3Ump3cE5xZVAyMU9vVzU3Z2hJNEN5RW90anl3ZG1pNmJLUmJVNFdjS2NkUVp0NFFFOXltR2E1NmxPcVZTamNsa2JpMzlKXw?oc=5",
-   "resume": "",
-   "img": "",
-   "cats": [
-    "gms"
-   ]
-  },
-  {
-   "titre": "Grande distribution : les Mousquetaires s’envolent tandis qu’Auchan et Carrefour reculent, au mois d’octobre [Parts de marché, NielsenIQ]",
-   "source": "LSA conso",
-   "date": "2026-11-17T16:35:00.000Z",
-   "lien": "https://news.google.com/rss/articles/CBMiowJBVV95cUxNTjdrUkp4Zk9aNFJ5UHAtQnRiQUhSUFMzX2hSelhPdTYtZkRFOFZfOGpnQkgxVzFvSDlBOVJRb2JQQWxFWjRmZ21GLUV1MzlGOVdjVzZ6eHk2cmdSMkxSZ1FrOER2a2JlaUxwY000WXY5U2FDZUlPSFpZa1pWZnhqeUVoSzljd3g5eXRMTzR1S3hjaUlHT3ZUemZSaW9DM3ZiZWlJankwRWdoSkdRZVBESXdUQkNycUNjQWZaaFdNa2JrTm1QVXMtbHl5b280UllyU2tJZVlDckhTQWZfLXFucm9JRlU5MnJjdHJFTmsyM01Md3FBNDlkckFCbERBLWFXWm8wQl9mNWQwMmFzQUt6cmZaQVdqRE1mT3ZHS183a2I2M3M?oc=5",
-   "resume": "",
-   "img": "",
-   "cats": [
-    "gms"
-   ]
-  },
-  {
    "titre": "Kiwi : une production en transition",
    "source": "Végétable",
    "date": "2026-11-17T16:16:37.000Z",
@@ -708,17 +730,6 @@
    "img": "",
    "cats": [
     "fl"
-   ]
-  },
-  {
-   "titre": "Leclerc, Hyper U, Intermarché... Les supermarchés les moins chers pour vos courses en novembre",
-   "source": "MoneyVox",
-   "date": "2026-11-17T09:58:54.000Z",
-   "lien": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxPX2NsS3BkdzhUV0V0MFFTY1RqNkcwUEwteEJlRDhrdFhFZ1M5WXRPS2tTOGM1djU4aU51ajEwaVhaU2VNbFVLWDRLbmpVUTFoVW9qSlBqcXNTQ1BVTXoyRS1SMzI5bXdPdjVJXzZvQUdHb1ZvY2pxSmo4a2FlMzRLWjhjanZuS1dQUVZjeDQ1ZG5nQk94TzhEbmRzZnY4UFdxT2V1eWdvY1U1MXV2d0VmWTVvYmdUbi1CZVZocDlicVRkUTdCclVxb2MxYl9LczZFaGJIaEFkMndmYVBs?oc=5",
-   "resume": "",
-   "img": "",
-   "cats": [
-    "gms"
    ]
   },
   {
