@@ -11,7 +11,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: cours
+  group: publication-donnees   # une seule publication à la fois avec les autres robots
   cancel-in-progress: false
 
 jobs:
@@ -34,5 +34,6 @@ jobs:
             echo "Aucune nouvelle cotation."
           else
             git commit -m "Mise à jour des cours"
+            git pull --rebase
             git push
           fi

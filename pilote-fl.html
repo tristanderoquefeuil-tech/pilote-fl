@@ -760,6 +760,39 @@ th.sorted .th-sort { color: var(--text); }
   body.kb-open .side { display: none; }
 }
 
+/* Actualités : bouton journal en haut à gauche (hors barre des menus) et liste d'articles */
+.tb-news { position: relative; }
+.tb-news:hover svg { transform: none; }
+.news-dot { position: absolute; top: 6px; right: 6px; width: 9px; height: 9px; border-radius: 50%; background: var(--bad); box-shadow: 0 0 0 2px var(--surface); }
+.news-ph #news-search { width: 220px; }
+.news-list { display: grid; }
+.news-item { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; padding: 14px 2px; border-top: 1px solid var(--line); }
+.news-item:first-child { border-top: 0; padding-top: 2px; }
+.news-item.has-img { grid-template-columns: minmax(0, 1fr) 132px; }
+.news-item img { width: 132px; height: 88px; object-fit: cover; border-radius: var(--radius-sm); background: var(--surface-2); }
+.news-txt { min-width: 0; display: grid; gap: 5px; align-content: start; }
+.news-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; font-size: 0.76rem; color: var(--muted); }
+.news-meta b { color: var(--text); font-weight: 600; }
+.news-cat { font-size: 0.68rem; font-weight: 600; padding: 1px 8px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--line); color: var(--muted); }
+.news-cat.fl { background: var(--leaf-soft); border-color: transparent; color: var(--leaf); }
+.news-cat.gms { background: var(--warn-soft); border-color: transparent; color: #8a5a0f; }
+.news-new { background: var(--bad-soft); color: var(--bad-ink); }
+.news-item h3 { margin: 0; font-size: 0.98rem; line-height: 1.35; font-weight: 650; overflow-wrap: anywhere; }
+.news-item h3 a { color: var(--text); text-decoration: none; }
+.news-item h3 a:hover { color: var(--leaf); text-decoration: underline; }
+.news-item h3 a:focus-visible { outline: 2px solid rgba(31, 122, 77, 0.5); outline-offset: 2px; border-radius: 4px; }
+.news-item p { margin: 0; color: var(--muted); font-size: 0.86rem; line-height: 1.45; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.news-src { margin: 12px 0 0; font-size: 0.76rem; }
+@media (max-width: 900px) {
+  .news-ph .seg { width: 100%; }
+  .news-ph .seg button { flex: 1; padding-inline: 4px; white-space: nowrap; font-size: 0.8rem; }
+  .news-ph #news-search { flex: 1; width: auto; }
+  .news-ph .push { order: 5; width: 100%; margin-left: 0; }
+  .news-item.has-img { grid-template-columns: minmax(0, 1fr) 84px; gap: 10px; }
+  .news-item img { width: 84px; height: 64px; }
+  .news-item p { -webkit-line-clamp: 3; }
+}
+
 
 /* ===== Onglet Marché : terminal sombre posé sur le fond menthe ===== */
 .mk { --mk-bg: #0f241b; --mk-card: #143024; --mk-line: #23402f; --mk-text: #d9e6e2; --mk-mute: #86a09a; --mk-hi: #f4f8f6; --mk-up: #3fd39a; --mk-dn: #ff7e5f; --mk-amber: #f2b33d; }
@@ -875,6 +908,7 @@ th.sorted .th-sort { color: var(--text); }
 
   <div class="main">
     <header class="topbar">
+      <a href="#news" class="tb-icon tb-news" data-view="news" aria-label="Actualités fruits et légumes et GMS" title="Actualités fruits et légumes et GMS"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5a1 1 0 0 1 1-1h11a1 1 0 0 1 1 1v13a2 2 0 0 0 2 2H6a2 2 0 0 1-2-2z"/><path d="M17 8h2a1 1 0 0 1 1 1v9a2 2 0 0 1-2 2"/><path d="M7.5 8h6M7.5 11.5h6M7.5 15h4"/></svg><span class="news-dot" id="news-dot" hidden></span></a>
       <span class="logo-mark" aria-hidden="true"></span>
       <div class="tb-title"><h1 id="tb-title">Tableau de bord</h1><span id="tb-sub"></span></div>
       <span class="net-pill" id="net-pill" role="status" hidden title="Les cours et les mises à jour reprendront au retour du réseau"><i aria-hidden="true"></i>Hors ligne</span>
@@ -1233,6 +1267,26 @@ th.sorted .th-sort { color: var(--text); }
         </div>
       </section>
 
+      <!-- ============ ACTUALITÉS ============ -->
+      <section id="view-news" class="view" hidden>
+        <div class="page">
+          <div class="panel">
+            <div class="ph news-ph">
+              <div class="seg" role="group" aria-label="Rubrique">
+                <button type="button" data-ncat="tout" aria-pressed="true">Tout</button>
+                <button type="button" data-ncat="fl" aria-pressed="false">Fruits et légumes</button>
+                <button type="button" data-ncat="gms" aria-pressed="false">GMS</button>
+              </div>
+              <input id="news-search" type="search" placeholder="Filtrer (produit, enseigne…)" aria-label="Filtrer les actualités" autocomplete="off">
+              <span class="note push" id="news-maj"></span>
+              <button type="button" id="news-refresh">Actualiser</button>
+            </div>
+            <div id="news-list" class="news-list" aria-live="polite"><p class="empty">Chargement des actualités…</p></div>
+            <p class="note news-src">Titres et extraits issus de flux publics (Végétable, FreshPlaza, Réussir, Google Actualités) ; chaque article s'ouvre sur le site de son éditeur.</p>
+          </div>
+        </div>
+      </section>
+
       <!-- ============ PARAMÈTRES ET GUIDE ============ -->
       <section id="view-reglages" class="view" hidden>
         <div class="page">
@@ -1291,7 +1345,7 @@ th.sorted .th-sort { color: var(--text); }
             <div class="panel span-12">
               <div class="ph"><h3>À propos</h3></div>
               <div class="actions" id="st-update-box" style="margin-bottom:10px" hidden><button type="button" id="st-update">Vérifier les mises à jour</button><span class="note" id="st-update-msg" role="status"></span></div>
-              <p class="note" style="margin:0">Pilote F&amp;L · version <span id="st-version">3.17</span> · boîte à outils du category manager fruits et légumes. Cours réels : Commission européenne, Agri-food Data Portal (données publiques). Les prix, volumes et cours affichés comme « exemple » sont fictifs et servent uniquement à la démonstration. Site et mises à jour : <a href="https://tristanderoquefeuil-tech.github.io/pilote-fl/" target="_blank" rel="noopener">tristanderoquefeuil-tech.github.io/pilote-fl</a>.</p>
+              <p class="note" style="margin:0">Pilote F&amp;L · version <span id="st-version">3.18</span> · boîte à outils du category manager fruits et légumes. Cours réels : Commission européenne, Agri-food Data Portal (données publiques). Les prix, volumes et cours affichés comme « exemple » sont fictifs et servent uniquement à la démonstration. Site et mises à jour : <a href="https://tristanderoquefeuil-tech.github.io/pilote-fl/" target="_blank" rel="noopener">tristanderoquefeuil-tech.github.io/pilote-fl</a>.</p>
             </div>
           </div>
         </div>
@@ -1519,7 +1573,7 @@ th.sorted .th-sort { color: var(--text); }
   })();
 
   // ================= Navigation =================
-  const VIEWS = ["accueil", "analyse", "promo", "assort", "com", "marche", "saison", "marge", "reglages"];
+  const VIEWS = ["accueil", "analyse", "promo", "assort", "com", "marche", "saison", "marge", "reglages", "news"];
   const DATE_LONG = today.toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
   const PAGE_TITLES = {
     accueil: ["Tableau de bord", `${DATE_LONG.charAt(0).toUpperCase() + DATE_LONG.slice(1)} · semaine ${isoWeek(today).split("-S")[1]}`],
@@ -1528,17 +1582,18 @@ th.sorted .th-sort { color: var(--text); }
     com: ["Atelier com", "Mail hebdo et affiches promo, prêts à envoyer"],
     assort: ["Atelier assortiment", "Matrice d'assortiment, rendez-vous fournisseurs et veille prix"],
     marche: ["Cours d'achat", "Vos prix d'achat, tendances et alertes de prix"],
+    news: ["Actualités", "Fruits et légumes et grande distribution"],
     reglages: ["Paramètres et guide", "Préférences, sauvegarde de vos données et mode d'emploi"],
     demarque: ["Démarque", "Ventes et pertes par produit, magasin et semaine"],
     marge: ["Simulateur de marge", "Marge réelle après freinte et démarque"],
     saison: ["Saisonnalité", "Production française et import, mois par mois"],
   };
-  let lastView = "accueil"; // dernier onglet ouvert avant les Paramètres
+  let lastView = "accueil"; // dernier onglet ouvert avant les Paramètres ou les Actualités
   // Outils regroupés dans le panneau « Plus » sur téléphone
   function route() {
     const h = location.hash.replace("#", "");
     const v = VIEWS.includes(h) ? h : "accueil";
-    if (v !== "reglages") lastView = v;
+    if (v !== "reglages" && v !== "news") lastView = v;
     VIEWS.forEach((name) => { $("view-" + name).hidden = name !== v; });
     if (v === "saison") setTimeout(renderPeak, 0); // cours à jour sur les produits de saison
     // Téléphone : la barre du bas défile ; l'onglet ouvert est ramené au centre
@@ -1551,6 +1606,7 @@ th.sorted .th-sort { color: var(--text); }
     if (v === "assort") setTimeout(() => renderAssort(), 0);
     if (v === "accueil") setTimeout(() => renderHome(), 0);
     if (v === "reglages") setTimeout(() => renderSettings(), 0);
+    if (v === "news") setTimeout(() => newsOnShow(), 0);
     if (v === "marge") setTimeout(() => { if (!margeTouched) loadType(); }, 0);
     const [t, sub] = PAGE_TITLES[v];
     $("tb-title").textContent = t;
@@ -1579,10 +1635,10 @@ th.sorted .th-sort { color: var(--text); }
   document.querySelectorAll("nav.tabs a").forEach((a) => { a.title = a.querySelector(".full").textContent; });
   if (local.get("pfl-side-mini", "") === "1") setMini(true);
   window.addEventListener("hashchange", () => { route(); window.scrollTo(0, 0); });
-  // L'engrenage ouvre les Paramètres ; un second clic les referme et revient à l'onglet précédent
-  document.querySelector(".tb-icon").addEventListener("click", (e) => {
-    if (location.hash === "#reglages") { e.preventDefault(); go(lastView || "accueil"); }
-  });
+  // L'engrenage (Paramètres) et le journal (Actualités) : un second clic referme et revient à l'onglet précédent
+  document.querySelectorAll(".tb-icon").forEach((a) => a.addEventListener("click", (e) => {
+    if (location.hash === "#" + a.dataset.view) { e.preventDefault(); go(lastView || "accueil"); }
+  }));
   route();
 
   // ================= Stockage (en ligne : base partagée ; appli : téléphone) =================
@@ -2157,7 +2213,86 @@ th.sorted .th-sort { color: var(--text); }
   // Connexion : pastille « Hors ligne », et mise à jour des cours dès le retour du réseau
   const netState = () => { $("net-pill").hidden = navigator.onLine !== false; };
   window.addEventListener("offline", netState);
-  window.addEventListener("online", () => { netState(); updateCours(false).catch(() => {}); });
+  window.addEventListener("online", () => { netState(); updateCours(false).catch(() => {}); loadNews().catch(() => {}); });
+
+  // ================= Actualités fruits et légumes et GMS =================
+  // Fichier publié plusieurs fois par jour par GitHub (tools/news.mjs) ; dernière liste gardée pour le hors-ligne
+  const NEWS_URL = "https://tristanderoquefeuil-tech.github.io/pilote-fl/data/news.json";
+  const NEWS_KEY = "pfl-news", NEWS_SEEN = "pfl-news-vu";
+  let news = null, newsFetchedAt = 0, newsCat = "tout", newsPrevSeen = "";
+  try { news = JSON.parse(local.get(NEWS_KEY, "null")); } catch { news = null; }
+  const newsNorm = (t) => String(t).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  function newsAgo(iso) {
+    const d = new Date(iso), min = Math.round((Date.now() - d) / 60000);
+    if (min < 60) return min <= 1 ? "à l'instant" : `il y a ${min} min`;
+    if (min < 24 * 60) return `il y a ${Math.round(min / 60)} h`;
+    const jours = Math.round((new Date().setHours(0, 0, 0, 0) - new Date(iso).setHours(0, 0, 0, 0)) / 864e5);
+    if (jours <= 1) return "hier";
+    if (jours < 7) return `il y a ${jours} jours`;
+    return d.toLocaleDateString("fr-FR", { day: "numeric", month: "short" });
+  }
+  // Pastille sur le journal quand des articles sont arrivés depuis la dernière visite
+  function newsDot() {
+    const top = news && news.articles && news.articles[0];
+    $("news-dot").hidden = !top || top.date <= local.get(NEWS_SEEN, "") || !$("view-news").hidden;
+  }
+  function renderNews(msg) {
+    const box = $("news-list");
+    $("news-maj").textContent = msg || (news && news.maj ? `Mis à jour ${newsAgo(news.maj)}` : "");
+    if (!news || !Array.isArray(news.articles)) {
+      box.innerHTML = `<p class="empty">${navigator.onLine === false ? "Pas de connexion : les actualités s'afficheront au retour du réseau." : "Actualités indisponibles pour le moment."}</p>`;
+      return;
+    }
+    const q = newsNorm($("news-search").value.trim());
+    const list = news.articles.filter((a) => (newsCat === "tout" || (a.cats || []).includes(newsCat)) && (!q || newsNorm(a.titre + " " + a.resume + " " + a.source).includes(q)));
+    if (!list.length) { box.innerHTML = `<p class="empty">Aucune actualité ${q ? "ne correspond à ce filtre" : "dans cette rubrique"}.</p>`; return; }
+    const lab = { fl: "Fruits et légumes", gms: "GMS" };
+    box.innerHTML = list.map((a) => {
+      const neuf = newsPrevSeen && a.date > newsPrevSeen;
+      return `<article class="news-item${a.img ? " has-img" : ""}">
+        <div class="news-txt">
+          <div class="news-meta">${neuf ? '<span class="st news-new">Nouveau</span>' : ""}<b>${esc(a.source)}</b><span>· <time datetime="${esc(a.date)}">${newsAgo(a.date)}</time></span>${(a.cats || []).map((c) => `<span class="news-cat ${c}">${lab[c] || ""}</span>`).join("")}</div>
+          <h3><a href="${esc(a.lien)}" target="_blank" rel="noopener noreferrer">${esc(a.titre)}</a></h3>
+          ${a.resume ? `<p>${esc(a.resume)}</p>` : ""}
+        </div>
+        ${a.img ? `<img src="${esc(a.img)}" alt="" loading="lazy" referrerpolicy="no-referrer">` : ""}
+      </article>`;
+    }).join("");
+  }
+  // Une image qui ne se charge pas est simplement retirée
+  $("news-list").addEventListener("error", (e) => { if (e.target.tagName === "IMG") { e.target.closest(".news-item").classList.remove("has-img"); e.target.remove(); } }, true);
+  async function loadNews(manual) {
+    if (!NEWS_URL) return false;
+    if (manual) renderNews("Mise à jour…");
+    try {
+      const r = await fetch(NEWS_URL + "?t=" + Date.now(), { cache: "no-store" });
+      if (!r.ok) throw new Error("http");
+      const j = await r.json();
+      if (!j || !Array.isArray(j.articles) || !j.articles.length) throw new Error("vide");
+      news = j; newsFetchedAt = Date.now();
+      local.set(NEWS_KEY, JSON.stringify(j));
+      if (!$("view-news").hidden) renderNews(); else newsDot();
+      return true;
+    } catch {
+      if (!$("view-news").hidden) renderNews(manual ? "Mise à jour impossible : pas de connexion ?" : "");
+      return false;
+    }
+  }
+  function newsOnShow() {
+    newsPrevSeen = local.get(NEWS_SEEN, "");
+    const marque = () => { const top = news && news.articles && news.articles[0]; if (top) local.set(NEWS_SEEN, top.date); $("news-dot").hidden = true; };
+    renderNews(); marque();
+    if (Date.now() - newsFetchedAt > 20 * 60000) loadNews().then((ok) => { if (ok) marque(); });
+  }
+  document.querySelectorAll("[data-ncat]").forEach((b) => b.addEventListener("click", () => {
+    newsCat = b.dataset.ncat;
+    document.querySelectorAll("[data-ncat]").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+    renderNews();
+  }));
+  $("news-search").addEventListener("input", () => renderNews());
+  $("news-refresh").addEventListener("click", () => loadNews(true));
+  newsDot();
+  setTimeout(() => loadNews().catch(() => {}), 1500); // au démarrage, sans retarder l'affichage
   netState();
   let coursBusy = false;
   async function refreshCours(force) {

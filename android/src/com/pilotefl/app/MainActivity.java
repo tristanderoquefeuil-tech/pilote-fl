@@ -155,7 +155,18 @@ public class MainActivity extends Activity {
         s.setJavaScriptEnabled(true);
         s.setDomStorageEnabled(true);
         s.setAllowFileAccess(true);
-        web.setWebViewClient(new WebViewClient());
+        // Les liens vers le web (articles d'actualité, site du projet) s'ouvrent dans le navigateur du téléphone,
+        // l'appli reste sur sa page
+        web.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                if (url != null && (url.startsWith("https://") || url.startsWith("http://"))) {
+                    try { startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url))); } catch (Exception e) { }
+                    return true;
+                }
+                return false;
+            }
+        });
         // Ouvre le sélecteur de fichiers du téléphone pour les boutons « Choisir un fichier »
         web.setWebChromeClient(new WebChromeClient() {
             @Override

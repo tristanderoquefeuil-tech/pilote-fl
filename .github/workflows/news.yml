@@ -1,0 +1,39 @@
+# Met à jour plusieurs fois par jour les actualités fruits et légumes et GMS (docs/data/news.json).
+# Sources : flux RSS publics (Végétable, FreshPlaza, Réussir, Google Actualités) ; aucune clé n'est nécessaire.
+name: Mise à jour des actus
+
+on:
+  schedule:
+    - cron: "0 5,8,11,14,17,20 * * *"   # toutes les 3 heures de 6 h à 21 h (heure de Paris en hiver)
+  workflow_dispatch:                    # lancement à la main depuis l'onglet Actions
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publication-donnees   # une seule publication à la fois avec les autres robots
+  cancel-in-progress: false
+
+jobs:
+  news:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Récupérer les actualités
+        run: node tools/news.mjs docs/data/news.json
+      - name: Publier s'il y a du nouveau
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/news.json
+          if git diff --cached --quiet; then
+            echo "Aucune nouvelle actualité."
+          else
+            git commit -m "Mise à jour des actus"
+            git pull --rebase
+            git push
+          fi

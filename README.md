@@ -16,6 +16,8 @@ Les saisies (opérations, rendez-vous, relevés de prix…) restent sur l'appare
 | `android/` | Projet de l'appli Android (WebView) et script de compilation `build.sh` |
 | `tools/cours.mjs` | Récupère les cours réels de la Commission européenne |
 | `.github/workflows/cours.yml` | Met à jour les cours chaque jour, sans intervention |
+| `tools/news.mjs` | Récupère les actualités fruits et légumes et GMS (flux RSS publics) |
+| `.github/workflows/news.yml` | Met à jour les actualités toutes les 3 heures, de 6 h à 21 h |
 
 ## Cours réels
 

@@ -4,6 +4,12 @@ Les améliorations sont regroupées par version publiée. La section « En prép
 
 ## En préparation
 
+## 3.18 — 24 novembre 2026
+
+- **Page Actualités.** Un bouton journal en haut à gauche (hors de la barre des menus) ouvre les dernières actualités des fruits et légumes et de la grande distribution : source, date, extrait et photo, avec un filtre par rubrique (Fruits et légumes, GMS) et une recherche (« pommes de terre », « Lidl »…). Chaque article s'ouvre sur le site de son éditeur (dans le navigateur du téléphone pour l'appli Android).
+- **Pastille « nouveau ».** Un point rouge sur le journal signale les articles arrivés depuis la dernière visite ; ils portent l'étiquette « Nouveau » dans la liste. La dernière liste reste lisible hors ligne.
+- **Robot des actus.** GitHub récupère les actualités toutes les 3 heures de 6 h à 21 h (Végétable, FreshPlaza, Réussir Fruits & Légumes, Google Actualités), écarte les sujets hors rayon (céréales, élevage, homonymes sportifs) et les doublons, et garde 14 jours d'articles.
+
 ## 3.17 — 23 novembre 2026
 
 - **Cours dans la Saisonnalité.** Les produits « En pleine saison » affichent la variation de leur cours réel de la semaine (baisse en vert, hausse en rouge) : on voit d'un coup d'œil quoi mettre en avant.
