@@ -1,6 +1,6 @@
 {
-  "versionCode": 39,
-  "versionName": "3.28",
+  "versionCode": 40,
+  "versionName": "3.29",
   "apk": "https://github.com/tristanderoquefeuil-tech/pilote-fl/releases/latest/download/PiloteFL.apk",
-  "notes": "Graphique des cours d’achat en style néon vert."
+  "notes": "Retour de l'ancienne courbe des cours d'achat."
 }

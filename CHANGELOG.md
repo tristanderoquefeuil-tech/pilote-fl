@@ -4,6 +4,10 @@ Les améliorations sont regroupées par version publiée. La section « En prép
 
 ## En préparation
 
+## 3.29 — 25 novembre 2026
+
+- **Retour de l'ancienne courbe.** Le graphique des cours d'achat reprend le style de la version 3.27 ; le style néon vert de la 3.28 est retiré. Rien d'autre ne change.
+
 ## 3.28 — 25 novembre 2026
 
 - **Graphique des cours d'achat en style néon vert.** Le graphique de la page Prix › Cours d'achat devient un encart vert nuit lumineux, le même en thème clair et sombre : la moyenne des 8 dernières semaines est une courbe lisse et lumineuse (la tendance), le cours réel de chaque semaine une ligne en pointillés, et de fines barres arrondies montrent le niveau du cours (regroupées par 2 ou 3 semaines sur téléphone pour rester lisibles). Grille discrète, mois en bas de l'axe, dernier prix dans une pastille verte.
