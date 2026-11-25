@@ -12,14 +12,14 @@ export PATH="$JAVA_HOME/bin:$PATH"
 KS="$HOME/.android/debug.keystore"
 
 node ../src/build-web.js
-rm -rf build && mkdir -p build/classes
+rm -rf build && mkdir -p build/classes build/gen
 
 echo "1/6 Ressources"
 "$BT/aapt2.exe" compile --dir res -o build/res.zip
-"$BT/aapt2.exe" link -I "$JAR" --manifest AndroidManifest.xml -A assets -o build/base.apk build/res.zip
+"$BT/aapt2.exe" link -I "$JAR" --manifest AndroidManifest.xml -A assets --java build/gen -o build/base.apk build/res.zip
 
 echo "2/6 Java"
-javac --release 11 -nowarn -cp "$JAR" -d build/classes src/com/pilotefl/app/*.java
+javac --release 11 -nowarn -cp "$JAR" -d build/classes src/com/pilotefl/app/*.java build/gen/com/pilotefl/app/R.java
 
 echo "3/6 Dex"
 "$BT/d8.bat" --lib "$JAR" --min-api 24 --output build $(find build/classes -name '*.class')

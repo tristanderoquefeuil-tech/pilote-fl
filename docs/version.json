@@ -1,6 +1,6 @@
 {
-  "versionCode": 33,
-  "versionName": "3.22",
+  "versionCode": 34,
+  "versionName": "3.23",
   "apk": "https://github.com/tristanderoquefeuil-tech/pilote-fl/releases/latest/download/PiloteFL.apk",
-  "notes": "Cours d'achat simplifié, avec un résumé de la semaine en langage simple."
+  "notes": "Illustrations des produits, widget des cours et notifications sur Android, calendrier des saisons sur un seul écran."
 }
