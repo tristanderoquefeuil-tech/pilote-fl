@@ -1,4 +1,4 @@
-# Met à jour chaque jour les cours des fruits et légumes publiés sur le site (docs/data/cours.json).
+# Met à jour chaque jour les cours d'achat (docs/data/cours.json) et les prix de vente au détail (docs/data/prix.json).
 # Source : Commission européenne, Agri-food Data Portal (API publique, sans clé).
 name: Mise à jour des cours
 
@@ -25,15 +25,17 @@ jobs:
           node-version: 20
       - name: Récupérer les cours
         run: node tools/cours.mjs docs/data/cours.json
+      - name: Récupérer les prix de vente au détail (INSEE, Open Prices)
+        run: node tools/prix.mjs docs/data/prix.json
       - name: Publier s'il y a du nouveau
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
-          git add docs/data/cours.json
+          git add docs/data/cours.json docs/data/prix.json
           if git diff --cached --quiet; then
             echo "Aucune nouvelle cotation."
           else
-            git commit -m "Mise à jour des cours"
+            git commit -m "Mise à jour des cours et des prix"
             git pull --rebase
             git push
           fi

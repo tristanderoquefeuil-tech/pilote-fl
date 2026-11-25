@@ -4,6 +4,12 @@ Les améliorations sont regroupées par version publiée. La section « En prép
 
 ## En préparation
 
+## 3.20 — 25 novembre 2026
+
+- **Plus aucun chiffre d'exemple.** Les prix d'achat, prix de vente, freinte, démarque et courbes de cours fictifs sont retirés, ainsi que l'export de ventes et le bilan d'opération d'exemple. Sans donnée publique, l'appli affiche « – » et invite à saisir la vôtre.
+- **Prix de vente réels.** Chaque jour, le robot GitHub récupère le prix moyen de vente au détail en France : série officielle de l'INSEE (11 produits, mensuelle) ou, à défaut, médiane des relevés en magasin d'Open Prices (Open Food Facts, hors bio, au kilo ; 15 produits de plus). Ils alimentent le simulateur de marge, la fiche produit, les cours, le Studio promo, les fiches RDV et la veille prix, avec la source affichée.
+- **Votre freinte et votre démarque.** Deux nouveaux champs dans les Préférences ; ces taux sont utilisés partout à la place des valeurs inventées.
+
 ## 3.19 — 25 novembre 2026
 
 - **Onglets regroupés par thème.** La barre des menus passe de 8 à 5 onglets : Accueil, Analyse, Promo (Studio promo · Atelier com), Assortiment (Assortiment · Saisonnalité) et Prix (Cours d'achat · Simulateur de marge). Les outils d'un même thème sont des sous-onglets en haut de la page ; chaque onglet ramène au dernier outil utilisé. Sur téléphone, la barre tient sur l'écran sans défiler. Aucun outil n'est retiré et les liens directs fonctionnent toujours.
