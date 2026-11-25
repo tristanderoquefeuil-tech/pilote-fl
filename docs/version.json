@@ -1,6 +1,6 @@
 {
-  "versionCode": 29,
-  "versionName": "3.18",
+  "versionCode": 30,
+  "versionName": "3.19",
   "apk": "https://github.com/tristanderoquefeuil-tech/pilote-fl/releases/latest/download/PiloteFL.apk",
-  "notes": "Nouvelle page Actualités fruits et légumes et GMS (journal en haut à gauche)."
+  "notes": "Interface simplifiée : 5 onglets regroupés par thème, accueil allégé."
 }

@@ -4,6 +4,11 @@ Les améliorations sont regroupées par version publiée. La section « En prép
 
 ## En préparation
 
+## 3.19 — 25 novembre 2026
+
+- **Onglets regroupés par thème.** La barre des menus passe de 8 à 5 onglets : Accueil, Analyse, Promo (Studio promo · Atelier com), Assortiment (Assortiment · Saisonnalité) et Prix (Cours d'achat · Simulateur de marge). Les outils d'un même thème sont des sous-onglets en haut de la page ; chaque onglet ramène au dernier outil utilisé. Sur téléphone, la barre tient sur l'écran sans défiler. Aucun outil n'est retiré et les liens directs fonctionnent toujours.
+- **Accueil allégé.** Les tuiles du haut n'apparaissent que lorsqu'elles ont un chiffre à montrer ; les temps forts à venir rejoignent « À faire » (ligne « Ensuite ») au lieu d'être affichés deux fois ; les blocs encore vides (dernière analyse, veille prix, météo) sont réunis dans un bloc « Pour commencer » et reprennent leur place dès qu'ils ont du contenu. Textes d'aide raccourcis.
+
 ## 3.18 — 24 novembre 2026
 
 - **Page Actualités.** Un bouton journal en haut à gauche (hors de la barre des menus) ouvre les dernières actualités des fruits et légumes et de la grande distribution : source, date, extrait et photo, avec un filtre par rubrique (Fruits et légumes, GMS) et une recherche (« pommes de terre », « Lidl »…). Chaque article s'ouvre sur le site de son éditeur (dans le navigateur du téléphone pour l'appli Android).
