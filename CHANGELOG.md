@@ -4,6 +4,12 @@ Les améliorations sont regroupées par version publiée. La section « En prép
 
 ## En préparation
 
+## 3.26 — 25 novembre 2026
+
+- **Changer d'onglet en glissant le doigt (téléphone).** Un glissement vers la gauche passe à l'onglet suivant, vers la droite au précédent, dans l'ordre de la barre du bas en passant par les sous-onglets : Accueil → Analyse → Studio promo → Atelier com → Assortiment → Saisonnalité → Cours d'achat → Simulateur de marge. La page suit un peu le doigt puis glisse vers la suivante ; un geste trop court revient en place. Le geste est ignoré quand on fait défiler la page, sur le graphique des cours, les listes et tableaux qui défilent de côté, les champs, la barre du bas, la fiche produit et le panneau d'opération, et sur les bords de l'écran (geste Retour d'Android).
+- **Indicateur d'onglet animé.** Dans la barre du bas (téléphone) et la barre latérale (ordinateur), le fond de l'onglet actif glisse vers le nouvel onglet en s'étirant comme une goutte, puis reprend sa forme. Il s'étire déjà pendant le glissement du doigt. Fonctionne aussi avec les liens internes et le bouton Retour.
+- Si l'appareil demande moins d'animations, la page change sans glisser et l'indicateur se déplace simplement, sans se déformer.
+
 ## 3.25 — 25 novembre 2026
 
 - **Retour du fond d'origine.** En thème clair, le fond dégradé menthe → crème avec les grandes feuilles floues revient derrière l'interface modernisée de la 3.24. Rien d'autre ne change ; le mode sombre garde son fond uni.
