@@ -1,8 +1,9 @@
 <title>Pilote Fruits & Légumes</title>
 <meta name="claude:viewport-fit-sides" content="cover">
+<meta name="color-scheme" content="light dark">
 <link rel="icon" href="__LOGO__">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 <style>
 /*CSS*/
 </style>
@@ -479,7 +480,7 @@
             <div class="panel span-12">
               <div class="ph"><h3>À propos</h3></div>
               <div class="actions" id="st-update-box" style="margin-bottom:10px" hidden><button type="button" id="st-update">Vérifier les mises à jour</button><span class="note" id="st-update-msg" role="status"></span></div>
-              <p class="note" style="margin:0">Pilote F&amp;L · version <span id="st-version">3.23</span> · boîte à outils du category manager fruits et légumes. Données réelles et publiques : cours d'achat de la Commission européenne (Agri-food Data Portal), prix moyens de vente au détail de l'INSEE et relevés en magasin d'Open Prices (Open Food Facts, licence ODbL). Aucun chiffre inventé : sans donnée publique, l'appli vous invite à saisir la vôtre. Site et mises à jour : <a href="https://tristanderoquefeuil-tech.github.io/pilote-fl/" target="_blank" rel="noopener">tristanderoquefeuil-tech.github.io/pilote-fl</a>.</p>
+              <p class="note" style="margin:0">Pilote F&amp;L · version <span id="st-version">3.24</span> · boîte à outils du category manager fruits et légumes. Données réelles et publiques : cours d'achat de la Commission européenne (Agri-food Data Portal), prix moyens de vente au détail de l'INSEE et relevés en magasin d'Open Prices (Open Food Facts, licence ODbL). Aucun chiffre inventé : sans donnée publique, l'appli vous invite à saisir la vôtre. Site et mises à jour : <a href="https://tristanderoquefeuil-tech.github.io/pilote-fl/" target="_blank" rel="noopener">tristanderoquefeuil-tech.github.io/pilote-fl</a>.</p>
             </div>
           </div>
         </div>
@@ -1682,7 +1683,7 @@
     const v = d.slice(-12).map((x) => x.c), mn = Math.min(...v), mx = Math.max(...v);
     const pts = v.map((y, i) => `${(i * 64 / Math.max(1, v.length - 1)).toFixed(1)},${(16 - ((y - mn) / (mx - mn || 1)) * 13).toFixed(1)}`).join(" ");
     const up = v[v.length - 1] >= v[0];
-    return `<svg width="64" height="18" aria-hidden="true"><polyline points="${pts}" fill="none" stroke="${up ? "#3fd39a" : "#ff7e5f"}" stroke-width="1.5" stroke-linejoin="round"/></svg>`;
+    return `<svg width="64" height="18" aria-hidden="true"><polyline points="${pts}" fill="none" style="stroke:${up ? "var(--chart-up)" : "var(--chart-dn)"}" stroke-width="1.5" stroke-linejoin="round"/></svg>`;
   }
   function renderWatchlist() {
     const aDesPrix = (n) => seriesOf(n).data.length > 0;
@@ -1705,7 +1706,7 @@
     const H = W < 560 ? 250 : 340, L = 10, R = 70, T = 14, B = 28;
     svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
     $("mk-tip").hidden = true;
-    if (!all.length) { svg.innerHTML = `<text x="${W / 2}" y="${H / 2}" text-anchor="middle" fill="#86a09a" font-size="15">Aucun prix pour ce produit.</text>`; MK.geo = null; return; }
+    if (!all.length) { svg.innerHTML = `<text x="${W / 2}" y="${H / 2}" text-anchor="middle" style="fill:var(--chart-axis)" font-size="15">Aucun prix pour ce produit.</text>`; MK.geo = null; return; }
     const c = all.slice(-MK.win);
     const n = c.length, bw = (W - L - R) / n, X = (i) => L + i * bw + bw / 2;
     const cmpOn = MK.cmp && MK.cmp !== MK.cur;
@@ -1716,7 +1717,7 @@
       c.forEach((d, i) => {
         const inS = p.mois[d.month] === 2;
         if (inS && i0 === null) i0 = i;
-        if (i0 !== null && (!inS || i === n - 1)) { const e = inS ? i + 1 : i; s += `<rect x="${L + i0 * bw}" y="${T}" width="${(e - i0) * bw}" height="${H - T - B}" fill="#2e5a45" opacity="0.32"/>`; i0 = null; }
+        if (i0 !== null && (!inS || i === n - 1)) { const e = inS ? i + 1 : i; s += `<rect x="${L + i0 * bw}" y="${T}" width="${(e - i0) * bw}" height="${H - T - B}" style="fill:var(--chart-band)"/>`; i0 = null; }
       });
     }
     let y, vals2 = null, lo, hi, fmt;
@@ -1740,41 +1741,41 @@
     y = (v) => T + ((top - v) / (top - bot)) * (H - T - B);
     for (let g = 0; g <= 4; g++) {
       const v = bot + ((top - bot) * g) / 4, yy = y(v).toFixed(1);
-      s += `<line x1="${L}" x2="${W - R}" y1="${yy}" y2="${yy}" stroke="#22393b" stroke-width="1"/><text x="${W - R + 8}" y="${+yy + 4}" fill="#86a09a" font-size="11" font-family="Inter, sans-serif">${fmt(v)}</text>`;
+      s += `<line x1="${L}" x2="${W - R}" y1="${yy}" y2="${yy}" style="stroke:var(--chart-grid)" stroke-width="1"/><text x="${W - R + 8}" y="${+yy + 4}" style="fill:var(--chart-axis)" font-size="11" font-family="Inter, sans-serif">${fmt(v)}</text>`;
     }
     const ticks = Math.min(W < 560 ? 3 : 5, n);
     for (let k = 0; k < ticks; k++) {
       const i = ticks === 1 ? 0 : Math.round((k * (n - 1)) / (ticks - 1));
       const lab = c[i].sem.replace(/^(\d{2})(\d{2})-S/, "S").concat(" · ", c[i].sem.slice(2, 4));
-      s += `<text x="${X(i).toFixed(1)}" y="${H - 8}" fill="#86a09a" font-size="11" text-anchor="${k === 0 ? "start" : k === ticks - 1 ? "end" : "middle"}" font-family="Inter, sans-serif">${lab}</text>`;
+      s += `<text x="${X(i).toFixed(1)}" y="${H - 8}" style="fill:var(--chart-axis)" font-size="11" text-anchor="${k === 0 ? "start" : k === ticks - 1 ? "end" : "middle"}" font-family="Inter, sans-serif">${lab}</text>`;
     }
     const line = (vals, color, width) => {
       let path = "", pen = false;
       vals.forEach((v, i) => { if (v === null) { pen = false; return; } path += `${pen ? "L" : "M"}${X(i).toFixed(1)},${y(v).toFixed(1)}`; pen = true; });
-      return `<path d="${path}" fill="none" stroke="${color}" stroke-width="${width}" stroke-linejoin="round" stroke-linecap="round"/>`;
+      return `<path d="${path}" fill="none" style="stroke:${color}" stroke-width="${width}" stroke-linejoin="round" stroke-linecap="round"/>`;
     };
     if (cmpOn) {
-      s += `<line x1="${L}" x2="${W - R}" y1="${y(0).toFixed(1)}" y2="${y(0).toFixed(1)}" stroke="#86a09a" stroke-dasharray="2 4" stroke-width="1"/>`;
-      s += line(MK.geo.v1, "#3fd39a", 2.2) + line(vals2, "#f2b33d", 2.2);
+      s += `<line x1="${L}" x2="${W - R}" y1="${y(0).toFixed(1)}" y2="${y(0).toFixed(1)}" style="stroke:var(--chart-axis)" stroke-dasharray="2 4" stroke-width="1"/>`;
+      s += line(MK.geo.v1, "var(--chart-1)", 2.2) + line(vals2, "var(--chart-2)", 2.2);
     } else {
       if (MK.type === "bougies") {
         c.forEach((d, i) => {
-          const col = d.c >= d.o ? "#3fd39a" : "#ff7e5f", w = Math.min(16, Math.max(1.6, bw * 0.62)), x = X(i);
-          s += `<line x1="${x.toFixed(1)}" x2="${x.toFixed(1)}" y1="${y(d.h).toFixed(1)}" y2="${y(d.l).toFixed(1)}" stroke="${col}" stroke-width="1.2"/>` +
-            `<rect x="${(x - w / 2).toFixed(1)}" y="${y(Math.max(d.o, d.c)).toFixed(1)}" width="${w.toFixed(1)}" height="${Math.max(1.2, Math.abs(y(d.o) - y(d.c))).toFixed(1)}" fill="${col}" rx="1"/>`;
+          const col = d.c >= d.o ? "var(--chart-up)" : "var(--chart-dn)", w = Math.min(16, Math.max(1.6, bw * 0.62)), x = X(i);
+          s += `<line x1="${x.toFixed(1)}" x2="${x.toFixed(1)}" y1="${y(d.h).toFixed(1)}" y2="${y(d.l).toFixed(1)}" style="stroke:${col}" stroke-width="1.2"/>` +
+            `<rect x="${(x - w / 2).toFixed(1)}" y="${y(Math.max(d.o, d.c)).toFixed(1)}" width="${w.toFixed(1)}" height="${Math.max(1.2, Math.abs(y(d.o) - y(d.c))).toFixed(1)}" style="fill:${col}" rx="1"/>`;
         });
       } else {
         const pts = c.map((d, i) => `${X(i).toFixed(1)},${y(d.c).toFixed(1)}`);
-        s += `<defs><linearGradient id="mkfill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#3fd39a" stop-opacity="0.35"/><stop offset="1" stop-color="#3fd39a" stop-opacity="0"/></linearGradient></defs>`;
+        s += `<defs><linearGradient id="mkfill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" style="stop-color:var(--chart-1)" stop-opacity="0.2"/><stop offset="1" style="stop-color:var(--chart-1)" stop-opacity="0"/></linearGradient></defs>`;
         s += `<path d="M${pts.join("L")}L${X(n - 1).toFixed(1)},${H - B}L${X(0).toFixed(1)},${H - B}Z" fill="url(#mkfill)"/>`;
-        s += `<path d="M${pts.join("L")}" fill="none" stroke="#3fd39a" stroke-width="2.2" stroke-linejoin="round"/>`;
+        s += `<path d="M${pts.join("L")}" fill="none" style="stroke:var(--chart-1)" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>`;
       }
       const off = all.length - n;
       const ma = c.map((d, i) => { const j = off + i; const sl = all.slice(Math.max(0, j - 7), j + 1); return sl.reduce((a, b) => a + b.c, 0) / sl.length; });
-      s += line(ma, "#f2b33d", 1.8);
+      s += line(ma, "var(--chart-2)", 1.8);
       const last = c[n - 1].c, ly = y(last);
-      s += `<line x1="${L}" x2="${W - R}" y1="${ly.toFixed(1)}" y2="${ly.toFixed(1)}" stroke="#f2b33d" stroke-dasharray="3 3" stroke-width="1" opacity="0.7"/>` +
-        `<rect x="${W - R + 3}" y="${(ly - 10).toFixed(1)}" width="${R - 6}" height="20" rx="5" fill="#f2b33d"/><text x="${W - R + 9}" y="${(ly + 4).toFixed(1)}" fill="#1a1a0e" font-size="11.5" font-weight="700" font-family="Inter, sans-serif">${f2(last)}</text>`;
+      s += `<line x1="${L}" x2="${W - R}" y1="${ly.toFixed(1)}" y2="${ly.toFixed(1)}" style="stroke:var(--chart-axis)" stroke-dasharray="3 3" stroke-width="1" opacity="0.8"/>` +
+        `<rect x="${W - R + 3}" y="${(ly - 10).toFixed(1)}" width="${R - 6}" height="20" rx="6" style="fill:var(--text)"/><text x="${W - R + 9}" y="${(ly + 4).toFixed(1)}" style="fill:var(--surface)" font-size="11.5" font-weight="700" font-family="Inter, sans-serif">${f2(last)}</text>`;
     }
     s += `<g id="mk-cross"></g>`;
     svg.innerHTML = s;
@@ -1787,10 +1788,10 @@
     const xv = ((ev.clientX - rect.left) / rect.width) * g.W;
     const i = Math.max(0, Math.min(g.n - 1, Math.floor((xv - g.L) / g.bw)));
     const d = g.c[i], x = g.X(i);
-    $("mk-cross").innerHTML = `<line x1="${x.toFixed(1)}" x2="${x.toFixed(1)}" y1="${g.T}" y2="${g.H - g.B}" stroke="#d9e6e2" stroke-width="1" stroke-dasharray="3 3" opacity="0.55"/>`;
+    $("mk-cross").innerHTML = `<line x1="${x.toFixed(1)}" x2="${x.toFixed(1)}" y1="${g.T}" y2="${g.H - g.B}" style="stroke:var(--faint)" stroke-width="1" stroke-dasharray="3 3"/>`;
     const tip = $("mk-tip");
     tip.innerHTML = g.v1
-      ? `<b>Semaine ${esc(d.sem.slice(6))} · ${esc(d.sem.slice(0, 4))}</b><span class="up">${esc(MK.cur)} ${sgn(g.v1[i])} %</span><span style="color:#f2b33d">${esc(MK.cmp)} ${g.vals2[i] === null ? "–" : sgn(g.vals2[i]) + " %"}</span>`
+      ? `<b>Semaine ${esc(d.sem.slice(6))} · ${esc(d.sem.slice(0, 4))}</b><span style="color:var(--chart-1)">${esc(MK.cur)} ${sgn(g.v1[i])} %</span><span class="cmp">${esc(MK.cmp)} ${g.vals2[i] === null ? "–" : sgn(g.vals2[i]) + " %"}</span>`
       : `<b>Semaine ${esc(d.sem.slice(6))} · ${esc(d.sem.slice(0, 4))}</b><span>Ouverture ${f2(d.o)} · Clôture <span class="${d.c >= d.o ? "up" : "dn"}">${f2(d.c)}</span></span><span>Haut ${f2(d.h)} · Bas ${f2(d.l)}</span>`;
     tip.hidden = false;
     const px = svg.offsetLeft + (x / g.W) * rect.width;
@@ -1829,8 +1830,8 @@
     if (window.__pflAlSuggest) window.__pflAlSuggest();
     const cmpOn = MK.cmp && MK.cmp !== MK.cur;
     $("mk-legend").innerHTML = cmpOn
-      ? `<span><i style="background:#3fd39a"></i>${esc(MK.cur)}</span><span><i style="background:#f2b33d"></i>${esc(MK.cmp)}</span><span>Évolution en % depuis le début de la période</span>`
-      : `<span><i style="background:#f2b33d"></i>Moyenne mobile 8 semaines</span><span><i style="background:#2e5a45;height:9px"></i>Pleine saison France</span>`;
+      ? `<span><i style="background:var(--chart-1)"></i>${esc(MK.cur)}</span><span><i style="background:var(--chart-2)"></i>${esc(MK.cmp)}</span><span>Évolution en % depuis le début de la période</span>`
+      : `<span><i style="background:var(--chart-2)"></i>Moyenne mobile 8 semaines</span><span><i style="background:var(--chart-band);height:9px;outline:1px solid var(--line)"></i>Pleine saison France</span>`;
   }
 
   function renderMarketCards() {
@@ -1883,7 +1884,7 @@
     const up = rows.filter((x) => x.ch > 0).sort((a, b) => b.ch - a.ch).slice(0, 4);
     const dn = rows.filter((x) => x.ch < 0).sort((a, b) => a.ch - b.ch).slice(0, 4);
     const col = (title, list) => `<div class="mv-col"><div class="sub-h">${title}</div>` + (list.map((x) =>
-      `<button type="button" class="mv-row" data-mkgo="${esc(x.nom)}">${pico(x.nom, "sm")}<span class="mv-n">${esc(x.nom)}</span><span class="mv-p">${f2(x.last)} €</span><span class="chg ${x.ch >= 0 ? "up" : "dn"}">${sgn(x.ch)} %</span></button>`
+      `<button type="button" class="mv-row" data-mkgo="${esc(x.nom)}">${pico(x.nom, "sm")}<span class="mv-n">${esc(x.nom)}</span><span class="mv-p">${f2(x.last)} €</span><span class="chg cost ${x.ch >= 0 ? "up" : "dn"}">${sgn(x.ch)} %</span></button>`
     ).join("") || `<p class="note">Aucun mouvement.</p>`) + `</div>`;
     $("h-movers").innerHTML = col("Plus fortes hausses", up) + col("Plus fortes baisses", dn);
   }
@@ -2983,21 +2984,21 @@
     let yMin = Math.min(...ys, yRef), yMax = Math.max(...ys, yRef); const pad = (yMax - yMin) * 0.1 || 0.05; yMin -= pad; yMax += pad;
     const X = (v) => L + (v / xMax) * (W - L - R), Y = (v) => T + ((yMax - v) / (yMax - yMin)) * (H - T - B);
     const xr = X(Math.sqrt(xRef)), yr = Y(yRef);
-    let svg = `<rect x="${L}" y="${T}" width="${(xr - L).toFixed(1)}" height="${(yr - T).toFixed(1)}" fill="#e6eef9" opacity="0.55"/>` +
-      `<rect x="${xr.toFixed(1)}" y="${T}" width="${(W - R - xr).toFixed(1)}" height="${(yr - T).toFixed(1)}" fill="#e2f2e8" opacity="0.65"/>` +
-      `<rect x="${L}" y="${yr.toFixed(1)}" width="${(xr - L).toFixed(1)}" height="${(H - B - yr).toFixed(1)}" fill="#fbe5d9" opacity="0.55"/>` +
-      `<rect x="${xr.toFixed(1)}" y="${yr.toFixed(1)}" width="${(W - R - xr).toFixed(1)}" height="${(H - B - yr).toFixed(1)}" fill="#fcf0d9" opacity="0.65"/>`;
-    for (let g = 0; g <= 4; g++) { const v = yMin + ((yMax - yMin) * g) / 4, yy = Y(v); svg += `<text x="${L - 8}" y="${(yy + 4).toFixed(1)}" text-anchor="end" font-size="11" fill="#66756b">${useMarge ? pct(v, 0) : sgnPct(v, 0)}</text>`; }
-    [0.01, 0.03, 0.06, 0.1, 0.2].filter((v) => Math.sqrt(v) <= xMax).forEach((v) => { const xx = X(Math.sqrt(v)); svg += `<line x1="${xx.toFixed(1)}" x2="${xx.toFixed(1)}" y1="${H - B}" y2="${H - B + 4}" stroke="#95a39a"/><text x="${xx.toFixed(1)}" y="${H - B + 17}" text-anchor="middle" font-size="11" fill="#66756b">${pct(v, 0)}</text>`; });
-    svg += `<line x1="${L}" x2="${W - R}" y1="${H - B}" y2="${H - B}" stroke="#cdd7cc"/><line x1="${L}" x2="${L}" y1="${T}" y2="${H - B}" stroke="#cdd7cc"/>`;
-    svg += `<line x1="${xr.toFixed(1)}" x2="${xr.toFixed(1)}" y1="${T}" y2="${H - B}" stroke="#95a39a" stroke-dasharray="4 4"/><line x1="${L}" x2="${W - R}" y1="${yr.toFixed(1)}" y2="${yr.toFixed(1)}" stroke="#95a39a" stroke-dasharray="4 4"/>`;
-    svg += `<text x="${(L + W - R) / 2}" y="${H - 6}" text-anchor="middle" font-size="11.5" fill="#66756b">Poids dans le chiffre d'affaires</text>`;
-    svg += `<text transform="translate(14 ${(T + H - B) / 2}) rotate(-90)" text-anchor="middle" font-size="11.5" fill="#66756b">${useMarge ? "Taux de marge" : "Évolution vs N-1"}</text>`;
+    let svg = `<rect x="${L}" y="${T}" width="${(xr - L).toFixed(1)}" height="${(yr - T).toFixed(1)}" style="fill:var(--q-pepite-bg)" opacity="0.7"/>` +
+      `<rect x="${xr.toFixed(1)}" y="${T}" width="${(W - R - xr).toFixed(1)}" height="${(yr - T).toFixed(1)}" style="fill:var(--q-pilier-bg)" opacity="0.8"/>` +
+      `<rect x="${L}" y="${yr.toFixed(1)}" width="${(xr - L).toFixed(1)}" height="${(H - B - yr).toFixed(1)}" style="fill:var(--q-question-bg)" opacity="0.7"/>` +
+      `<rect x="${xr.toFixed(1)}" y="${yr.toFixed(1)}" width="${(W - R - xr).toFixed(1)}" height="${(H - B - yr).toFixed(1)}" style="fill:var(--q-trafic-bg)" opacity="0.8"/>`;
+    for (let g = 0; g <= 4; g++) { const v = yMin + ((yMax - yMin) * g) / 4, yy = Y(v); svg += `<text x="${L - 8}" y="${(yy + 4).toFixed(1)}" text-anchor="end" font-size="11" style="fill:var(--muted)">${useMarge ? pct(v, 0) : sgnPct(v, 0)}</text>`; }
+    [0.01, 0.03, 0.06, 0.1, 0.2].filter((v) => Math.sqrt(v) <= xMax).forEach((v) => { const xx = X(Math.sqrt(v)); svg += `<line x1="${xx.toFixed(1)}" x2="${xx.toFixed(1)}" y1="${H - B}" y2="${H - B + 4}" style="stroke:var(--faint)"/><text x="${xx.toFixed(1)}" y="${H - B + 17}" text-anchor="middle" font-size="11" style="fill:var(--muted)">${pct(v, 0)}</text>`; });
+    svg += `<line x1="${L}" x2="${W - R}" y1="${H - B}" y2="${H - B}" style="stroke:var(--line-strong)"/><line x1="${L}" x2="${L}" y1="${T}" y2="${H - B}" style="stroke:var(--line-strong)"/>`;
+    svg += `<line x1="${xr.toFixed(1)}" x2="${xr.toFixed(1)}" y1="${T}" y2="${H - B}" style="stroke:var(--faint)" stroke-dasharray="4 4"/><line x1="${L}" x2="${W - R}" y1="${yr.toFixed(1)}" y2="${yr.toFixed(1)}" style="stroke:var(--faint)" stroke-dasharray="4 4"/>`;
+    svg += `<text x="${(L + W - R) / 2}" y="${H - 6}" text-anchor="middle" font-size="11.5" style="fill:var(--muted)">Poids dans le chiffre d'affaires</text>`;
+    svg += `<text transform="translate(14 ${(T + H - B) / 2}) rotate(-90)" text-anchor="middle" font-size="11.5" style="fill:var(--muted)">${useMarge ? "Taux de marge" : "Évolution vs N-1"}</text>`;
     const geo = (p) => ({ cx: X(Math.sqrt(p.w)), cy: Y(useMarge ? p.tm : p.ev), r: 4 + Math.sqrt(p.w) * 18 });
     P.slice().sort((a, b) => a.w - b.w).forEach((p) => {
       const { cx, cy, r } = geo(p);
       const dim = AS.quad && AS.quad !== p.quad;
-      svg += `<g class="dot" tabindex="0" role="button" ${p.ref ? `data-prod="${esc(p.ref.nom)}"` : ""} aria-label="${esc(p.nom)}" opacity="${dim ? 0.18 : 1}"><title>${esc(p.nom)} · ${pct(p.w, 1)} du CA · ${useMarge ? "marge " + pct1(p.tm) : "évol. " + sgnPct(p.ev)}</title><circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${r.toFixed(1)}" fill="${QCOL[p.quad]}" fill-opacity="0.78" stroke="#ffffff" stroke-width="1.5"/></g>`;
+      svg += `<g class="dot" tabindex="0" role="button" ${p.ref ? `data-prod="${esc(p.ref.nom)}"` : ""} aria-label="${esc(p.nom)}" opacity="${dim ? 0.18 : 1}"><title>${esc(p.nom)} · ${pct(p.w, 1)} du CA · ${useMarge ? "marge " + pct1(p.tm) : "évol. " + sgnPct(p.ev)}</title><circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${r.toFixed(1)}" fill="${QCOL[p.quad]}" fill-opacity="0.78" style="stroke:var(--surface)" stroke-width="1.5"/></g>`;
     });
     // Étiquettes des plus gros produits d'abord, par-dessus les bulles
     const placed = [];
@@ -3012,7 +3013,7 @@
         // Pas d'étiquette si elle en recouvre une autre (le nom reste visible au survol de la bulle)
         if (!placed.some((b) => box[0] < b[2] && box[2] > b[0] && box[1] < b[3] && box[3] > b[1])) {
           placed.push(box);
-          svg += `<text x="${(left ? cx - r - 4 : cx + r + 4).toFixed(1)}" y="${(cy + 4).toFixed(1)}" text-anchor="${left ? "end" : "start"}" font-size="11" font-weight="600" fill="#17251c">${esc(lab)}</text>`;
+          svg += `<text x="${(left ? cx - r - 4 : cx + r + 4).toFixed(1)}" y="${(cy + 4).toFixed(1)}" text-anchor="${left ? "end" : "start"}" font-size="11" font-weight="600" style="fill:var(--text)">${esc(lab)}</text>`;
         }
       }
     });
