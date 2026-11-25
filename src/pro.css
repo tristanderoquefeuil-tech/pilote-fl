@@ -998,3 +998,22 @@ select {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%238b978f' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E");
   background-repeat: no-repeat; background-position: right 10px center; background-size: 14px;
 }
+
+/* ---------- 3.26 : indicateur de l'onglet actif en « goutte » (un seul fond qui glisse d'un onglet à l'autre) ---------- */
+nav.tabs { position: relative; }
+nav.tabs a { z-index: 1; }
+.tab-pill {
+  position: absolute; left: 0; top: 0; width: 0; height: 0; z-index: 0; pointer-events: none;
+  border-radius: 8px; background: var(--side-active); opacity: 0; transition: opacity 0.15s ease;
+}
+.tab-pill.on { opacity: 1; }
+.tab-pill::before { content: ""; position: absolute; left: -12px; top: 8px; bottom: 8px; width: 3px; border-radius: 0 3px 3px 0; background: var(--leaf); }
+body.side-mini .tab-pill::before { left: -10px; }
+nav.tabs.has-pill a[aria-current="page"] { background: transparent; }
+nav.tabs.has-pill a[aria-current="page"]::before { display: none; }
+@media (max-width: 900px) {
+  .tab-pill { border-radius: 15px; }
+  .tab-pill::before { display: none; }
+}
+/* Glissement entre onglets : la page qui suit le doigt ne crée pas de défilement horizontal */
+main { overflow-x: clip; }
