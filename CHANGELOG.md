@@ -4,6 +4,14 @@ Les améliorations sont regroupées par version publiée. La section « En prép
 
 ## En préparation
 
+## 3.24 — 25 novembre 2026
+
+- **Interface modernisée.** Un seul système de design pour toute l'appli : une police (Inter) avec chiffres alignés, des couleurs, espacements, arrondis et ombres identiques partout. Fond uni et cartes nettes à la place du fond à feuilles floues et des cartes translucides. Boutons, champs, listes déroulantes, onglets, sous-onglets, pastilles, tableaux et états vides suivent les mêmes règles (survol, appui, focus clavier visible).
+- **Barres de navigation plus soignées.** Barre latérale claire avec l'onglet actif bien marqué (ordinateur) ; barre du bas flottante en verre dépoli (téléphone) ; barre du haut plus sobre, sous-titre sur une ligne sur téléphone.
+- **Cours d'achat dans le même thème que le reste.** La page n'est plus la seule en sombre : liste, graphique, cartes et panneaux reprennent les couleurs de l'appli. Les couleurs ont le même sens partout : **une baisse de cours est en vert** (bonne nouvelle pour la marge), **une hausse en orange**, y compris sur l'accueil.
+- **Mode sombre automatique (site).** Si l'ordinateur ou le navigateur est réglé en sombre, l'appli passe en sombre, graphiques compris. L'appli Android reste en clair.
+- Le calendrier des saisons tient toujours sur un écran de téléphone, sans défiler. Aucune fonction ni aucun parcours ne change.
+
 ## 3.23 — 25 novembre 2026
 
 - **Vraies illustrations des produits.** Les 37 fruits et légumes ont chacun leur dessin, dans un même style (poireau, chou-fleur, endive, asperge, radis, betterave, navet, framboise, abricot, prune, figue, rhubarbe… n'affichent plus deux lettres). Lisibles en petit dans les listes et en grand dans la fiche produit ; ils apparaissent aussi dans les étiquettes de saison, les suggestions du Studio promo et sur les affiches de l'Atelier com.

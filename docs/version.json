@@ -1,6 +1,6 @@
 {
-  "versionCode": 34,
-  "versionName": "3.23",
+  "versionCode": 35,
+  "versionName": "3.24",
   "apk": "https://github.com/tristanderoquefeuil-tech/pilote-fl/releases/latest/download/PiloteFL.apk",
-  "notes": "Illustrations des produits, widget des cours et notifications sur Android, calendrier des saisons sur un seul écran."
+  "notes": "Interface modernisée : design plus net et homogène, page Cours d’achat en thème clair comme le reste, mode sombre sur le site qui suit le réglage de l’ordinateur ou du navigateur."
 }
