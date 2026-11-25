@@ -4,6 +4,11 @@ Les améliorations sont regroupées par version publiée. La section « En prép
 
 ## En préparation
 
+## 3.22 — 25 novembre 2026
+
+- **Résumé « En bref » en haut des cours d'achat.** En quelques lignes et sans jargon : combien de produits coûtent moins ou plus cher à l'achat que la semaine dernière, les plus fortes baisses et hausses, et le bon plan de la semaine (produits en pleine saison et en baisse). Un clic sur un produit ouvre sa courbe ; « C'est quoi, un cours d'achat ? » explique la notion aux débutants.
+- **Page allégée.** Courbe simple par défaut (les chandeliers restent disponibles), tous les produits affichés d'emblée ; période, type de graphique, comparaison et fiche produit regroupés dans « Options du graphique » ; les alertes (« Me prévenir quand le prix bouge ») et la saisie de vos prix (« Ajouter mes prix d'achat ») sont repliées et s'ouvrent d'un toucher. Le panneau d'alertes s'ouvre seul s'il en existe.
+
 ## 3.21 — 25 novembre 2026
 
 - **Rien d'affiché sans donnée.** La liste des cours et le menu « Comparer avec » ne montrent que les produits qui ont des prix réels (cours publics ou vos prix) ; la fiche produit n'affiche que les chiffres connus (la marge seulement si l'achat et la vente le sont) et le bouton « Voir le cours » seulement s'il existe ; la carte « Marge réelle » des cours et les cases vides de la veille prix disparaissent au lieu d'afficher « – ».

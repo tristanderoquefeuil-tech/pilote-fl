@@ -889,6 +889,24 @@ th.sorted .th-sort { color: var(--text); }
 .mk-srcline { margin: 0; font-size: 0.74rem; color: var(--mk-mute); line-height: 1.5; }
 .mk .mk-btn[disabled] { opacity: 0.5; }
 
+/* Cours d'achat simplifié : résumé en langage simple, options et panneaux repliés */
+.mk-resume { display: grid; gap: 8px; }
+.mk-resume .ph { margin-bottom: 0; }
+.mk-resume-list { margin: 0; padding-left: 18px; display: grid; gap: 6px; line-height: 1.5; }
+.mk-resume-list .dn { color: var(--leaf); font-weight: 650; }
+.mk-resume-list .up { color: var(--bad-ink, #b4532a); font-weight: 650; }
+.mk-resume .link { padding: 0; border: 0; background: none; box-shadow: none; color: var(--leaf); font: inherit; font-weight: 600; text-decoration: underline; text-underline-offset: 2px; cursor: pointer; }
+.mk-resume-intro { margin: 0; color: var(--muted); font-size: 0.88rem; line-height: 1.5; }
+.mk-resume-more summary { cursor: pointer; color: var(--leaf); font-size: 0.86rem; font-weight: 600; }
+.mk-resume-more[open] summary { margin-bottom: 6px; }
+.mk-opts summary { cursor: pointer; color: var(--mk-mute); font-size: 0.82rem; margin: 2px 0 6px; width: max-content; }
+.mk-opts[open] summary { color: var(--mk-text); }
+details.mk-panel summary { cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between; }
+details.mk-panel summary::-webkit-details-marker { display: none; }
+details.mk-panel summary::after { content: "＋"; color: var(--mk-mute); font-size: 1rem; }
+details.mk-panel[open] summary::after { content: "−"; }
+details.mk-panel:not([open]) { padding-block: 12px; }
+
 </style>
 
 <div class="splash" id="splash" role="status" aria-label="Chargement de Pilote F&L">
@@ -977,21 +995,15 @@ th.sorted .th-sort { color: var(--text); }
       <section id="view-marche" class="view mk" hidden>
         <div class="page">
           <div class="mk-hits" id="mk-hits"></div>
+          <div class="panel mk-resume" id="mk-resume"></div>
           <div class="mk-shell">
             <div class="mk-top">
               <span class="mk-title">Cours d'achat · € HT / kg</span>
               <span class="mk-live" id="mk-live"></span>
               <button type="button" class="mk-btn" id="mk-refresh" hidden>Actualiser les cours</button>
               <div class="mk-seg" role="group" aria-label="Liste affichée" id="mk-lm">
-                <button type="button" data-lm="suivi" aria-pressed="true">Ma liste</button>
-                <button type="button" data-lm="tous" aria-pressed="false">Tous</button>
-              </div>
-              <span class="mk-spacer"></span>
-              <div class="mk-seg" role="group" aria-label="Période" id="mk-tf">
-                <button type="button" data-w="13" aria-pressed="false">3M</button>
-                <button type="button" data-w="26" aria-pressed="false">6M</button>
-                <button type="button" data-w="52" aria-pressed="true">1A</button>
-                <button type="button" data-w="104" aria-pressed="false">2A</button>
+                <button type="button" data-lm="tous" aria-pressed="true">Tous</button>
+                <button type="button" data-lm="suivi" aria-pressed="false">Ma liste ☆</button>
               </div>
             </div>
             <div class="mk-grid">
@@ -1004,14 +1016,23 @@ th.sorted .th-sort { color: var(--text); }
                   <span class="mk-chg" id="mk-chg"></span>
                   <span class="mk-badge" id="mk-src"></span>
                 </div>
-                <div class="mk-tools">
-                  <div class="mk-seg" role="group" aria-label="Type de graphique" id="mk-type">
-                    <button type="button" data-t="bougies" aria-pressed="true">Chandeliers</button>
-                    <button type="button" data-t="ligne" aria-pressed="false">Courbe</button>
+                <details class="mk-opts">
+                  <summary>Options du graphique</summary>
+                  <div class="mk-tools">
+                    <div class="mk-seg" role="group" aria-label="Période" id="mk-tf">
+                      <button type="button" data-w="13" aria-pressed="false">3 mois</button>
+                      <button type="button" data-w="26" aria-pressed="false">6 mois</button>
+                      <button type="button" data-w="52" aria-pressed="true">1 an</button>
+                      <button type="button" data-w="104" aria-pressed="false">2 ans</button>
+                    </div>
+                    <div class="mk-seg" role="group" aria-label="Type de graphique" id="mk-type">
+                      <button type="button" data-t="ligne" aria-pressed="true">Courbe</button>
+                      <button type="button" data-t="bougies" aria-pressed="false">Chandeliers</button>
+                    </div>
+                    <select id="mk-cmp" aria-label="Comparer avec un autre produit"></select>
+                    <button type="button" class="mk-btn" id="mk-fiche">Fiche produit</button>
                   </div>
-                  <select id="mk-cmp" aria-label="Comparer avec un autre produit"></select>
-                  <button type="button" class="mk-btn" id="mk-fiche">Fiche produit</button>
-                </div>
+                </details>
                 <div class="mk-legend" id="mk-legend"></div>
                 <svg class="mk-svg" id="mk-svg" viewBox="0 0 800 340" role="img" aria-label="Graphique du cours"></svg>
                 <p class="mk-srcline" id="mk-srcline"></p>
@@ -1020,8 +1041,8 @@ th.sorted .th-sort { color: var(--text); }
             </div>
             <div class="mk-cards" id="mk-cards"></div>
             <div class="mk-panels">
-              <div class="mk-panel">
-                <h4>Alertes de prix</h4>
+              <details class="mk-panel" id="mk-al-box">
+                <summary><h4>🔔 Me prévenir quand le prix bouge</h4></summary>
                 <form class="mk-form" id="mk-al-form" autocomplete="off">
                   <select id="mk-al-sens" aria-label="Condition"><option value="sous">passe sous</option><option value="dessus">passe au-dessus de</option></select>
                   <input id="mk-al-prix" type="number" step="0.01" min="0" placeholder="1,50" aria-label="Prix seuil en euros par kilo" inputmode="decimal">
@@ -1029,10 +1050,10 @@ th.sorted .th-sort { color: var(--text); }
                 </form>
                 <p id="mk-al-msg" role="status"></p>
                 <div class="list" id="mk-al-list"></div>
-              </div>
-              <div class="mk-panel">
-                <h4 id="mk-px-title">Vos prix</h4>
-                <p>Saisissez votre prix d'achat de la semaine, ou collez un historique : une ligne par prix, au format « semaine ou date ; produit ; prix ». Vos prix servent de cours pour ce produit.</p>
+              </details>
+              <details class="mk-panel">
+                <summary><h4 id="mk-px-title">✏️ Ajouter mes prix d'achat</h4></summary>
+                <p>Votre prix d'achat de la semaine, ou un historique collé depuis Excel (une ligne par prix : « semaine ou date ; produit ; prix »). Vos prix servent de cours pour ce produit.</p>
                 <form class="mk-form" id="mk-px-form" autocomplete="off">
                   <input id="mk-px-sem" placeholder="2026-S48" aria-label="Semaine">
                   <input id="mk-px-prix" type="number" step="0.01" min="0" placeholder="Prix €/kg" aria-label="Prix d'achat en euros par kilo" inputmode="decimal">
@@ -1044,7 +1065,7 @@ th.sorted .th-sort { color: var(--text); }
                   <button type="button" class="mk-btn" id="mk-px-clear">Effacer mes prix de ce produit</button>
                 </div>
                 <p id="mk-px-msg" role="status"></p>
-              </div>
+              </details>
             </div>
           </div>
         </div>
@@ -1359,7 +1380,7 @@ th.sorted .th-sort { color: var(--text); }
             <div class="panel span-12">
               <div class="ph"><h3>À propos</h3></div>
               <div class="actions" id="st-update-box" style="margin-bottom:10px" hidden><button type="button" id="st-update">Vérifier les mises à jour</button><span class="note" id="st-update-msg" role="status"></span></div>
-              <p class="note" style="margin:0">Pilote F&amp;L · version <span id="st-version">3.21</span> · boîte à outils du category manager fruits et légumes. Données réelles et publiques : cours d'achat de la Commission européenne (Agri-food Data Portal), prix moyens de vente au détail de l'INSEE et relevés en magasin d'Open Prices (Open Food Facts, licence ODbL). Aucun chiffre inventé : sans donnée publique, l'appli vous invite à saisir la vôtre. Site et mises à jour : <a href="https://tristanderoquefeuil-tech.github.io/pilote-fl/" target="_blank" rel="noopener">tristanderoquefeuil-tech.github.io/pilote-fl</a>.</p>
+              <p class="note" style="margin:0">Pilote F&amp;L · version <span id="st-version">3.22</span> · boîte à outils du category manager fruits et légumes. Données réelles et publiques : cours d'achat de la Commission européenne (Agri-food Data Portal), prix moyens de vente au détail de l'INSEE et relevés en magasin d'Open Prices (Open Food Facts, licence ODbL). Aucun chiffre inventé : sans donnée publique, l'appli vous invite à saisir la vôtre. Site et mises à jour : <a href="https://tristanderoquefeuil-tech.github.io/pilote-fl/" target="_blank" rel="noopener">tristanderoquefeuil-tech.github.io/pilote-fl</a>.</p>
             </div>
           </div>
         </div>
@@ -2212,7 +2233,7 @@ th.sorted .th-sort { color: var(--text); }
   });
 
   // ================= Marché =================
-  const MK = { cur: "Tomate", win: 52, type: "bougies", cmp: "", lm: "suivi", geo: null };
+  const MK = { cur: "Tomate", win: 52, type: "ligne", cmp: "", lm: "tous", geo: null };
   const PKEY = "pfl-prix";
   let prices = [];
   // Cours réels : prix moyen départ station France, hebdomadaire (Commission européenne, Agri-food Data Portal)
@@ -2640,7 +2661,7 @@ th.sorted .th-sort { color: var(--text); }
     renderLive();
     $("mk-star").textContent = inWatch ? "★" : "☆";
     $("mk-star").setAttribute("aria-label", inWatch ? "Retirer de ma liste" : "Ajouter à ma liste");
-    $("mk-px-title").textContent = `Vos prix · ${MK.cur}`;
+    $("mk-px-title").textContent = `✏️ Ajouter mes prix d’achat · ${MK.cur}`;
     if (window.__pflAlSuggest) window.__pflAlSuggest();
     const cmpOn = MK.cmp && MK.cmp !== MK.cur;
     $("mk-legend").innerHTML = cmpOn
@@ -2678,6 +2699,7 @@ th.sorted .th-sort { color: var(--text); }
       const hit = alertHit(a);
       return `<div class="mk-alert ${hit ? "hit" : ""}"><span aria-hidden="true">${iconOf(a.produit)}</span><span class="grow">${esc(alertText(a))}<br><small>${hit ? "Déclenchée · cours " + f2(lastOf(seriesOf(a.produit).data)) + " €" : "En attente"}</small></span><button type="button" class="x" data-alx="${esc(a.id)}" aria-label="Supprimer l'alerte ${esc(alertText(a))}">Supprimer</button></div>`;
     }).join("") || `<p>Aucune alerte. Choisissez un produit puis un seuil.</p>`;
+    if (al.length) $("mk-al-box").open = true;
     const hits = al.filter(alertHit).map((a) => `<button type="button" class="mk-hit" data-mkgo="${esc(a.produit)}">🔔 ${esc(alertText(a))}</button>`).join("");
     $("mk-hits").innerHTML = hits;
     $("h-px").innerHTML = hits;
@@ -2702,7 +2724,34 @@ th.sorted .th-sort { color: var(--text); }
     $("h-movers").innerHTML = col("Plus fortes hausses", up) + col("Plus fortes baisses", dn);
   }
 
+  // ---------- Résumé de la semaine, en langage simple ----------
+  function renderResume() {
+    const box = $("mk-resume");
+    const all = PRODUITS.map((p) => { const sr = seriesOf(p.nom), d = sr.data, lp = d[d.length - 1];
+      return { p, nom: p.nom, src: sr.src, d, ch: chgOf(d), sem: lp && lp.sem, recent: lp && (!lp.d || daysUntil(parseDay(lp.d)) > -24) }; })
+      .filter((x) => x.d.length > 1 && x.recent && (x.src === "ue" || x.src === "user"));
+    const intro = `<p class="mk-resume-intro"><b>Le cours d'achat</b>, c'est le prix auquel le magasin achète un fruit ou un légume au producteur, avant transport. Il bouge chaque semaine avec la saison et la météo : <b>quand il baisse, vous gagnez plus de marge</b> ou pouvez faire une promo ; <b>quand il monte</b>, votre marge fond si vous ne changez pas le prix en rayon.</p>`;
+    if (!all.length) { box.innerHTML = `<div class="ph"><h3>En bref</h3></div>` + intro + `<p class="note">Pas encore de cours récents à résumer.</p>`; return; }
+    const nom = (x) => `<button type="button" class="link" data-mk="${esc(x.nom)}">${esc(x.nom.toLowerCase())}</button>`;
+    const pctTxt = (v) => `${v > 0 ? "+" : "−"}${Math.abs(v).toFixed(0)} %`;
+    const baisses = all.filter((x) => x.ch <= -1).sort((a, b) => a.ch - b.ch), hausses = all.filter((x) => x.ch >= 1).sort((a, b) => b.ch - a.ch);
+    const stables = all.length - baisses.length - hausses.length;
+    const sem = all.map((x) => x.sem).sort().at(-1);
+    const liste = (arr) => arr.map((x) => `${nom(x)} (${pctTxt(x.ch)})`).join(", ");
+    const enSaison = baisses.filter((x) => x.p.mois[now] === 2);
+    const points = [
+      `Sur les ${all.length} produits cotés cette semaine : ${[baisses.length && `<b>${baisses.length} ${pl(baisses.length, "coûte", "coûtent")} moins cher</b> à l'achat que la semaine dernière`, hausses.length && `<b>${hausses.length} ${pl(hausses.length, "coûte", "coûtent")} plus cher</b>`, stables && `${stables} ${pl(stables, "ne bouge", "ne bougent")} presque pas`].filter(Boolean).join(", ").replace(/, ([^,]*)$/, " et $1")}.`,
+      baisses.length && `<span class="dn">▼ En baisse :</span> ${liste(baisses.slice(0, 3))}. Bonne nouvelle pour votre marge.`,
+      hausses.length && `<span class="up">▲ En hausse :</span> ${liste(hausses.slice(0, 3))}. Vérifiez la marge avant de les mettre en promotion.`,
+      enSaison.length ? `<b>Bon plan de la semaine :</b> ${enSaison.slice(0, 3).map(nom).join(", ")}, en pleine saison et moins ${pl(enSaison.length, "cher", "chers")} : ${pl(enSaison.length, "idéal", "idéaux")} pour une mise en avant.` : "",
+    ].filter(Boolean);
+    box.innerHTML = `<div class="ph"><h3>En bref · semaine ${sem ? sem.split("-S")[1] : ""}</h3><span class="note push">cours réels, Commission européenne${all.some((x) => x.src === "user") ? " et vos prix" : ""}</span></div>` +
+      `<ul class="mk-resume-list">${points.map((t) => `<li>${t}</li>`).join("")}</ul>` +
+      `<details class="mk-resume-more"><summary>C'est quoi, un cours d'achat ?</summary>${intro}</details>`;
+  }
+  $("mk-resume").addEventListener("click", (e) => { const b = e.target.closest("[data-mk]"); if (b) { MK.cur = b.dataset.mk; renderMarket(); $("mk-chart").scrollIntoView({ behavior: "smooth", block: "start" }); } });
   function renderMarket() {
+    renderResume();
     renderMovers();
     renderWatchlist();
     renderMarketHead();

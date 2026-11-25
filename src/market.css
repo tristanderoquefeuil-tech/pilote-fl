@@ -78,3 +78,21 @@
 .mk-badge.live { background: rgba(63, 211, 154, 0.16); color: var(--mk-up); }
 .mk-srcline { margin: 0; font-size: 0.74rem; color: var(--mk-mute); line-height: 1.5; }
 .mk .mk-btn[disabled] { opacity: 0.5; }
+
+/* Cours d'achat simplifié : résumé en langage simple, options et panneaux repliés */
+.mk-resume { display: grid; gap: 8px; }
+.mk-resume .ph { margin-bottom: 0; }
+.mk-resume-list { margin: 0; padding-left: 18px; display: grid; gap: 6px; line-height: 1.5; }
+.mk-resume-list .dn { color: var(--leaf); font-weight: 650; }
+.mk-resume-list .up { color: var(--bad-ink, #b4532a); font-weight: 650; }
+.mk-resume .link { padding: 0; border: 0; background: none; box-shadow: none; color: var(--leaf); font: inherit; font-weight: 600; text-decoration: underline; text-underline-offset: 2px; cursor: pointer; }
+.mk-resume-intro { margin: 0; color: var(--muted); font-size: 0.88rem; line-height: 1.5; }
+.mk-resume-more summary { cursor: pointer; color: var(--leaf); font-size: 0.86rem; font-weight: 600; }
+.mk-resume-more[open] summary { margin-bottom: 6px; }
+.mk-opts summary { cursor: pointer; color: var(--mk-mute); font-size: 0.82rem; margin: 2px 0 6px; width: max-content; }
+.mk-opts[open] summary { color: var(--mk-text); }
+details.mk-panel summary { cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between; }
+details.mk-panel summary::-webkit-details-marker { display: none; }
+details.mk-panel summary::after { content: "＋"; color: var(--mk-mute); font-size: 1rem; }
+details.mk-panel[open] summary::after { content: "−"; }
+details.mk-panel:not([open]) { padding-block: 12px; }
