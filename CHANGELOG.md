@@ -4,6 +4,10 @@ Les améliorations sont regroupées par version publiée. La section « En prép
 
 ## En préparation
 
+## 3.27 — 25 novembre 2026
+
+- **Nouveau logo.** Panier givré avec pomme, carotte, feuilles, graphique en hausse et clé : icône de l'appli Android (toutes tailles, icône adaptative comprise), écran de démarrage, logo de la barre latérale et icône de l'onglet du navigateur.
+
 ## 3.26 — 25 novembre 2026
 
 - **Changer d'onglet en glissant le doigt (téléphone).** Un glissement vers la gauche passe à l'onglet suivant, vers la droite au précédent, dans l'ordre de la barre du bas en passant par les sous-onglets : Accueil → Analyse → Studio promo → Atelier com → Assortiment → Saisonnalité → Cours d'achat → Simulateur de marge. La page suit un peu le doigt puis glisse vers la suivante ; un geste trop court revient en place. Le geste est ignoré quand on fait défiler la page, sur le graphique des cours, les listes et tableaux qui défilent de côté, les champs, la barre du bas, la fiche produit et le panneau d'opération, et sur les bords de l'écran (geste Retour d'Android).
