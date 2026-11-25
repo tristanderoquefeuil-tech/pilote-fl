@@ -4,6 +4,10 @@ Les améliorations sont regroupées par version publiée. La section « En prép
 
 ## En préparation
 
+## 3.25 — 25 novembre 2026
+
+- **Retour du fond d'origine.** En thème clair, le fond dégradé menthe → crème avec les grandes feuilles floues revient derrière l'interface modernisée de la 3.24. Rien d'autre ne change ; le mode sombre garde son fond uni.
+
 ## 3.24 — 25 novembre 2026
 
 - **Interface modernisée.** Un seul système de design pour toute l'appli : une police (Inter) avec chiffres alignés, des couleurs, espacements, arrondis et ombres identiques partout. Fond uni et cartes nettes à la place du fond à feuilles floues et des cartes translucides. Boutons, champs, listes déroulantes, onglets, sous-onglets, pastilles, tableaux et états vides suivent les mêmes règles (survol, appui, focus clavier visible).

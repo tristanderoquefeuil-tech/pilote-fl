@@ -154,6 +154,23 @@ body {
   min-height: 100vh; background: var(--bg);
 }
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+/* Fond d'origine (thème clair) : dégradé menthe → crème et grandes feuilles floues fixes */
+@media not all and (prefers-color-scheme: dark) {
+  html { background: #ddeee3; }
+  body {
+    background-color: #eef5ee;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'%3E%3Cdefs%3E%3Cfilter id='b' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeGaussianBlur stdDeviation='14'/%3E%3C/filter%3E%3C/defs%3E%3Cg filter='url(%23b)'%3E%3Cpath d='M70 530C40 290 210 100 540 60C560 330 370 520 70 530Z' fill='%236DB33F' fill-opacity='0.30'/%3E%3Cpath d='M90 510L520 80' stroke='%23ffffff' stroke-opacity='0.55' stroke-width='7' fill='none'/%3E%3C/g%3E%3C/svg%3E"),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'%3E%3Cdefs%3E%3Cfilter id='b' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeGaussianBlur stdDeviation='18'/%3E%3C/filter%3E%3C/defs%3E%3Cg filter='url(%23b)'%3E%3Cpath d='M300 40C470 150 520 380 300 560C80 380 130 150 300 40Z' fill='%231F7A4D' fill-opacity='0.18'/%3E%3Cpath d='M300 70V540' stroke='%23ffffff' stroke-opacity='0.5' stroke-width='7' fill='none'/%3E%3C/g%3E%3C/svg%3E"),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'%3E%3Cdefs%3E%3Cfilter id='b' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeGaussianBlur stdDeviation='22'/%3E%3C/filter%3E%3C/defs%3E%3Cg filter='url(%23b)'%3E%3Cpath d='M60 80C330 60 540 240 540 540C260 540 70 360 60 80Z' fill='%23A8D58A' fill-opacity='0.35'/%3E%3C/g%3E%3C/svg%3E"),
+      linear-gradient(160deg, #ddeee3 0%, #e9f3e6 45%, #fbf6e4 100%);
+    background-repeat: no-repeat;
+    background-size: 520px 520px, 440px 440px, 600px 600px, 100% 100%;
+    background-position: right -140px top 40px, left 60px bottom 60px, left 45% top -260px, 0 0;
+    background-attachment: fixed;
+  }
+  body::before { background: #ddeee3; }
+}
 h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.012em; }
 ::selection { background: rgba(23, 120, 74, 0.18); }
 
@@ -1566,7 +1583,7 @@ details.mk-panel:not([open]) { padding-block: 12px; }
             <div class="panel span-12">
               <div class="ph"><h3>À propos</h3></div>
               <div class="actions" id="st-update-box" style="margin-bottom:10px" hidden><button type="button" id="st-update">Vérifier les mises à jour</button><span class="note" id="st-update-msg" role="status"></span></div>
-              <p class="note" style="margin:0">Pilote F&amp;L · version <span id="st-version">3.24</span> · boîte à outils du category manager fruits et légumes. Données réelles et publiques : cours d'achat de la Commission européenne (Agri-food Data Portal), prix moyens de vente au détail de l'INSEE et relevés en magasin d'Open Prices (Open Food Facts, licence ODbL). Aucun chiffre inventé : sans donnée publique, l'appli vous invite à saisir la vôtre. Site et mises à jour : <a href="https://tristanderoquefeuil-tech.github.io/pilote-fl/" target="_blank" rel="noopener">tristanderoquefeuil-tech.github.io/pilote-fl</a>.</p>
+              <p class="note" style="margin:0">Pilote F&amp;L · version <span id="st-version">3.25</span> · boîte à outils du category manager fruits et légumes. Données réelles et publiques : cours d'achat de la Commission européenne (Agri-food Data Portal), prix moyens de vente au détail de l'INSEE et relevés en magasin d'Open Prices (Open Food Facts, licence ODbL). Aucun chiffre inventé : sans donnée publique, l'appli vous invite à saisir la vôtre. Site et mises à jour : <a href="https://tristanderoquefeuil-tech.github.io/pilote-fl/" target="_blank" rel="noopener">tristanderoquefeuil-tech.github.io/pilote-fl</a>.</p>
             </div>
           </div>
         </div>

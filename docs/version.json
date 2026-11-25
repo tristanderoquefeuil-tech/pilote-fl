@@ -1,6 +1,6 @@
 {
-  "versionCode": 35,
-  "versionName": "3.24",
+  "versionCode": 36,
+  "versionName": "3.25",
   "apk": "https://github.com/tristanderoquefeuil-tech/pilote-fl/releases/latest/download/PiloteFL.apk",
-  "notes": "Interface modernisée : design plus net et homogène, page Cours d’achat en thème clair comme le reste, mode sombre sur le site qui suit le réglage de l’ordinateur ou du navigateur."
+  "notes": "Retour du fond d'origine (dégradé menthe et feuilles)."
 }
