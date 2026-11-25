@@ -480,7 +480,7 @@
             <div class="panel span-12">
               <div class="ph"><h3>À propos</h3></div>
               <div class="actions" id="st-update-box" style="margin-bottom:10px" hidden><button type="button" id="st-update">Vérifier les mises à jour</button><span class="note" id="st-update-msg" role="status"></span></div>
-              <p class="note" style="margin:0">Pilote F&amp;L · version <span id="st-version">3.29</span> · boîte à outils du category manager fruits et légumes. Données réelles et publiques : cours d'achat de la Commission européenne (Agri-food Data Portal), prix moyens de vente au détail de l'INSEE et relevés en magasin d'Open Prices (Open Food Facts, licence ODbL). Aucun chiffre inventé : sans donnée publique, l'appli vous invite à saisir la vôtre. Site et mises à jour : <a href="https://tristanderoquefeuil-tech.github.io/pilote-fl/" target="_blank" rel="noopener">tristanderoquefeuil-tech.github.io/pilote-fl</a>.</p>
+              <p class="note" style="margin:0">Pilote F&amp;L · version <span id="st-version">3.30</span> · boîte à outils du category manager fruits et légumes. Données réelles et publiques : cours d'achat de la Commission européenne (Agri-food Data Portal), prix moyens de vente au détail de l'INSEE et relevés en magasin d'Open Prices (Open Food Facts, licence ODbL). Aucun chiffre inventé : sans donnée publique, l'appli vous invite à saisir la vôtre. Site et mises à jour : <a href="https://tristanderoquefeuil-tech.github.io/pilote-fl/" target="_blank" rel="noopener">tristanderoquefeuil-tech.github.io/pilote-fl</a>.</p>
             </div>
           </div>
         </div>
@@ -1110,11 +1110,17 @@
       p.mois.map((v, i) => `<td class="${i === now ? "now" : ""}"><div class="m${v}" title="${MOIS_LONG[i]} : ${SAISON_LABEL[v]}"></div></td>`).join("") +
       `<td class="origin">${esc(p.origine)}</td></tr>`
     ).join("") || `<tr><td colspan="14" class="empty">Aucun produit ne correspond.</td></tr>`;
-    // Version téléphone : deux colonnes de produits, mois en initiales, tout tient sur un écran
-    const half = Math.ceil(rows.length / 2);
+    // Version téléphone : une seule colonne de produits que l'on fait défiler, mois en initiales
     const head = `<div class="sm-row sm-head"><span></span>${MOIS_INI.map((m, i) => `<b class="${i === now ? "now" : ""}" title="${MOIS_LONG[i]}">${m}</b>`).join("")}</div>`;
     const col = (list) => `<div class="sm-col">${head}${list.map((p) => `<div class="sm-row"><button type="button" class="sm-n" data-prod="${esc(p.nom)}" title="${esc(p.nom)} · import : ${esc(p.origine)}" aria-label="${esc(p.nom)} : ${p.mois.map((v, i) => MOIS_LONG[i] + " " + SAISON_LABEL[v].toLowerCase()).join(", ")}">${pico(p.nom, "xs")}<span>${esc(NOM_COURT[p.nom] || p.nom)}</span></button>${p.mois.map((v, i) => `<i class="m${v}${i === now ? " now" : ""}" title="${MOIS_LONG[i]} : ${SAISON_LABEL[v]}"></i>`).join("")}</div>`).join("")}</div>`;
-    $("season-m").innerHTML = rows.length ? col(rows.slice(0, half)) + (rows.length > 1 ? col(rows.slice(half)) : "") : `<p class="empty">Aucun produit ne correspond.</p>`;
+    $("season-m").innerHTML = rows.length ? col(rows) : `<p class="empty">Aucun produit ne correspond.</p>`;
+  }
+  // Hauteur de la barre du haut, pour coller la ligne des mois juste dessous pendant le défilement
+  const tbar = document.querySelector(".topbar");
+  if (tbar) {
+    const setTb = () => document.documentElement.style.setProperty("--tb-h", tbar.offsetHeight + "px");
+    setTb();
+    if (window.ResizeObserver) new ResizeObserver(setTb).observe(tbar); else addEventListener("resize", setTb);
   }
   document.querySelectorAll("[data-fam]").forEach((b) => b.addEventListener("click", () => {
     famFilter = b.dataset.fam;

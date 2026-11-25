@@ -4,6 +4,10 @@ Les améliorations sont regroupées par version publiée. La section « En prép
 
 ## En préparation
 
+## 3.30 — 25 novembre 2026
+
+- **Calendrier des saisons sur une seule colonne.** Sur téléphone, l'onglet Assortiment › Saisonnalité affiche à nouveau une ligne par produit (dessin + nom, puis les 12 mois), que l'on fait défiler de haut en bas, au lieu des deux colonnes serrées de la 3.23. Les cases sont plus grandes et lisibles, la ligne des mois reste collée en haut pendant le défilement. Rien ne change sur ordinateur.
+
 ## 3.29 — 25 novembre 2026
 
 - **Retour de l'ancienne courbe.** Le graphique des cours d'achat reprend le style de la version 3.27 ; le style néon vert de la 3.28 est retiré. Rien d'autre ne change.

@@ -959,15 +959,18 @@ th.sorted .th-sort { color: var(--text); }
   .season-panel .legend { width: 100%; margin-left: 0; gap: 10px; font-size: 0.68rem; }
   .season-panel .legend i { width: 9px; height: 9px; margin-right: 4px; }
   .season-desk { display: none; }
-  .season-m { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  /* 3.30 : une seule colonne de produits, que l'on fait défiler ; ligne des mois collée sous la barre du haut */
+  .season-m { display: block; }
   .sm-col { min-width: 0; }
-  .sm-row { display: grid; grid-template-columns: minmax(0, 1fr) repeat(12, 5.5px); column-gap: 1px; align-items: center; height: 20px; }
-  .sm-head { height: 14px; }
-  .sm-head b { font-size: 0.56rem; font-weight: 600; color: var(--muted); text-align: center; }
+  .sm-row { display: grid; grid-template-columns: minmax(112px, 2fr) repeat(12, minmax(0, 1fr)); column-gap: 2px; align-items: center; height: 32px; border-bottom: 1px solid var(--line-2); }
+  .sm-row:last-child { border-bottom: 0; }
+  .sm-head { position: sticky; top: calc(env(safe-area-inset-top, 0px) + var(--tb-h, 0px)); z-index: 2; height: 26px; background: var(--surface); border-bottom: 1px solid var(--line); }
+  .sm-head b { font-size: 0.7rem; font-weight: 600; color: var(--muted); text-align: center; }
   .sm-head b.now { color: var(--leaf); }
-  .sm-row i { height: 14px; border-radius: 2px; }
+  .sm-row i { height: 18px; border-radius: 4px; }
   .sm-row i.now { box-shadow: 0 0 0 1px var(--surface), 0 0 0 2px var(--leaf); }
-  .sm-n { all: unset; display: flex; align-items: center; gap: 3px; min-width: 0; padding-right: 2px; font-size: 0.64rem; letter-spacing: -0.01em; font-weight: 600; color: var(--text); cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .sm-n .pico.xs { width: 20px; height: 20px; flex: none; }
+  .sm-n { all: unset; display: flex; align-items: center; gap: 5px; min-width: 0; padding-right: 3px; font-size: 0.76rem; letter-spacing: -0.01em; font-weight: 600; color: var(--text); cursor: pointer; -webkit-tap-highlight-color: transparent; }
   .sm-n span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .sm-n:focus-visible { outline: 2px solid var(--focus); border-radius: 3px; }
 }
@@ -1597,7 +1600,7 @@ details.mk-panel:not([open]) { padding-block: 12px; }
             <div class="panel span-12">
               <div class="ph"><h3>À propos</h3></div>
               <div class="actions" id="st-update-box" style="margin-bottom:10px" hidden><button type="button" id="st-update">Vérifier les mises à jour</button><span class="note" id="st-update-msg" role="status"></span></div>
-              <p class="note" style="margin:0">Pilote F&amp;L · version <span id="st-version">3.29</span> · boîte à outils du category manager fruits et légumes. Données réelles et publiques : cours d'achat de la Commission européenne (Agri-food Data Portal), prix moyens de vente au détail de l'INSEE et relevés en magasin d'Open Prices (Open Food Facts, licence ODbL). Aucun chiffre inventé : sans donnée publique, l'appli vous invite à saisir la vôtre. Site et mises à jour : <a href="https://tristanderoquefeuil-tech.github.io/pilote-fl/" target="_blank" rel="noopener">tristanderoquefeuil-tech.github.io/pilote-fl</a>.</p>
+              <p class="note" style="margin:0">Pilote F&amp;L · version <span id="st-version">3.30</span> · boîte à outils du category manager fruits et légumes. Données réelles et publiques : cours d'achat de la Commission européenne (Agri-food Data Portal), prix moyens de vente au détail de l'INSEE et relevés en magasin d'Open Prices (Open Food Facts, licence ODbL). Aucun chiffre inventé : sans donnée publique, l'appli vous invite à saisir la vôtre. Site et mises à jour : <a href="https://tristanderoquefeuil-tech.github.io/pilote-fl/" target="_blank" rel="noopener">tristanderoquefeuil-tech.github.io/pilote-fl</a>.</p>
             </div>
           </div>
         </div>
@@ -2227,11 +2230,17 @@ details.mk-panel:not([open]) { padding-block: 12px; }
       p.mois.map((v, i) => `<td class="${i === now ? "now" : ""}"><div class="m${v}" title="${MOIS_LONG[i]} : ${SAISON_LABEL[v]}"></div></td>`).join("") +
       `<td class="origin">${esc(p.origine)}</td></tr>`
     ).join("") || `<tr><td colspan="14" class="empty">Aucun produit ne correspond.</td></tr>`;
-    // Version téléphone : deux colonnes de produits, mois en initiales, tout tient sur un écran
-    const half = Math.ceil(rows.length / 2);
+    // Version téléphone : une seule colonne de produits que l'on fait défiler, mois en initiales
     const head = `<div class="sm-row sm-head"><span></span>${MOIS_INI.map((m, i) => `<b class="${i === now ? "now" : ""}" title="${MOIS_LONG[i]}">${m}</b>`).join("")}</div>`;
     const col = (list) => `<div class="sm-col">${head}${list.map((p) => `<div class="sm-row"><button type="button" class="sm-n" data-prod="${esc(p.nom)}" title="${esc(p.nom)} · import : ${esc(p.origine)}" aria-label="${esc(p.nom)} : ${p.mois.map((v, i) => MOIS_LONG[i] + " " + SAISON_LABEL[v].toLowerCase()).join(", ")}">${pico(p.nom, "xs")}<span>${esc(NOM_COURT[p.nom] || p.nom)}</span></button>${p.mois.map((v, i) => `<i class="m${v}${i === now ? " now" : ""}" title="${MOIS_LONG[i]} : ${SAISON_LABEL[v]}"></i>`).join("")}</div>`).join("")}</div>`;
-    $("season-m").innerHTML = rows.length ? col(rows.slice(0, half)) + (rows.length > 1 ? col(rows.slice(half)) : "") : `<p class="empty">Aucun produit ne correspond.</p>`;
+    $("season-m").innerHTML = rows.length ? col(rows) : `<p class="empty">Aucun produit ne correspond.</p>`;
+  }
+  // Hauteur de la barre du haut, pour coller la ligne des mois juste dessous pendant le défilement
+  const tbar = document.querySelector(".topbar");
+  if (tbar) {
+    const setTb = () => document.documentElement.style.setProperty("--tb-h", tbar.offsetHeight + "px");
+    setTb();
+    if (window.ResizeObserver) new ResizeObserver(setTb).observe(tbar); else addEventListener("resize", setTb);
   }
   document.querySelectorAll("[data-fam]").forEach((b) => b.addEventListener("click", () => {
     famFilter = b.dataset.fam;
