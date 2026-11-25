@@ -1,6 +1,6 @@
 {
-  "versionCode": 31,
-  "versionName": "3.20",
+  "versionCode": 32,
+  "versionName": "3.21",
   "apk": "https://github.com/tristanderoquefeuil-tech/pilote-fl/releases/latest/download/PiloteFL.apk",
-  "notes": "Fini les chiffres d'exemple : prix de vente réels (INSEE, Open Prices), vos taux de freinte et démarque."
+  "notes": "Seuls les produits avec des prix réels sont affichés."
 }

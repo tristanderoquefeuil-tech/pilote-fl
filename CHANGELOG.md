@@ -4,6 +4,10 @@ Les améliorations sont regroupées par version publiée. La section « En prép
 
 ## En préparation
 
+## 3.21 — 25 novembre 2026
+
+- **Rien d'affiché sans donnée.** La liste des cours et le menu « Comparer avec » ne montrent que les produits qui ont des prix réels (cours publics ou vos prix) ; la fiche produit n'affiche que les chiffres connus (la marge seulement si l'achat et la vente le sont) et le bouton « Voir le cours » seulement s'il existe ; la carte « Marge réelle » des cours et les cases vides de la veille prix disparaissent au lieu d'afficher « – ».
+
 ## 3.20 — 25 novembre 2026
 
 - **Plus aucun chiffre d'exemple.** Les prix d'achat, prix de vente, freinte, démarque et courbes de cours fictifs sont retirés, ainsi que l'export de ventes et le bilan d'opération d'exemple. Sans donnée publique, l'appli affiche « – » et invite à saisir la vôtre.

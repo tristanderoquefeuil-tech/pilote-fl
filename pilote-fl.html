@@ -1359,7 +1359,7 @@ th.sorted .th-sort { color: var(--text); }
             <div class="panel span-12">
               <div class="ph"><h3>À propos</h3></div>
               <div class="actions" id="st-update-box" style="margin-bottom:10px" hidden><button type="button" id="st-update">Vérifier les mises à jour</button><span class="note" id="st-update-msg" role="status"></span></div>
-              <p class="note" style="margin:0">Pilote F&amp;L · version <span id="st-version">3.20</span> · boîte à outils du category manager fruits et légumes. Données réelles et publiques : cours d'achat de la Commission européenne (Agri-food Data Portal), prix moyens de vente au détail de l'INSEE et relevés en magasin d'Open Prices (Open Food Facts, licence ODbL). Aucun chiffre inventé : sans donnée publique, l'appli vous invite à saisir la vôtre. Site et mises à jour : <a href="https://tristanderoquefeuil-tech.github.io/pilote-fl/" target="_blank" rel="noopener">tristanderoquefeuil-tech.github.io/pilote-fl</a>.</p>
+              <p class="note" style="margin:0">Pilote F&amp;L · version <span id="st-version">3.21</span> · boîte à outils du category manager fruits et légumes. Données réelles et publiques : cours d'achat de la Commission européenne (Agri-food Data Portal), prix moyens de vente au détail de l'INSEE et relevés en magasin d'Open Prices (Open Food Facts, licence ODbL). Aucun chiffre inventé : sans donnée publique, l'appli vous invite à saisir la vôtre. Site et mises à jour : <a href="https://tristanderoquefeuil-tech.github.io/pilote-fl/" target="_blank" rel="noopener">tristanderoquefeuil-tech.github.io/pilote-fl</a>.</p>
             </div>
           </div>
         </div>
@@ -2066,10 +2066,17 @@ th.sorted .th-sort { color: var(--text); }
         `<p class="note">En ${MOIS_LONG[now]} : <b>${SAISON_LABEL[p.mois[now]]}</b>. Import principal : ${esc(p.origine)}.</p></section>`;
       const ar = achatReel(p.nom), pa = ar ? ar.pa : NaN, aPv = isFinite(p.pv);
       const m = calcMarge({ pa: ar ? pa : 0, pv: aPv ? p.pv : 0, freinte: p.freinte, dem: p.dem, tva: parseFloat($("m-tva").value) || 5.5, cible: parseFloat($("m-cible").value) || 30 });
-      html += `<section><h3>Marge au prix du marché</h3><div class="mini-kpis">` +
-        `<div><b>${ar ? eur.format(pa) : "–"}</b><span>achat HT / kg${ar ? " (cours)" : ""}</span></div><div><b>${aPv ? eur.format(p.pv) : "–"}</b><span>vente TTC / kg${aPv ? " (moyenne)" : ""}</span></div>` +
-        `<div><b>${ar && aPv ? pct(m.tauxReel) : "–"}</b><span>marge réelle</span></div><div><b>${ar ? eur.format(m.pvConseilTTC) : "–"}</b><span>prix conseillé</span></div></div>` +
-        `<p class="note" style="margin:0">${ar ? `Achat : ${ar.label}.` : "Achat : aucun cours public récent, saisissez vos prix d'achat."} ${aPv ? `Vente : prix moyen au détail en France (${venteLabel(p.nom)}).` : "Vente : aucun prix public."} Pertes : ${p.freinte + p.dem} % (vos Paramètres).</p>` +
+      // Seulement les chiffres connus ; la marge n'apparaît que si l'achat ET la vente sont connus
+      const kp = [
+        ar && `<div><b>${eur.format(pa)}</b><span>achat HT / kg (cours)</span></div>`,
+        aPv && `<div><b>${eur.format(p.pv)}</b><span>vente TTC / kg (moyenne)</span></div>`,
+        ar && aPv && `<div><b>${pct(m.tauxReel)}</b><span>marge réelle</span></div>`,
+        ar && `<div><b>${eur.format(m.pvConseilTTC)}</b><span>prix conseillé</span></div>`,
+      ].filter(Boolean);
+      const actions = `<div class="actions"><button type="button" data-sim="${esc(p.nom)}">Ouvrir dans le simulateur</button>${seriesOf(p.nom).data.length ? `<button type="button" data-mkgo="${esc(p.nom)}">Voir le cours</button>` : ""}</div>`;
+      if (!kp.length) html += `<section>${actions}</section>`;
+      else html += `<section><h3>${ar && aPv ? "Marge au prix du marché" : "Prix du marché"}</h3><div class="mini-kpis">${kp.join("")}</div>` +
+        `<p class="note" style="margin:0">${[ar && `Achat : ${ar.label}.`, aPv && `Vente : prix moyen au détail en France (${venteLabel(p.nom)}).`, ar && aPv && `Pertes : ${p.freinte + p.dem} % (vos Paramètres).`].filter(Boolean).join(" ")}</p>` +
         // Repère de négociation : prix d'achat maximum pour tenir la marge visée au prix de vente actuel
         (() => {
           const mx = (p.pv / (1 + (parseFloat($("m-tva").value) || 5.5) / 100)) * m.kgVendus * (1 - m.cible);
@@ -2077,7 +2084,7 @@ th.sorted .th-sort { color: var(--text); }
           const pos = !ar ? "" : pa > mx ? " Le cours le dépasse : demander une participation au fournisseur ou revoir le prix de vente." : pa > mx * 0.9 ? " Le cours en est proche : peu de marge de négociation." : " Le cours est en dessous : marge de négociation confortable.";
           return `<p class="note" style="margin:6px 0 0">Achat maximum pour ${pct(m.cible, 0)} de marge réelle à ${eur.format(p.pv)} TTC : <b>${eur.format(mx)} HT / kg</b>.${pos}</p>`;
         })() +
-        `<div class="actions"><button type="button" data-sim="${esc(p.nom)}">Ouvrir dans le simulateur</button><button type="button" data-mkgo="${esc(p.nom)}">Voir le cours</button></div></section>`;
+        actions + `</section>`;
     }
     // Cours d'achat du produit : réels ou saisis
     const sr = seriesOf(nom), sd = sr.data;
@@ -2493,11 +2500,15 @@ th.sorted .th-sort { color: var(--text); }
     return `<svg width="64" height="18" aria-hidden="true"><polyline points="${pts}" fill="none" stroke="${up ? "#3fd39a" : "#ff7e5f"}" stroke-width="1.5" stroke-linejoin="round"/></svg>`;
   }
   function renderWatchlist() {
-    const names = MK.lm === "tous" ? PRODUITS.map((p) => p.nom) : getWatch();
+    const aDesPrix = (n) => seriesOf(n).data.length > 0;
+    const names = (MK.lm === "tous" ? PRODUITS.map((p) => p.nom) : getWatch()).filter(aDesPrix);
+    // « Comparer avec » : mêmes produits seulement
+    const cmp = $("mk-cmp"), opts = PRODUITS.map((p) => p.nom).filter(aDesPrix);
+    if (cmp.dataset.liste !== opts.join("|")) { cmp.dataset.liste = opts.join("|"); cmp.innerHTML = `<option value="">Comparer avec…</option>` + opts.map((n) => `<option>${esc(n)}</option>`).join(""); cmp.value = MK.cmp || ""; }
     $("mk-wl").innerHTML = names.map((n) => {
       const d = seriesOf(n).data, ch = chgOf(d);
       return `<button type="button" class="mk-row" data-mk="${esc(n)}" aria-current="${n === MK.cur}"><span class="ic">${iconOf(n)}</span><span class="n">${esc(n)}</span><span class="p">${f2(lastOf(d))}</span><span class="sp">${d.length > 1 ? sparkSvg(d) : ""}</span><span class="c ${ch >= 0 ? "up" : "dn"}">${sgn(ch)} %</span></button>`;
-    }).join("") || `<p class="note" style="padding:8px">Votre liste est vide. Ajoutez des produits avec l'étoile ☆.</p>`;
+    }).join("") || `<p class="note" style="padding:8px">${MK.lm === "tous" ? "Aucun cours disponible pour l'instant." : "Votre liste est vide. Ajoutez des produits avec l'étoile ☆."}</p>`;
   }
 
   function drawChart() {
@@ -2654,9 +2665,9 @@ th.sorted .th-sort { color: var(--text); }
     $("mk-cards").innerHTML = [
       { l: `Plus haut / bas · ${per}`, v: `${f2(hi)} / ${f2(lo)}`, s: "€ HT / kg" },
       { l: "Moyenne 8 semaines", v: f2(ma) + " €", s: `cours actuel ${sgn(gap)} % vs moyenne` },
-      { l: "Marge réelle au cours du jour", v: m ? pct(m.tauxReel) : "–", s: p && isFinite(p.pv) ? `vente ${eur.format(p.pv)} TTC (${venteLabel(p.nom)}), pertes ${p.freinte + p.dem} %${seriesOf(MK.cur).src === "ue" ? ", hors transport" : ""}` : "aucun prix de vente public" },
+      m && { l: "Marge réelle au cours du jour", v: pct(m.tauxReel), s: p && isFinite(p.pv) ? `vente ${eur.format(p.pv)} TTC (${venteLabel(p.nom)}), pertes ${p.freinte + p.dem} %${seriesOf(MK.cur).src === "ue" ? ", hors transport" : ""}` : "aucun prix de vente public" },
       { l: "Sur un an", v: isFinite(yoy) ? sgnPct(yoy) : "–", s: yearAgo ? `${f2(yearAgo.c)} € en semaine ${yearAgo.sem.split("-S")[1]} ${yearAgo.sem.slice(0, 4)}` : "pas de cotation il y a un an" },
-    ].map((k) => `<div class="mk-card"><span class="l">${k.l}</span><span class="v">${k.v}</span><span class="s">${k.s}</span></div>`).join("") +
+    ].filter(Boolean).map((k) => `<div class="mk-card"><span class="l">${k.l}</span><span class="v">${k.v}</span><span class="s">${k.s}</span></div>`).join("") +
       `<div class="mk-card sig"><span class="l">Signal</span><span class="v">${sig}</span></div>`;
   }
 
@@ -3973,8 +3984,8 @@ th.sorted .th-sort { color: var(--text); }
     ].map((k) => `<div class="kpi ${k.c || ""}"><span class="eyebrow">${k.l}</span><span class="v" style="font-size:${k.v.length > 9 ? "1.2rem" : ""}">${k.v}</span><span class="s">${esc(k.s)}</span></div>`).join("");
     $("vp-table").innerHTML = prods.length ? `<thead><tr><th>Produit</th><th class="r">Notre prix</th>${ens.map((e) => `<th class="r">${esc(e)}</th>`).join("")}</tr></thead><tbody>` +
       prods.map((p) => { const o = ourPrice(p);
-        return `<tr><td>${findProd(p) ? prodBtn(p) : `<b>${esc(p)}</b>`}</td><td class="r num">${f2(o.v)} €${o.ex ? ' <span class="tag">prix moyen France</span>' : ""}</td>` +
-          ens.map((e) => { const r = last[p + "|" + e]; if (!r) return `<td class="r note">–</td>`; const v = toNum(r.prix), gap = o.v > 0 ? v / o.v - 1 : NaN;
+        return `<tr><td>${findProd(p) ? prodBtn(p) : `<b>${esc(p)}</b>`}</td><td class="r num">${isFinite(o.v) ? `${f2(o.v)} €${o.ex ? ' <span class="tag">prix moyen France</span>' : ""}` : ""}</td>` +
+          ens.map((e) => { const r = last[p + "|" + e]; if (!r) return `<td class="r note"></td>`; const v = toNum(r.prix), gap = o.v > 0 ? v / o.v - 1 : NaN;
             return `<td class="r cmp-cell">${f2(v)} €${r.promo ? '<span class="promo-flag">PROMO</span>' : ""}<small class="${gap < 0 ? "idx-bad" : "idx-good"}">${isFinite(gap) ? sgnPct(gap, 0) : ""}</small></td>`; }).join("") + `</tr>`; }).join("") + "</tbody>"
       : `<tbody><tr><td class="empty">Aucun relevé pour l'instant. Saisissez le premier ci-dessus lors de votre prochaine visite en magasin.</td></tr></tbody>`;
     const maxI = Math.max(110, ...idx.map((x) => x.i));
