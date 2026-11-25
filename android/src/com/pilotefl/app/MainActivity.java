@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.util.Base64;
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -26,7 +27,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 public class MainActivity extends Activity {
-    private static final int FILE_REQUEST = 42;
+    private static final int FILE_REQUEST = 42, NOTIF_REQUEST = 43;
     private WebView web;
     private ValueCallback<Uri[]> fileCallback;
 
@@ -113,6 +114,48 @@ public class MainActivity extends Activity {
             }).start();
         }
 
+        /** État des notifications du téléphone : « on », « off » ou « blocked » (refusées dans Android). */
+        @JavascriptInterface
+        public String notifState() { return notifStateNow(); }
+
+        /**
+         * Active ou coupe les notifications. Sur Android 13 et plus, la permission est demandée au premier
+         * usage ; la réponse est renvoyée à la page via window.__pflNotifState.
+         */
+        @JavascriptInterface
+        public String setNotif(boolean on) {
+            final android.content.SharedPreferences sp = Veille.prefs(MainActivity.this);
+            if (!on) { sp.edit().putBoolean("notif", false).apply(); return "off"; }
+            if (Build.VERSION.SDK_INT >= 33 && checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                if (sp.getBoolean("notif_asked", false) && !shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)) return "blocked";
+                sp.edit().putBoolean("notif_asked", true).apply();
+                runOnUiThread(new Runnable() {
+                    @Override public void run() { requestPermissions(new String[] { Manifest.permission.POST_NOTIFICATIONS }, NOTIF_REQUEST); }
+                });
+                return "asking";
+            }
+            return enableNotif();
+        }
+
+        /** Ouvre les réglages Android des notifications de l'appli. */
+        @JavascriptInterface
+        public void openNotifSettings() {
+            runOnUiThread(new Runnable() {
+                @Override public void run() { openNotifSettingsNow(); }
+            });
+        }
+
+        /** Reçoit les alertes de prix de la page (JSON) pour le widget et les notifications appli fermée. */
+        @JavascriptInterface
+        public void syncAlerts(String json) {
+            try { new org.json.JSONArray(json); } catch (Exception e) { return; }
+            Veille.prefs(MainActivity.this).edit().putString("alerts", json).apply();
+            final android.content.Context app = getApplicationContext();
+            new Thread(new Runnable() {
+                @Override public void run() { CoursWidget.renderAll(app); Veille.checkAlerts(app); }
+            }).start();
+        }
+
         /** Enregistre une affiche (PNG en base64) dans la galerie, puis ouvre le menu de partage. */
         @JavascriptInterface
         public String saveImage(String dataUrl, String name) {
@@ -191,8 +234,75 @@ public class MainActivity extends Activity {
         if (savedInstanceState != null) {
             web.restoreState(savedInstanceState);
         } else {
-            web.loadUrl("file:///android_asset/index.html");
+            String page = pageOf(getIntent());
+            web.loadUrl("file:///android_asset/index.html" + (page != null ? "#" + page : ""));
         }
+        // Widget et notifications : vérification périodique en arrière-plan
+        Veille.channels(this);
+        CheckJob.schedule(this);
+    }
+
+    /** Page demandée par une notification ou le widget (nom de vue simple uniquement). */
+    private static String pageOf(Intent i) {
+        String p = i == null ? null : i.getStringExtra("page");
+        return p != null && p.matches("[a-z]{2,20}") ? p : null;
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        String page = pageOf(intent);
+        if (page != null && web != null) web.evaluateJavascript("location.hash=" + JSONObject.quote(page), null);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Retour des réglages Android : la page affiche l'état réel des notifications
+        if (web != null) web.evaluateJavascript("window.__pflNotifState && window.__pflNotifState(" + JSONObject.quote(notifStateNow()) + ")", null);
+    }
+
+    private String notifStateNow() {
+        if (!Veille.prefs(this).getBoolean("notif", false)) return "off";
+        return Veille.notifOn(this) ? "on" : "blocked";
+    }
+
+    /** Active les notifications : les alertes déjà déclenchées et les actus déjà parues ne sont pas renotifiées. */
+    private String enableNotif() {
+        android.app.NotificationManager nm = (android.app.NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        if (nm != null && !nm.areNotificationsEnabled()) return "blocked";
+        Veille.prefs(this).edit().putBoolean("notif", true).putBoolean("baseline_alerts", false).remove("news_last").apply();
+        Veille.channels(this);
+        CheckJob.schedule(this);
+        final android.content.Context app = getApplicationContext();
+        new Thread(new Runnable() {
+            @Override public void run() { Veille.runAll(app); }
+        }).start();
+        return "on";
+    }
+
+    private void openNotifSettingsNow() {
+        Intent i;
+        if (Build.VERSION.SDK_INT >= 26) {
+            i = new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS).putExtra(Settings.EXTRA_APP_PACKAGE, getPackageName());
+        } else {
+            i = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:" + getPackageName()));
+        }
+        try { startActivity(i); } catch (Exception e) { }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] results) {
+        super.onRequestPermissionsResult(requestCode, permissions, results);
+        if (requestCode != NOTIF_REQUEST) return;
+        String st;
+        if (results.length > 0 && results[0] == PackageManager.PERMISSION_GRANTED) st = enableNotif();
+        else {
+            Veille.prefs(this).edit().putBoolean("notif", false).apply();
+            st = Build.VERSION.SDK_INT >= 33 && !shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS) ? "blocked" : "off";
+        }
+        web.evaluateJavascript("window.__pflNotifState && window.__pflNotifState(" + JSONObject.quote(st) + ")", null);
     }
 
     @Override

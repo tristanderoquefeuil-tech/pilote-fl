@@ -222,6 +222,8 @@ button.chip.out:hover { background: var(--bad-soft); border-color: rgba(173, 74,
 .pico.sm.txt { font-size: 0.6rem; }
 .pico.lg { width: 56px; height: 56px; border-radius: 14px; font-size: 30px; }
 .pico.lg.txt { font-size: 1rem; }
+.pico .pi { width: 84%; height: 84%; display: block; }
+.chip .ci, .mk-hit .ci { width: 1.35em; height: 1.35em; vertical-align: -0.35em; flex: none; }
 .prod-btn { all: unset; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; font-weight: 600; color: var(--text); border-radius: 8px; }
 .prod-btn:hover { color: var(--leaf); }
 .prod-btn:focus-visible { outline: 2px solid rgba(31, 122, 77, 0.5); }
@@ -801,3 +803,47 @@ th.sorted .th-sort { color: var(--text); }
 .todo-next:empty { display: none; }
 .todo-next { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); display: grid; gap: 8px; }
 .todo-next .sub-h { margin: 0; }
+
+/* ---------- Saisonnalité : blocs repliables et calendrier compact sur téléphone ---------- */
+.now-d > summary { list-style: none; cursor: default; }
+.now-d > summary::-webkit-details-marker { display: none; }
+.now-d .cnt, .sm-only { display: none; }
+#season-search { width: 180px; }
+.season-m { display: none; }
+.pico.xs { width: 16px; height: 16px; border-radius: 4px; border: 0; background: transparent; }
+.pico.xs .pi { width: 100%; height: 100%; }
+@media (max-width: 600px) {
+  #view-saison .page { gap: 8px; padding-bottom: 76px; padding-left: max(10px, env(safe-area-inset-left, 0px)); padding-right: max(10px, env(safe-area-inset-right, 0px)); }
+  #view-saison .subtabs { margin-bottom: 0; }
+  #view-saison .now-grid { display: flex; flex-wrap: wrap; gap: 6px; }
+  #view-saison .now-d { flex: 1 1 auto; min-width: 0; padding: 7px 7px 7px 9px; border-radius: 12px; }
+  #view-saison .now-d[open] { flex-basis: 100%; }
+  #view-saison .now-d > summary { cursor: pointer; }
+  #view-saison .now-d .eyebrow { display: none; }
+  #view-saison .now-d h3 { margin: 0; font-size: 0.76rem; display: flex; align-items: center; gap: 4px; white-space: nowrap; }
+  #view-saison .now-d h3::after { content: "▾"; margin-left: auto; color: var(--muted); font-size: 0.7rem; }
+  #view-saison .now-d[open] h3::after { content: "▴"; }
+  #view-saison .now-d .cnt { display: inline-grid; place-items: center; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 9px; background: var(--leaf-soft); color: var(--leaf); font-size: 0.7rem; }
+  #view-saison .now-d[open] .chips { margin-top: 8px; }
+  #view-saison .lg-only { display: none; }
+  #view-saison .sm-only { display: inline; }
+  .season-panel { padding: 8px; }
+  .season-panel .ph { margin-bottom: 6px; gap: 5px 6px; min-height: 0; flex-wrap: wrap; }
+  .season-panel .seg { padding: 2px; }
+  .season-panel .seg button { padding: 3px 8px; font-size: 0.76rem; min-height: 0; }
+  #season-search { flex: 1 1 0; min-width: 0; width: auto; height: 30px; min-height: 0; padding: 3px 8px; font-size: 0.8rem; }
+  .season-panel .legend { width: 100%; margin-left: 0; gap: 10px; font-size: 0.68rem; }
+  .season-panel .legend i { width: 9px; height: 9px; margin-right: 4px; }
+  .season-desk { display: none; }
+  .season-m { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .sm-col { min-width: 0; }
+  .sm-row { display: grid; grid-template-columns: minmax(0, 1fr) repeat(12, 5.5px); column-gap: 1px; align-items: center; height: 20px; }
+  .sm-head { height: 14px; }
+  .sm-head b { font-size: 0.56rem; font-weight: 600; color: var(--muted); text-align: center; }
+  .sm-head b.now { color: var(--leaf); }
+  .sm-row i { height: 14px; border-radius: 2px; }
+  .sm-row i.now { box-shadow: 0 0 0 1px var(--surface), 0 0 0 2px var(--leaf); }
+  .sm-n { all: unset; display: flex; align-items: center; gap: 3px; min-width: 0; padding-right: 2px; font-size: 0.64rem; letter-spacing: -0.01em; font-weight: 600; color: var(--text); cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .sm-n span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .sm-n:focus-visible { outline: 2px solid rgba(31, 122, 77, 0.5); border-radius: 3px; }
+}

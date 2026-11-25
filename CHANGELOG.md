@@ -4,6 +4,13 @@ Les améliorations sont regroupées par version publiée. La section « En prép
 
 ## En préparation
 
+## 3.23 — 25 novembre 2026
+
+- **Vraies illustrations des produits.** Les 37 fruits et légumes ont chacun leur dessin, dans un même style (poireau, chou-fleur, endive, asperge, radis, betterave, navet, framboise, abricot, prune, figue, rhubarbe… n'affichent plus deux lettres). Lisibles en petit dans les listes et en grand dans la fiche produit ; ils apparaissent aussi dans les étiquettes de saison, les suggestions du Studio promo et sur les affiches de l'Atelier com.
+- **Widget Android « Cours d'achat ».** À poser sur l'écran d'accueil du téléphone : semaine en cours, plus fortes baisses et hausses des cours (comme le résumé « En bref »), pastille du nombre d'alertes de prix déclenchées. Mis à jour quelques fois par jour ; un toucher ouvre l'appli sur la page Cours.
+- **Notifications Android.** À activer dans les Paramètres (« Notifications sur le téléphone ») : une notification quand une de vos alertes de prix se déclenche et quand de nouvelles actus arrivent, même appli fermée, sans serveur (vérification environ toutes les 4 heures). Android 13 et plus demande l'autorisation au premier usage ; si elle est refusée, un bouton ouvre les réglages du téléphone. Un toucher sur la notification ouvre la bonne page.
+- **Calendrier des saisons sur un seul écran.** Sur téléphone, le tableau des 37 produits tient entièrement à l'écran, sans glisser : deux colonnes de produits, mois en initiales, cases fines. Les blocs « Pleine saison », « Arrivent » et « Sortent » deviennent trois boutons compacts avec le nombre de produits, qui s'ouvrent d'un toucher. Un toucher sur un produit ouvre sa fiche (avec l'origine d'import). Affichage inchangé sur ordinateur.
+
 ## 3.22 — 25 novembre 2026
 
 - **Résumé « En bref » en haut des cours d'achat.** En quelques lignes et sans jargon : combien de produits coûtent moins ou plus cher à l'achat que la semaine dernière, les plus fortes baisses et hausses, et le bon plan de la semaine (produits en pleine saison et en baisse). Un clic sur un produit ouvre sa courbe ; « C'est quoi, un cours d'achat ? » explique la notion aux débutants.
