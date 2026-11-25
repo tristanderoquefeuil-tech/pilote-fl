@@ -1,6 +1,6 @@
 {
-  "versionCode": 40,
-  "versionName": "3.29",
+  "versionCode": 41,
+  "versionName": "3.30",
   "apk": "https://github.com/tristanderoquefeuil-tech/pilote-fl/releases/latest/download/PiloteFL.apk",
-  "notes": "Retour de l'ancienne courbe des cours d'achat."
+  "notes": "Calendrier des saisons sur une seule colonne que l'on fait défiler, sur téléphone."
 }
