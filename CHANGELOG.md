@@ -4,6 +4,12 @@ Les améliorations sont regroupées par version publiée. La section « En prép
 
 ## En préparation
 
+## 3.28 — 25 novembre 2026
+
+- **Graphique des cours d'achat en style néon vert.** Le graphique de la page Prix › Cours d'achat devient un encart vert nuit lumineux, le même en thème clair et sombre : la moyenne des 8 dernières semaines est une courbe lisse et lumineuse (la tendance), le cours réel de chaque semaine une ligne en pointillés, et de fines barres arrondies montrent le niveau du cours (regroupées par 2 ou 3 semaines sur téléphone pour rester lisibles). Grille discrète, mois en bas de l'axe, dernier prix dans une pastille verte.
+- Les chandeliers, la comparaison entre deux produits (vert et jaune), la bande de pleine saison et l'infobulle (avec un point lumineux sur la semaine touchée) suivent le même style.
+- La courbe se dessine en un peu plus d'une seconde quand on change de produit, de période ou de type ; pas d'animation si l'appareil demande moins d'animations.
+
 ## 3.27 — 25 novembre 2026
 
 - **Nouveau logo.** Panier givré avec pomme, carotte, feuilles, graphique en hausse et clé : icône de l'appli Android (toutes tailles, icône adaptative comprise), écran de démarrage, logo de la barre latérale et icône de l'onglet du navigateur.
