@@ -1,148 +1,315 @@
 {
- "maj": "2026-11-27T00:59:19.744Z",
+ "maj": "2026-11-27T14:50:44.771Z",
  "articles": [
   {
-   "titre": "UE : la consommation de poires reste faible à 1,76 million de tonnes, sur fond de recul des importations et de stabilisation des exportations",
-   "source": "FreshPlaza",
-   "date": "2026-11-26T11:56:00.000Z",
-   "lien": "https://www.freshplaza.fr/article/9893746/ue-la-consommation-de-poires-reste-faible-a-1-76-million-de-tonnes-sur-fond-de-recul-des-importations-et-de-stabilisation-des-exportations/",
-   "resume": "L'Union européenne devrait consommer 1,76 million de tonnes (t) de poires au cours de la campagne 2026/27. Sur l'ensemble de l'offre disponible, 277 665 t seront orientées vers la transformation, les importations sont…",
-   "img": "https://agfstorage.blob.core.windows.net/misc/FP_com/2026/11/17/CopyofApples2AEUappleexportsbydestinationMY2023_242025_26.png",
+   "titre": "Crise climatique : Annie Genevard renforce le soutien aux producteurs de fruits et légumes en portant de 50 % à 70 % le taux de financement de leurs programmes opérationnels",
+   "source": "agriculture.gouv.fr",
+   "date": "2026-11-27T13:58:58.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPQUU3V3BOQmFtaUtuRlQwT0ZIOG9PajZWRmNtTlExaDcyTGpwX19rd3ZEWU5DWHRhMDJXQlRxb3pOb2ZuRmdqWFhiU0Z0dU1mUmt2YVpob1dyVXVZMWZlM1paN1dQLTFtckk1R2ZUZmhwQzZ3dkFOWUpvZDZubHhjb1ZzOTMwNF9pc3ROa1BqZm9ueWM5U3UzUG5HN0VvWm9YTnBmMFp6Y0hrU0hkdFNpNE9VZUFTblZtVTVmbno2WDZjdUg3aXc?oc=5",
+   "resume": "",
+   "img": "",
    "cats": [
     "fl"
    ]
   },
   {
-   "titre": "« Le couvercle et la barquette en carton permettent aux produits frais de respirer »",
+   "titre": "Un projet européen vise à réduire de 50 % les demandes de données auprès des producteurs",
    "source": "FreshPlaza",
-   "date": "2026-11-26T11:56:00.000Z",
-   "lien": "https://www.freshplaza.fr/article/9893813/le-couvercle-et-la-barquette-en-carton-permettent-aux-produits-frais-de-respirer/",
-   "resume": "Ravenwood Packaging adapte sa technologie d'étiquetage sans enduction au secteur des fruits et légumes frais, avec un concept de couvercle-étiquette destiné à remplacer le film plastique traditionnel. L'entreprise, qui a…",
-   "img": "https://agfstorage.blob.core.windows.net/fp-com/photos/13221/336/19-NPE_0072.JPG",
+   "date": "2026-11-27T13:55:00.000Z",
+   "lien": "https://www.freshplaza.fr/article/9894196/un-projet-europeen-vise-a-reduire-de-50-les-demandes-de-donnees-aupres-des-producteurs/",
+   "resume": "Les producteurs sont souvent tenus de fournir les mêmes informations en matière de durabilité à différents acheteurs et organismes certificateurs à chaque campagne. Certains fournisseurs remplissent entre dix et quinze…",
+   "img": "https://agfstorage.blob.core.windows.net/misc/FP_com/2026/11/18/01803-17.jpg",
    "cats": [
     "fl"
    ]
   },
   {
-   "titre": "« Début précoce pour les producteurs de raisin namibiens »",
+   "titre": "« Dans 5, 10 ans, les poivrons sans pépins devraient être une norme du marché »",
    "source": "FreshPlaza",
-   "date": "2026-11-26T11:56:00.000Z",
-   "lien": "https://www.freshplaza.fr/article/9895047/debut-precoce-pour-les-producteurs-de-raisin-namibiens/",
-   "resume": "La saison du raisin de table en Namibie et en Afrique du Nord et du Sud commence très tôt. « Dans la vallée d'Aussenkehr, en Namibie, le conditionnement a commencé dès la semaine 44, ce qui constitue le démarrage le plus…",
-   "img": "https://agfstorage.blob.core.windows.net/misc/AGF_nl/2026/11/20/rozemdruiv.jpg",
+   "date": "2026-11-27T13:55:00.000Z",
+   "lien": "https://www.freshplaza.fr/article/9894716/dans-5-10-ans-les-poivrons-sans-pepins-devraient-etre-une-norme-du-marche/",
+   "resume": "La société de sélection variétale, Breedx, teste ses produits directement chez les producteurs. « Je veux gérer des variétés et de la génétique, pas des exploitations agricoles », annonce d'emblée Lior Carmeli, directeur…",
+   "img": "https://agfstorage.blob.core.windows.net/misc/FP_com/2026/11/19/breedx4.jpg",
    "cats": [
     "fl"
    ]
   },
   {
-   "titre": "« On apprend à mieux connaître le fruit, ce qui permet de faire des choix différents »",
+   "titre": "MSC inaugure ses nouveaux locaux en Côte d'Ivoire",
    "source": "FreshPlaza",
-   "date": "2026-11-26T11:56:00.000Z",
-   "lien": "https://www.freshplaza.fr/article/9895102/on-apprend-a-mieux-connaitre-le-fruit-ce-qui-permet-de-faire-des-choix-differents/",
-   "resume": "Experience Fruit Quality étend le déploiement de RipeWise, un logiciel de suivi et de prédiction du mûrissage des fruits. Cette société néerlandaise, dont le premier client avait démarré avec deux chambres de mûrissage…",
-   "img": "https://agfstorage.blob.core.windows.net/misc/FP_com/2026/11/20/DeRipeTappermeetdestevigheidvaneenavocado.jpg",
+   "date": "2026-11-27T13:55:00.000Z",
+   "lien": "https://www.freshplaza.fr/article/9895081/msc-inaugure-ses-nouveaux-locaux-en-cote-d-ivoire/",
+   "resume": "MSC a inauguré de nouveaux locaux à Abidjan, en Côte d'Ivoire, regroupant sous un même toit les équipes MSC, MEDLOG et TSP. Cette installation marque les 30 ans de présence de MSC dans le pays et offre des espaces de…",
+   "img": "https://agfstorage.blob.core.windows.net/misc/FP_com/2026/11/20/02034-12.jpg",
    "cats": [
     "fl"
    ]
   },
   {
-   "titre": "Bassins de retenue espagnols : état des lieux dans les grandes régions productrices de fruits et légumes",
+   "titre": "Sécheresse, pénurie de main-d'œuvre et nouveaux accords commerciaux : l'arboriculture fruitière européenne en pleine mutation",
    "source": "FreshPlaza",
-   "date": "2026-11-26T11:56:00.000Z",
-   "lien": "https://www.freshplaza.fr/article/9895514/bassins-de-retenue-espagnols-etat-des-lieux-dans-les-grandes-regions-productrices-de-fruits-et-legumes/",
-   "resume": "À la mi-novembre 2026, les réservoirs espagnols sont plus remplis qu'il y a un an. À l'échelle nationale, ils le sont à 57 %, contre 53,4 % au cours de la même semaine en 2025 et 44,8 % en moyenne au cours des dix…",
-   "img": "https://agfstorage.blob.core.windows.net/misc/AGF_nl/2026/11/23/comunidades-autonomas.png",
+   "date": "2026-11-27T13:55:00.000Z",
+   "lien": "https://www.freshplaza.fr/article/9895171/secheresse-penurie-de-main-d-oeuvre-et-nouveaux-accords-commerciaux-l-arboriculture-fruitiere-europeenne-en-pleine-mutation/",
+   "resume": "Un budget de 131,4 millions d'euros pour le programme de fruits à l'école, un contingent tarifaire de 666 000 kilogrammes de pommes en franchise de droits, et un nouveau règlement tarifaire UE-États-Unis entré en vigueur…",
+   "img": "https://agfstorage.blob.core.windows.net/misc/FP_com/2026/11/20/collage101.jpg",
    "cats": [
     "fl"
    ]
   },
   {
-   "titre": "« Le temps froid stimule la demande pour les premières noix en coque »",
+   "titre": "« Aujourd'hui nos machines utilisent l'IA pour déterminer la hauteur de coupe »",
    "source": "FreshPlaza",
-   "date": "2026-11-26T11:56:00.000Z",
-   "lien": "https://www.freshplaza.fr/article/9895517/le-temps-froid-stimule-la-demande-pour-les-premieres-noix-en-coque/",
-   "resume": "Les premières noix de Californie en coque arriveront chez Tovano, à Maasdijk, dans le courant de la semaine. « Il fait bien froid, donc les clients les attendent vraiment avec impatience », constate Dillen Langenberg…",
-   "img": "https://agfstorage.blob.core.windows.net/misc/AGF_nl/2024/11/29/tovanodiamond.jpg",
+   "date": "2026-11-27T13:55:00.000Z",
+   "lien": "https://www.freshplaza.fr/article/9895571/aujourd-hui-nos-machines-utilisent-l-ia-pour-determiner-la-hauteur-de-coupe/",
+   "resume": "Aux Pays-Bas, le père de Ron van de Pavert, maréchal-ferrant de village, a commencé à ferrer les chevaux le 1er septembre 1951. À l'époque, rien ne laissait présager qu'il poserait les bases d'un futur fabricant…",
+   "img": "https://agfstorage.blob.core.windows.net/misc/FP_com/2026/11/20/BrimaPackontvangttijdenshetjubileumfeesteenoorkondevandeMetaalunietergelegenheidvanhet75-jarigbestaan..jpg",
    "cats": [
     "fl"
    ]
   },
   {
-   "titre": "« Ce sont des produits vivants, ce qui rend cela particulièrement intéressant »",
+   "titre": "La Colombie exporte moins d'avocats Hass en 2026 ; la lime connaît une bonne année",
    "source": "FreshPlaza",
-   "date": "2026-11-26T11:56:00.000Z",
-   "lien": "https://www.freshplaza.fr/article/9895587/ce-sont-des-produits-vivants-ce-qui-rend-cela-particulierement-interessant/",
-   "resume": "Comment éviter que les poires ne se dégradent de l'intérieur ? Comment réduire la consommation d'énergie dans les cellules de stockage ? Et comment prévoir combien de temps les fruits peuvent encore être conservés ? Le…",
-   "img": "https://agfstorage.blob.core.windows.net/misc/FP_com/2026/11/20/AnnSchenkvanhetVCBTindekoelcel1.jpg",
+   "date": "2026-11-27T13:55:00.000Z",
+   "lien": "https://www.freshplaza.fr/article/9895607/la-colombie-exporte-moins-d-avocats-hass-en-2026-la-lime-connait-une-bonne-annee/",
+   "resume": "La récolte précoce colombienne a chuté de 70 à 80 % et la récolte principale s'annonce moins abondante que d'habitude. La lime, en revanche, a connu une bonne année. Cristhian Quintero, PDG de Fruit4U, analyse la…",
+   "img": "https://agfstorage.blob.core.windows.net/misc/FP_es/2026/11/23/DSC00681.jpg",
    "cats": [
     "fl"
    ]
   },
   {
-   "titre": "« La conservation post- récolte s'accélère grâce à de nouveaux investissements et à des technologies plus économiques »",
+   "titre": "« Forte demande sur les marchés de gros pour les choux de Bruxelles et les oignons rouges »",
    "source": "FreshPlaza",
-   "date": "2026-11-26T11:56:00.000Z",
-   "lien": "https://www.freshplaza.fr/article/9895593/la-conservation-post-recolte-s-accelere-grace-a-de-nouveaux-investissements-et-a-des-technologies-plus-economiques/",
-   "resume": "De l'Australie aux États-Unis, en passant par l'Europe, l'expansion a été importante pour Isolcell en 2026. « Cette année a été pour nous une année record », déclare ainsi Tito Spaldi (sur la photo ci-contre, en…",
-   "img": "https://agfstorage.blob.core.windows.net/fp-it/photos/13165/235/agrintesa38.jpg",
+   "date": "2026-11-27T13:55:00.000Z",
+   "lien": "https://www.freshplaza.fr/article/9895629/forte-demande-sur-les-marches-de-gros-pour-les-choux-de-bruxelles-et-les-oignons-rouges/",
+   "resume": "Il y a deux ans et demi, Jari van Langen a lancé Veg-Europe. Depuis ses locaux à Schagen, il propose à ses clients grossistes européens une gamme de légumes de plus en plus variée. Depuis cette année, Max Smit est venu…",
+   "img": "https://agfstorage.blob.core.windows.net/misc/AGF_nl/2026/11/23/veg26bix.jpg",
+   "cats": [
+    "fl"
+   ]
+  },
+  {
+   "titre": "« Les échanges ont été marqués par un sentiment d'optimisme »",
+   "source": "FreshPlaza",
+   "date": "2026-11-27T13:55:00.000Z",
+   "lien": "https://www.freshplaza.fr/article/9895850/les-echanges-ont-ete-marques-par-un-sentiment-d-optimisme/",
+   "resume": "Pour la 20e fois, des représentants de la filière européenne des fruits et légumes se sont réunis du 18 au 20 novembre 2026 afin d'échanger sur les grandes évolutions politiques et économiques du secteur. Pour cette…",
+   "img": "https://agfstorage.blob.core.windows.net/misc/FP_de/2026/11/23/wolfgan.jpg",
+   "cats": [
+    "fl"
+   ]
+  },
+  {
+   "titre": "Culture des agrumes en Argentine : offre en hausse au Brésil et prix influencés par l'Afrique du Sud et l'Égypte",
+   "source": "FreshPlaza",
+   "date": "2026-11-27T13:55:00.000Z",
+   "lien": "https://www.freshplaza.fr/article/9896055/culture-des-agrumes-en-argentine-offre-en-hausse-au-bresil-et-prix-influences-par-l-afrique-du-sud-et-l-egypte/",
+   "resume": "La campagne d'exportation d'agrumes de Nobel s'achève sur de bons volumes et des prix acceptables, mais dans un marché de plus en plus concurrentiel. Son représentant, Néstor Tisocco, souligne que les coûts internes…",
+   "img": "https://agfstorage.blob.core.windows.net/misc/FP_es/2026/11/24/IMG-20261106-WA0045.jpeg",
+   "cats": [
+    "fl"
+   ]
+  },
+  {
+   "titre": "Cercosporiose, commerce équitable et MDD : comment un groupe bananier équatorien veut assurer sa pérennité",
+   "source": "FreshPlaza",
+   "date": "2026-11-27T13:55:00.000Z",
+   "lien": "https://www.freshplaza.fr/article/9896061/cercosporiose-commerce-equitable-et-mdd-comment-un-groupe-bananier-equatorien-veut-assurer-sa-perennite/",
+   "resume": "Les pluies précoces, la pénurie de main-d'œuvre agricole et la menace constante des maladies font de cette saison une période difficile pour les plantations de bananes en Équateur. Un exportateur limite les risques grâce…",
+   "img": "https://agfstorage.blob.core.windows.net/misc/FP_es/2026/11/24/Manobanda3.jpg",
+   "cats": [
+    "fl"
+   ]
+  },
+  {
+   "titre": "Les mangues Kent avion du Pérou font leur entrée sur les marchés de gros et de la restauration",
+   "source": "FreshPlaza",
+   "date": "2026-11-27T13:55:00.000Z",
+   "lien": "https://www.freshplaza.fr/article/9896471/les-mangues-kent-avion-du-perou-font-leur-entree-sur-les-marches-de-gros-et-de-la-restauration/",
+   "resume": "Jaguar The Fresh Company étoffe sa gamme de fruits exotiques avec des mangues du Pérou acheminées par voie aérienne, commercialisées sous l'appellation « Mango By Air ». Les premières mangues Kent péruviennes sont…",
+   "img": "https://agfstorage.blob.core.windows.net/misc/FP_com/2026/11/24/02403-12ind.jpg",
+   "cats": [
+    "fl"
+   ]
+  },
+  {
+   "titre": "« Le marché des oignons devrait encore enregistrer une légère hausse en décembre »",
+   "source": "FreshPlaza",
+   "date": "2026-11-27T13:55:00.000Z",
+   "lien": "https://www.freshplaza.fr/article/9896852/le-marche-des-oignons-devrait-encore-enregistrer-une-legere-hausse-en-decembre/",
+   "resume": "À l'approche du dernier mois de l'année, Marius Jansen, de JJK Uienhandel de Kruiningen, dresse un bilan satisfaisant des ventes réalisées au cours des premiers mois de la saison. « Quand on voit à quel point les…",
+   "img": "https://agfstorage.blob.core.windows.net/misc/AGF_nl/2026/11/26/jjkpolenix.jpg",
+   "cats": [
+    "fl"
+   ]
+  },
+  {
+   "titre": "Crise climatique : 70 % d'aide pour les producteurs de fruits",
+   "source": "Presse Agence",
+   "date": "2026-11-27T12:00:00.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPZUZoTXdoc1NqWnJKcG9pelhCVExLVGdYYW9nbHEwZTVwVXJoUFJnN1RVS29JZUdZR2xETHBQVEM5TGJKZC13alZlT1dXUnp3WnNrcjZJUi1FNG5ZdDBnc2E4YTZmMWZPaXJsbkpkMVJBRjEtcnBkeUJRRW5oYTdoeC1TNTBzZkM1cDQ4WmhBZGhjRkFGYWtwWjZVN04wekotQWVhMnlRY1p4QmZRb2pTb2M4Vll1eXZnREd0NWk2YnlxdWQ4?oc=5",
+   "resume": "",
+   "img": "",
+   "cats": [
+    "fl"
+   ]
+  },
+  {
+   "titre": "Lidl Outlet: le discounter va ouvrir un nouveau magasin de déstockage dans une grande ville, découvrez laquelle",
+   "source": "RMC",
+   "date": "2026-11-27T11:49:57.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMimwJBVV95cUxOVi01YXpVOC12R205WUc1andlQ3VCdk1NRkZiMlNnbHFjeWcyVFJRekZ4RnRGQXlyVmVfZWZVa3BIcDhESFByeTlsR2R1LXpjcWpjWkdCUXJqVDFYOEpZQUNGV0FHSTU2UlZRRlUwWkc3MWpmY19JUHptQUt1UjhKcFFGcWpHQlRtSlptRWtJcDBaMzlIdm1IVzhIMWY0SDdtbzU5emRhV0k3UzUtUVBlcXI0WDZLcU54RWhtT3MxWmc2dDFVUWFiSi0wX0c5UXlQZWhxcExRVnFRS0R4bDBPaTAzdVV4dHVQaWR1MWxvY2hyZmZzOXRNN3loSF8xRU9KTVBKMGl0bGROQVJnVXJ3TkJEdVpEUDlUR2lR?oc=5",
+   "resume": "",
+   "img": "",
+   "cats": [
+    "gms"
+   ]
+  },
+  {
+   "titre": "Anaïs, cliente de supermarché contrainte d'arbitrer ses courses face à la flambée des étiquettes : « On réduit un peu le panier, on réduit sur d'autres choses »",
+   "source": "Marmiton",
+   "date": "2026-11-27T10:00:00.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMitAJBVV95cUxNUVdzYldHMXltQUo3RmFCeEc3ZWVZQ1lYX0xHY1ktM0dIVUU3bGtsdV9ORGstaUZITUMzNlhLUVZ2SEVsRXdLeTlEcWU5dEVjbm9Lb243TDBvM3RXeXp3WEtDdW9kVlpSdVplUmp1b0NyUnl1WFJDZnJQYXdGVUx3TnF2eHZ1Wk1hTVJYdlJrQy16TS1UaUZOOXFZYzdVVDVRTlE3OGVHa3N5MWcwUnl2OF85bGp2WUNGb3NXbVpfeDNwZ0hfYXZUZ3NRcWYyajVLX01nYjhQWTdtME1MSzVkRnkyb2xMOHdkby1TWnlnaGprWTd0ZkZEV1R3cnpieHhQbVNCZEVVYjVJWkc1QzhfRk5wbEtwMFE3amoyamVtcGQ2OUFCT2VGaTlPWFpEbEtnY1puNA?oc=5",
+   "resume": "",
+   "img": "",
+   "cats": [
+    "gms"
+   ]
+  },
+  {
+   "titre": "Consommation: Papin confiant pour les fêtes de fin d'année, anticipe une hausse des prix alimentaires début 20",
+   "source": "Boursorama",
+   "date": "2026-11-27T09:05:56.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMirwJBVV95cUxPNmZBTWs1alBwZ0FwOW8yVEJkV3JBeTVpUHpqY0xYWV8yZTd0c0o0OHJHN1JmenV2cW5ROHdIeHhTTGhoVHJwZzFCVHhsZnVNYk9Ma0tFcGQ2OVZ5TGVsZjlZNDVlXzBQM0FlVEVEdDZkNldVYXV0TkZTaFV1Y2pkQkVrZTFvbHRUeXZsYXNoYkVGRUR5cjRkM0s4cTNTSTR5X3VaRTB2NDJrbmdRU1o5cHdPWHFrSTdfM2Fwcjd4QTlyV0RPOUtLMDJ3Zmtxa2NMeUpJU3BUa1FfRGotNW42UGpHUWRpVkR6V3VBUkhtNnJrR2d3UmpCNGNBSzlnNUhweTBLRVlDbEUzNWx4amlaakVRU1JUUU1WeV9kZEJoUXcxYWRqbURQbU1RZnZHNEHSAa8CQVVfeXFMTzZmQU1rNWpQcGdBcDlvMlRCZFdyQXk1aVB6amNMWFlfMmU3dHNKNDhyRzdSZnp1dnFuUTh3SHh4U0xoaFRycGcxQlR4bGZ1TWJPTGtLRXBkNjlWeUxlbGY5WTQ1ZV8wUDNBZVRFRHQ2ZDZXVWF1dE5GU2hVdWNqZEJFa2Uxb2x0VHl2bGFzaGJFRkVEeXI0ZDNLOHEzU0k0eV91WkUwdjQya25nUVNaOXB3T1hxa0k3XzNhcHI3eEE5cldETzlLSzAyd2ZrcWtjTHlKSVNwVGtRX0RqLTVuNlBqR1FkaVZEeld1QVJIbTZya0dnd1JqQjRjQUs5ZzVIcHkwS0VZQ2xFMzVseGppWmpFUVNSVFFNVnlfZGRCaFF3MWFkam1EUG1NUWZ2RzRB?oc=5",
+   "resume": "",
+   "img": "",
+   "cats": [
+    "gms"
+   ]
+  },
+  {
+   "titre": "Pendant 3 jours, Intermarché propose des bons plans fous sur le rayon Jouet à l’approche de Noël",
+   "source": "Le Parisien",
+   "date": "2026-11-27T08:22:00.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMinAJBVV95cUxPTW9HZlA1bk51OG1BbkJ5TjUxZlRoUXdRS2hCUldYSUNfcXppUVJHMnFuOHVxMmNKN3NaYWZienJXOGtZdHVucHd2Y0N3UVFhSE1qdjg1OUZLMi0zaUdUYUxQc0QyNlRVUlUzLWdXS2xqUk9vN3BneTExRTRjWWhESHpLWjNOTHpSenJVeW00bDdWOUVGNFl0V2plcGJOU0VMN3hpSmJ5WlFYcUt4OVdsX0JMUmFmYl9lV0FfcGJzckVZTVVpeE41U0NSbHNCSmFMQnppVVRpbUZsLVNVMi1qNGlKWXlpYmxvTUkxa3ZwRW5sYkpBQXJZWUJsR21ZaUJRcllGckdyTFJCUmJyMl9FenR6T1JJcUZqbFpkNA?oc=5",
+   "resume": "",
+   "img": "",
+   "cats": [
+    "gms"
+   ]
+  },
+  {
+   "titre": "Downs - Le CropXpress déterre et trie les pommes de terre à la parcelle",
+   "source": "Réussir Fruits & Légumes",
+   "date": "2026-11-27T05:16:12.000Z",
+   "lien": "https://www.reussir.fr/articles/downs-le-cropxpress-deterre-et-trie-les-pommes-de-terre-la-parcelle",
+   "resume": "L’entreprise nordiste Downs lance un outil trois-en-un pour déterrer, calibrer et trier les pommes de terre au champ à…",
+   "img": "https://medias.reussir.fr/myreussir/styles/article_desktop/azblob/2026-11/_rma2703_nouv_dewulf_cropxpress1.jpg.webp",
+   "cats": [
+    "fl"
+   ]
+  },
+  {
+   "titre": "Lidl Outlet s'installe à Rennes : c'est quoi ce nouveau supermarché éphémère ?",
+   "source": "Actu.fr",
+   "date": "2026-11-26T14:49:42.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPeU9yVEJvWkVZcDRCYW9yeFFxSnhjRG84dDczaDlfejZ3LU16Z1NmVzlTMnhjSFRsS0ZIeUNRTVVsNXNRN1JwSGY3Nk1wbTNHV21pSEdIcHZNZ2Z3WUJCM1o4RUJKdnA1ZkJUZ1pmS2NES0NDdTRFMWJ0WE9OSUFnUUE3UkYzZlRGYURzc2Z1eUN0RzI5YjJ0X2VWTS1lR3NMeDRoUklIUFQtSnZ4OFR0SmZibVpvM0UzTVRVdDYydHVLLTFY?oc=5",
+   "resume": "",
+   "img": "",
+   "cats": [
+    "gms"
+   ]
+  },
+  {
+   "titre": "Consommation | Quatre enseignes rappellent des pommes de terre pour une teneur trop élevée de glycoalcaloïdes",
+   "source": "Action agricole Picarde",
+   "date": "2026-11-26T12:32:49.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOSFU0RjNjby1wb19qT2FvbTZ6YnJtOGRaZzRJS2lwYXZlLTlfbjV4RDdLaXp3ak5icmpxNDUySUoyVnJvX0VjcUdiMkxqTGJjVGRObHJETUtvZnhsUGNnVFdJM1FZYmdPTmJaTmQzUmFOMGtScEhxXzd5ODZTTTJIaGdfTUFWZEVVU19reVRGOWFTY2tneE1DQ2c5Y2ppSTZLSldVUGZPWVJCdHpoeVdOM3l1X1F6MTNFbjJObE92c1dycHlsVmUyWWJ1dVhIVFE?oc=5",
+   "resume": "",
+   "img": "",
    "cats": [
     "fl",
     "gms"
    ]
   },
   {
-   "titre": "Myrtille : Blueberries Consulting dévoile son programme 2027 avec huit rencontres internationales",
-   "source": "FreshPlaza",
-   "date": "2026-11-26T11:56:00.000Z",
-   "lien": "https://www.freshplaza.fr/article/9895601/myrtille-blueberries-consulting-devoile-son-programme-2027-avec-huit-rencontres-internationales/",
-   "resume": "Le programme se déroulera au Pérou, en Colombie, au Chili, au Mexique, au Maroc et en Chine entre mars et novembre. Après avoir rassemblé plus de 4 600 participants et près de 300 entreprises en 2026, les réservations de…",
-   "img": "https://agfstorage.blob.core.windows.net/misc/FP_es/2026/11/20/1-FotoPrincipal.jpg",
+   "titre": "Tunisie : De nouvelles réductions sur le poulet, les fruits et les légumes ce week-end",
+   "source": "webdo",
+   "date": "2026-11-26T11:53:00.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOUzQwZ0QwYkt4SzBRQnh0ckI3V1VXdGgwSkFkc25TSnpQeUpsdzZtc0xmQTBJSDlQZUtUMDRQWXRXd1RYMUJvMnRDMHFDRmVYT2xNSWprNEQyOFlqdU1tdW4xWFRDOFRURlVJcG03X0VUa3R5dkd3UER1b3VnNnJNS2JHZ0lVNFpxbDloZlFCVEc4ZGNON0ZQSHpuTUdDRzYxQjY5ZE1aOGp4Tk1GWmltWm9vRXNsNUIwMkFpc21Kc21QcVlFc2RNMzhHYm1CZTA?oc=5",
+   "resume": "",
+   "img": "",
    "cats": [
     "fl"
    ]
   },
   {
-   "titre": "« Malgré des mandarines à 0,18 €/kg sur pied nous avons toujours du mal à vendre »",
-   "source": "FreshPlaza",
-   "date": "2026-11-26T11:56:00.000Z",
-   "lien": "https://www.freshplaza.fr/article/9896021/malgre-des-mandarines-a-0-18-eur-kg-sur-pied-nous-avons-toujours-du-mal-a-vendre/",
-   "resume": "Les exportations de mandarines grecques restent atones, malgré une chute des prix à des niveaux extrêmement bas dans certaines régions. Konstantinos Ifantis, propriétaire de la société d'agrumes Ifantis Fruits, basée en…",
-   "img": "https://agfstorage.blob.core.windows.net/misc/FP_com/2026/11/24/ifantis1.png",
+   "titre": "Lidl transforme son ancien magasin de Niort en Lidl Outlet et rouvre ce jeudi 26 novembre 2026",
+   "source": "L’Express Franchise",
+   "date": "2026-11-26T11:15:44.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOQkJ2eUhrdXNYTTJWR040MFJmWTJPNlNfLXhBbkVTRkJDbENiU3JkRTN3Vk85aVdoLThDd25JM2lpRXZuXzYtSTJUVDNrWjBCcm9HZUExaExLcDFRczk1Z1pQeDNwYk00WWt5Y1Y5RWk4cEExOFp6S0JBc0FxcTRjNmlHU1ZESWNleHc?oc=5",
+   "resume": "",
+   "img": "",
    "cats": [
-    "fl"
+    "gms"
    ]
   },
   {
-   "titre": "« Les ventes de tomates marocaines sous pression »",
-   "source": "FreshPlaza",
-   "date": "2026-11-26T11:56:00.000Z",
-   "lien": "https://www.freshplaza.fr/article/9896102/les-ventes-de-tomates-marocaines-sous-pression/",
-   "resume": "« La saison des fruits et légumes marocains a connu un début difficile. Le secteur de la tomate, en particulier dans la région de Souss-Massa (Agadir), est confronté à des volumes limités, à des maladies des plantes et à…",
-   "img": "https://agfstorage.blob.core.windows.net/misc/AGF_nl/2026/11/24/marocfresh1.jpg",
+   "titre": "Lidl ouvre son premier magasin de déstockage Lidl Outlet de Bretagne à Rennes ce jeudi 3 décembre 2026",
+   "source": "L’Express Franchise",
+   "date": "2026-11-26T10:53:21.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNUEJqbXBSei1YLWV3cmNicm8tc0FKNmFBb3hMZGlLWWdQNFQ4S3hrZWdxMW9LQnJhcW4zdWFNcTNQaTdsTmhzZTdUUXpvX2hCcTZWS014b1lTS3pOaW5QYnp4Ql9NaDU0NnBOLWZweWRvWDVBV2RaXzN5dzNidGNidzVUbUNCY0ludWc?oc=5",
+   "resume": "",
+   "img": "",
    "cats": [
-    "fl"
+    "gms"
    ]
   },
   {
-   "titre": "La certification HVE « s'essouffle » selon un rapport du ministère de l'agriculture",
-   "source": "FreshPlaza",
-   "date": "2026-11-26T11:56:00.000Z",
-   "lien": "https://www.freshplaza.fr/article/9896379/la-certification-hve-s-essouffle-selon-un-rapport-du-ministere-de-l-agriculture/",
-   "resume": "Recul du nombre d'exploitations certifiées, absence de valorisation économique durable et faible notoriété auprès des consommateurs : le CGAAER préconise de repenser le modèle de la Haute Valeur Environnementale. Car 15…",
-   "img": "https://agfstorage.blob.core.windows.net/misc/FP_fr/2026/11/25/Marchefermierfraicheurnaturelleetterroir.png",
+   "titre": "Lidl ouvre un magasin de déstockage à Niort : jusqu’à 50 % de remise sur le non-alimentaire",
+   "source": "LSA conso",
+   "date": "2026-11-26T10:03:55.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMihAJBVV95cUxPUmhDZ3pEUHdKQUxKN1dqRVRnTUJKTW9Na21pdmRNazNaYThPZmRDeGt0T0JWUjFEaFM2Zkp5T1h1T0xEZkdELVhYWWNDTTRKX1R3UEFkeFE2MmlmZllQRW1XMUVJbE03ZUxwcTFNQklhLVNCajZ5V3JKN3Z6QlkwUl9qYlUzT0VQNGROWm8ycTd2V3lTVVFLS1RlSGh2eDlrcTJwbzdCVWhWQ2hzUHNkQTlJd1gyQmMwWXluUkFTMGR1MVBhMnFnMHJ0S0NPNEY4NXhybjVBekJWT3FoMkl6WUMzWnh0RnpiU1FhLXJ1U3A2R2wwZ2FKanBRV3NidHVMaEFrbQ?oc=5",
+   "resume": "",
+   "img": "",
    "cats": [
-    "fl"
+    "gms"
    ]
   },
   {
-   "titre": "Serres en Loire-Atlantique : les premières chaudières électriques installées",
-   "source": "Réussir Fruits & Légumes",
-   "date": "2026-11-26T07:00:00.000Z",
-   "lien": "https://www.reussir.fr/articles/serres-en-loire-atlantique-les-premieres-chaudieres-electriques-installees",
-   "resume": "Producteur de concombres et tomates sous serre en région nantaise, Louis Vinet a investi un million d’euros dans deux…",
-   "img": "https://medias.reussir.fr/myreussir/styles/article_desktop/azblob/2026-11/_fel476_tech_equipement_energie_niv1_1.jpg.webp",
+   "titre": "Rachat de Chronodrive : d’Auchan à Intermarché, quels enjeux entourent la cession du spécialiste du drive ? [Carte, chiffres clés et analyse]",
+   "source": "LSA conso",
+   "date": "2026-11-26T09:32:21.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMi1gJBVV95cUxQeUdUTVpTWm5kM0trWUFVYkJzN1VhZWJmOVFoRFF5a2pMV0Z3WmlpOElpUGUyS2pndlV5ZFNZaDVhV3hxaENlempsWjFxbGR1Y0ZuRUc0QnhLdjB4WG1rM1pPdGVNRGpnTVFMRVoyT0I3Y1B2MmpSY3RKcFpqalo4QmtOQkVYNERnbG1URzE3ZEpsb01OdVNXWHdyMkx4ajN3dFpjNWFsRmR0ZUpHS2I1c1RfNzVQaXZIQ0p0d3lURWEyNHozTFpBcFFTcFVkd1VRZXBlOVVyQ2E5WW5ZSDRoeENhZG9aQTNCX29XQjQ1RFhxMHVtMFNfdEFUVU55cEpCa2RqZUNnd2JlWFFDaHR3Z1BMbDRsMk56TzRVQ1kwTGNLQW8zRDBIMVJxSUpibkNXclh1WnNfUmxJZVRFQUk1Y2FJSlNWTzVXekRBRGpnZXpKTzh1OWc?oc=5",
+   "resume": "",
+   "img": "",
    "cats": [
-    "fl"
+    "gms"
+   ]
+  },
+  {
+   "titre": "Supermarchés Lidl : des barquettes de viande et de fruits et légumes à 0,50 € et 1€ sont parfois proposées en magasin, voici comment les récupérer",
+   "source": "Presse-citron",
+   "date": "2026-11-26T06:54:19.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMigwJBVV95cUxNM2FBcDlUY24zVkZRWFNBR1hqVGVIbHlMQXVhSWNPVENTc0Y3ZUhvYmdHX0lGV3g4VzBvbzBnVXQzaF9MWXZBMVlKWTBPYmlKQXo3S0w4MU9qYm4wXzlfX01SN3Q4RUZnejU0bWczOWJxZVFtb2hhZ1o5VTdPWklubnJSc1JzSjdwVkNSV2xQOUhVWnM3c1hhUDg0ZG82OWhIdnZNeEVITkhDandILWhadlVoaEF1LU1uc0FDQ092SE5tUGU1QzBIY09jMmd5MXRGbVEwQkxhRURWejExMVA4RFpBNjF4dUI3TVFHYnNaT2xwVW9YSEtscjcxSjRzeWtSU2tR?oc=5",
+   "resume": "",
+   "img": "",
+   "cats": [
+    "fl",
+    "gms"
+   ]
+  },
+  {
+   "titre": "Lidl : comment dénicher des barquettes de viande à 0,50 € et des légumes à 1 €",
+   "source": "MCE TV",
+   "date": "2026-11-26T06:03:01.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMigwFBVV95cUxOVUF6Z1RPaTVia3BtZzBzVGJQVWx2LWl5WS1mYUdmVjcybWYyWmJjRnhzdUYxOWkwekVYcGZ5YUpKeThHcFVwUkY3dS10RjBYTzJRVnRleEdoV01Hb2VrWjhtWmJhWExDNnFLV21PcUVxeVJLX1pqUnNQdEY3Z09XeHdqQQ?oc=5",
+   "resume": "",
+   "img": "",
+   "cats": [
+    "fl",
+    "gms"
    ]
   },
   {
@@ -157,11 +324,301 @@
    ]
   },
   {
+   "titre": "« J’ai vu trop de gâchis» : comment cette jeune cheffe de cuisine varoise sauve les légumes moches de la poubelle et les change en recettes à petits prix anti-gaspi",
+   "source": "Nice-Matin",
+   "date": "2026-11-26T04:00:07.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMipAJBVV95cUxPa0NxNnNPYXc1ZFJwMUdjNW5XQTctZXE3LU9hVTdsLUhvX2o2RHNSazQ5ZXltYnRYY0RqejZBMk1XeWVDal9qWEhCbGtCZjFpdm9rVEhVTVJ6MHZfS2d6bnl4NS1DaWRSNl81anJmZjVrNGlhNDBta0RZV2pqTUo0QzVzc0x2QV8wQmhTajVZT29vY3phckx3SnhGS1QtRFlNSms2Njh0Y0w4NzVSbVhuVXlPSWZiVFhkTXdOSm9xUzB5ZHpRSnBCRGdEMWZtSXV5TUxBVWwyV3NTWlNYY2U2R3k0NUVDLUJtOHVVWm5Hc1Q0WnhVd0t3Uk44bXg4QUpJQUs2ZUIxenR6MlZ0d1o2am9iVXZJUEtxUVR3RUctb1Z0TGJk?oc=5",
+   "resume": "",
+   "img": "",
+   "cats": [
+    "fl"
+   ]
+  },
+  {
+   "titre": "« Mes clients me donnent le sourire » : ce primeur débarque avec ses fruits et légumes sur ce marché près de Toulouse",
+   "source": "Actu.fr",
+   "date": "2026-11-26T01:26:01.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMihwJBVV95cUxPekZxWDFfMWY5dU5xTHo4ZmwxYThRbi1YMlJOekZaWkFodFJUdnlKRklqNUdWTEliM3NBOEpsQ0FfcXhHLVF0SUE1R0pJZ2VacTBLUTNVaEpFVWN6WFdjd21tcEVZckl5RjNGcWNYQ1ZsWTViZFc3VTNNNFI1VHRoU3VWTzNuWU1kMktqTlNKRUxqQkZTTkltZFpBbnR0d2RoZUx1SWlwVERGbEg4emNsMHN5OU9pVUJqTnRFbHJuQXl5dFVZSl9nM3pDS2ZrZE1veEVCTXAwaUVHWjJMYmRJWWpfWU8wMjB4bE5KMnZSMmpqdmRHcWNGRmtFQkdSUDZnZUNUSFZMaw?oc=5",
+   "resume": "",
+   "img": "",
+   "cats": [
+    "fl"
+   ]
+  },
+  {
+   "titre": "| Auchan Retail",
+   "source": "Auchan Retail",
+   "date": "2026-11-25T20:27:45.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxNUEh0Slc2WENKc2RvNkFEM2pnQ0owdUpaZEtKZjlWZ3B4RUxPRXVuOWd4TlZ5MFhObkRmSWVUeURCTnZ1Wk1XOGlqT3I0QmVfZ3FNUm4tdXRYaE94ckx2em9zVWFhSjJfRlFOajVscnhLaVdaWnhmVGZDdmVfNnVhc1pqb2Q3dU1yS2M4eng5Qm9yREJMMmRDWXZlWkxaVjFINTI3aUNmdVVRNTdrNUU5bW5PcS1ERVJaUkxsR3lPZWVoWGhZNTcwVS1uQWJMT0Y4LTN2aWsxdlRIQ1dqZUVQcDRRZ2M?oc=5",
+   "resume": "",
+   "img": "",
+   "cats": [
+    "gms"
+   ]
+  },
+  {
+   "titre": "Intermarché en passe de racheter l’enseigne Chronodrive à Auchan",
+   "source": "20 Minutes",
+   "date": "2026-11-25T19:28:00.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNTGJNb3ZUZDZSYmpGOGE2TkZrdjNJUlBHcWZjU2p1d1dSdUJCeDV6Z21wbHJ0SmFjV1dzNFJjMDZZRHBPamRndjJqNWdEUk5LQzdxbjloQ29zTWJhR0Z1Mk16S0FzSHZBLTZtZTcxZm40V1ljck5lNEdRZnRfQ256OE9TZE5VSHplazQzRk9TZVlrZlBsVDVTSjl6X0ZZUkw2cERCcTFnYzBENmc5bkp6cFBpSU9mLVk?oc=5",
+   "resume": "",
+   "img": "",
+   "cats": [
+    "gms"
+   ]
+  },
+  {
+   "titre": "Auchan négocie avec Intermarché la cession de Chronodrive, pionnier des courses en ligne qui emploie 2.800 salariés dans 55 magasins",
+   "source": "BFM",
+   "date": "2026-11-25T18:43:25.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMioAJBVV95cUxNN3NZMmNSNzFjbXNPM25RZmdtTzk1NkozZnBCOGstWU92Mm9veG1USWpMemZyTWhvNklKdHV0dEpxdFpTMmc5enduVDRqREg1Qy1IYmlVTFFuVm1uMXdoQ1RwTUxXZ0lHcE5tajVmNTI4RW5xeTBrVnZDUFd4a0YwSXlOZ2o5Q1I5VklSYzdyOUU4bHJyRnpmRHItRm82TTA5T0p3cnZ5YllYX0ZmdWZxZWRRQ0RKcDZLSk1oXzlnVGpYaXRncS12MEJOYWp5U1VEeV91MDJ0V2xFRUFSZ2VVSzFMT0tfbkNlTFhZWTF6NnZYTk51ZXp0NmpjVUY1VUtOMFhHa0pzRXBpdW1jZmZoRjRRSmoxeTBpeXYybEpuN2Y?oc=5",
+   "resume": "",
+   "img": "",
+   "cats": [
+    "gms"
+   ]
+  },
+  {
+   "titre": "Le groupement Mousquetaires en passe de racheter Chronodrive à Auchan",
+   "source": "franceinfo",
+   "date": "2026-11-25T17:47:27.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMizgFBVV95cUxORzVldlVpMS1PeFdRZG1HaktkOEpMa0h2RWVBaFVPZ2xZbTZXSW5ZX08zQV94eGg2U0FNbHh0eHlGYm9XYm9jdFJpeVVNMmVQbHdKdmZKOTdLZFNLZWo4ejJqd3lDWXJxLU5SU1Z4WVdpWkU5N05IV0FhVVBZR1NTY0FIMVc4blJPU1dZcDFYWXRSOTdzR2UyZnk4T192cHo5MXM1RDc5aS1mWXJJN3g3SDY3S2kyLVZBaXNnVGpUTTdrWUQ1TFdMeUJUZ2J3dw?oc=5",
+   "resume": "",
+   "img": "",
+   "cats": [
+    "gms"
+   ]
+  },
+  {
+   "titre": "Plusieurs ventes de fruits et légumes à prix coûtant ce week-end dans le Puy-de-Dôme",
+   "source": "La Montagne",
+   "date": "2026-11-25T17:09:00.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMijgNBVV95cUxNUXZNNFVKcVFBMWE3eEpibmVTakNjdVhCVi1EbFljZGZWV0lPUXlfUXc3MU5XWkM4TjdiUmJ2RHdYLVN0a0ZmT2poN293OU8wZEktV2VseFhfalpHZEpKeVVwWS1HVzQ0dHRiZ25oWTlrTFQyeE12MHB0eDVaclFmVEN5aHY3Qm9iVnJiTDYzLWx4T3NhR0cwaUVCejNFUldRcjN4dVg3NWh4OVB2dG9WcEhCUGFuYjVQVjU3ZEd0OUlFb3lielpZdDlMcGVvQlFoOG1xeTRDTV9JbmtoY19sbUV1Ykp6MEMtakRTTHJGMm1HS0ltZ0dFOU1ud3ZQUVFGcFVKQm02VTdxWUliOTNzTlZsdkM0U2xqdDBNSks5T0hnSTJyV3Z1WlRXQTMtSGp3eHhGQU5RcWQzcVJLZ0ZjTWJvTUF6TUt6ajd4a25UZnUzeGI5T2hvaWFZYTI1ZkRWVXVZclpnOXpNTGRPTDhBNGI1T1pIbHRFQVEwS1ppOURBQXk4UlpvRVUyTVFlUQ?oc=5",
+   "resume": "",
+   "img": "",
+   "cats": [
+    "fl"
+   ]
+  },
+  {
+   "titre": "Fragmentation des achats, déconsommation… Le patron d'Intermarché sonne l'alarme et contre-attaque en s'alliant à Anthropic",
+   "source": "Les Echos",
+   "date": "2026-11-25T17:00:09.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMilwJBVV95cUxNbWNWNmlZZmpHbFYyX19ldHRQVVAta1d4Tmx4QkRqTnRYZGlaWVVPWWpXMV9yWDJibld0cG13M2dyNkprMEs4NlBNdFdxV3ZLRkYwMHlwQ1dZczBfeFdCMWM2dzhSdEZQODc2eUdjN0diMEs2N2lZQnp2Q3EwN3QtMGlYa2ZaWjBUVFRnQ3BHTDBQQl9mYzJTOTFkNzE4TWxMN2hrWHVMUGctdG9wMWxPandSd3ZPaXJTaF83YkI5c2NtY3hsdWYzbU1rdDU2LTAzWUd6ZTRGVEJQelhYUXI3bnpoTVpCOWhqYXE5Z3BGXzNwZWpKcG8zQ2NIbnNCSjhkQ1RMbG5VQWpFVW81UXRoZEZJTHZfSTg?oc=5",
+   "resume": "",
+   "img": "",
+   "cats": [
+    "gms"
+   ]
+  },
+  {
+   "titre": "En attendant la peluche, le chocolat du Loup d’Intermarché débarque en rayon",
+   "source": "La Réclame",
+   "date": "2026-11-25T16:18:58.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE9obnRJckZrbkpTWG1TcDN1MkFRNGFBLXA0LWtfZnRtLW5JNlpMNW9NeGlNampTYU1LWnR1QlZYWER4RzNPN19KWGFRNDJDbXNCWWtjb0g4UzJBVHBqNzlNODMtUQ?oc=5",
+   "resume": "",
+   "img": "",
+   "cats": [
+    "gms"
+   ]
+  },
+  {
+   "titre": "Intermarché poursuit ses courses chez Auchan et les Mulliez en rachetant Chronodrive",
+   "source": "Les Echos",
+   "date": "2026-11-25T16:05:08.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxNRlZqS3NMSjhnYUt1eXVJRTVSeUtOd0NGbFlDTEx4ZXprdHlZYUJockM3MC02ZFM3NlAwcjhwWG5yelR2WERKdVF5ekFDNFlwWDcyR3U5aVJib1BtejZnS3dmTy02OFNQZWVoNHJ0d2tCaGZHV0FVczRNSHZ5Vloxc0NMS1pqdURUWk10RWJTT3N3bUhEZlFDUlRVeXFvaDFhQkxlYXZ0VzJxOFdSUmZUZmloTS1LLVJRZElnRkN6ZXlDVGZDb1BMV1ltbGl3RjBRaUpGZmJJaXUxbjdHWVZuMlczaE1fQ3pTeUE?oc=5",
+   "resume": "",
+   "img": "",
+   "cats": [
+    "gms"
+   ]
+  },
+  {
+   "titre": "Grand Frais ouvre à Clichy : snacking, traiteur, épicerie, les nouvelles armes de la conquête urbaine de l’enseigne",
+   "source": "LSA conso",
+   "date": "2026-11-25T15:24:05.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMingJBVV95cUxPRVF5UlplYUduak1UM0tlVkxFTEZNVzBMSFhsRDdGWG40eWxoMmxjMzdLay13aVR2WEg0XzZzaE5nN0lEb0ZIZnR0bExRSHppLTNWZmROV0ljeFRfRDZWNEd1aE1UbnhqZ3RPVlI3WEIyLVlwOTgzX3JwQ29QSEtGMHZkbTJSWmVhOGsyZWVVNm1nNC1HelRpbXMxcVNGVDdMcF9wRTUtNE93Yll1X1M0aEFDT2VIclNnX0JscGh1dGZBeDlucU5Sc2p0aXV5cU9Qb0F0MlU5czd5TXJSeS1mUkVrMDk0eTEyQ1lTd3FkZVl5S0hCcDdMMEIxOWdVT25kYkNWc25UejN1LUhOZGJoX1ZUR1Q2SnJMd3lJNkpn?oc=5",
+   "resume": "",
+   "img": "",
+   "cats": [
+    "gms"
+   ]
+  },
+  {
+   "titre": "« Des prix cassés et ronds sur les produits non alimentaires » : Lidl Outlet pose ses valises à Rennes début décembre",
+   "source": "Ouest-France",
+   "date": "2026-11-25T15:02:33.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMipAJBVV95cUxOSklXWXVZTGVoUGxTdU5yYTR5N3VQclV5anRsMm5kWDMtaEF2c0t6T3VIWldpbC1xQkE5MGkwZTNYWk00YzFsTWdRUURRU2pZdFdyV25Qc3lEN19QU0Fod1BBdnFmUGNqZF9tYTZyZU9abExyTUFCZldFRl95WVBVa0hNUWtQVGVKRGFNVlBxci1UaURQaTB5b3FBQUhnSU1rcU56N1EtNEcwdUZxbXIwSTZPaDFNOWlhbGV2bTNER3FScUxmR2hsOG5RbjIzYUhpYnZhT3NTYVVTS2ZqU3NVSFhzSXkzckNBX2RWc011M0I1UEpvbFVqeUV6dzItYnRaRmtWZ1hPRTBuLURuZ3d2MEhRNmlNVUdtdFBNcHZRY29VaEtu?oc=5",
+   "resume": "",
+   "img": "",
+   "cats": [
+    "gms"
+   ]
+  },
+  {
+   "titre": "Alerte sanitaire chez Intermarché : ne consommez surtout pas cet emmental râpé rappelé dans toute la France",
+   "source": "Yahoo Life France",
+   "date": "2026-11-25T13:59:38.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMihAFBVV95cUxNOXVQZWpKd21BUUtuVHJNUHZMeFNyMV9sLTgwSGZrbDJNNVpVREY4aU4tMHlRc2VZS1psN0Z3bENveHNwSkw1dlpRMTFmT1pDclNFU2liWUtuanFCZ3QyVXl2d2VEM19oVlFqV2pRS0szNzlKNHE0eGlpdUVrMXZ5eDcxWVg?oc=5",
+   "resume": "",
+   "img": "",
+   "cats": [
+    "gms"
+   ]
+  },
+  {
+   "titre": "Décembre au rayon fruits et légumes : tout se joue sur 10 jours",
+   "source": "Je Bosse en Grande Distribution",
+   "date": "2026-11-25T10:03:09.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPVm83ejluYkxpU0ZWRmNUUFhsUlJQdmdndkRpRU5hYkR3UWg5OGEzRzFWbUdjZ3NxVjhKME9NdER0bUItTE5UdzlVZVFxelNtbGlwV0lTakpiMTRENXBncDZIQzc3b0RWc21pQXdKZFJGYWt5WDNTS1BVX0VqY3hSMVFKc2hHcTQwOVltQm1VNWE2eWMzVkRhLThPVmlZOFl2V3lOX1h6WU03czR6dGlpNUhiREhDS0U?oc=5",
+   "resume": "",
+   "img": "",
+   "cats": [
+    "fl",
+    "gms"
+   ]
+  },
+  {
+   "titre": "Cet emmental râpé vendu dans tous les Intermarché de France contient des morceaux de verre: ne le mangez pas",
+   "source": "RMC",
+   "date": "2026-11-25T09:46:15.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMikwJBVV95cUxNQUtOdDlqSlpGSG44bHNWbE9Nek83LVg4X1FYVnRvLUNNVlNIanVsNnZoSGViZF9NbXVkWktfOG9XVjY2UDNVNlY2YjJYbXcySTQtenNsNTdhdHNYdjF3TVZJT1VuU0ZlU0NhMW1BSlVUeTZPeXNUUXpGdzZiT01FbG11TEp0dTJCNXNSTk5rTXVxZnBDeUI4UVZrRlFnQWxTbEtsUm5rZlZDdFhYMzJDMGQ1NXo1WjdPMExENDhIcFl1VmdzVURBRDlfSDVGSy1xNFlyZ192QWQ2SHZNRl9pZWhnLWNyYko5NXJVRGlleEJyZ1lmdXhsZTBGZHdrMXBvT0ltdmVtajBWdTBtdHBaeEdtVQ?oc=5",
+   "resume": "",
+   "img": "",
+   "cats": [
+    "gms"
+   ]
+  },
+  {
+   "titre": "Rappel de produit : ne consommez pas ces pommes de terre vendues chez Lidl, Auchan et E.Leclerc",
+   "source": "TF1 Info",
+   "date": "2026-11-25T09:11:45.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPX3BwLW56TlYyekU0MnhPRVFiUGxPck4yVWxzdkJtb1FOaFhrMmVTemhiZ09KVmhHWFZ1ZkdsdEhUblhzM3Nzb0kzLS1nTmlEZWJSVWFmTEU4Y2c2aDZnM3Y3M0N1QkZ5RVotMTF5ZHdpeElvMEhrWjJya25DRDhSRnVZX3lFVFUxZVdKYXV5UFNxRnBIWGtBNVJqUkFweDZmSlFNTW5nS0xNaDF5U3ZKOTdNem5yUTJ1NFctRzNyYkJOcjk3RkRtUkpSZnZsZjA?oc=5",
+   "resume": "",
+   "img": "",
+   "cats": [
+    "fl",
+    "gms"
+   ]
+  },
+  {
+   "titre": "J-1 avant l’ouverture d’un nouveau supermarché Lidl dans le Morbihan",
+   "source": "Actu.fr",
+   "date": "2026-11-25T08:38:24.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQVm1QcXN2Z1RWNFhuRGlGdzJjWG0yb052NFlmTUUwLWZKSzhaYldTZWp3WERZdU02WldRM2ttalY0WFBIY3RnSVVwcmhIOWFULXY2cmh4U2E0d0FlVEVpeFdNMVZTQUVDRFVHRzhLTUpSRHp2TmlIeS1pcGpEX19oNDhOdkVhaUlFSEJPem1YcnJJNHdUT1NKWlU3QTBWN0M3SWt5bGlyUUtRdGRRS1lsMUMxSkdQclk?oc=5",
+   "resume": "",
+   "img": "",
+   "cats": [
+    "gms"
+   ]
+  },
+  {
+   "titre": "[ RETAIL INSIDE ] Bordeaux-Bouliac : l’hyper Auchan revient en mode “waouh”",
+   "source": "Olivier Dauvers",
+   "date": "2026-11-25T06:45:37.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQTTVUbEZLZDlqQVk1SW1TZlBWSkE1akVWd3NNLXlFMGd3ckRyX3RVNm9VRUZCRVNfT3ZXVHlHNDVzTHVGUHNDZ3g2bkp5ZFhfdURGbks0bTVCSXNmVG96Z3o4b003czQ3N3RjWXRJeHZDbzRMS0ZWZE1TMkJoVzFRSUkxQ2ZVTmFaaHNhZTFrN2lQZm5WcXdmeGZHQzctUEk5YzhybGcyVG9XTVNx?oc=5",
+   "resume": "",
+   "img": "",
+   "cats": [
+    "gms"
+   ]
+  },
+  {
    "titre": "Private Equity : et qui t’es ?",
    "source": "Végétable",
    "date": "2026-11-25T05:58:00.000Z",
    "lien": "https://www.vegetable.fr/private-equity-et-qui-tes/",
    "resume": "Le magazine végétable n°448 de novembre vous propose un article sur le capital-investissemnt dans le monde agricole. Avec l’augmentation substantielle de la demande alimentaire mondiale à l’horizon 2050, pas besoin…",
+   "img": "",
+   "cats": [
+    "fl"
+   ]
+  },
+  {
+   "titre": "Melgven. Avec Fruiti’Market, Faouzi Aimene propose fruits et légumes sur le marché",
+   "source": "Ouest-France",
+   "date": "2026-11-25T05:32:54.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxPTnE0UzRTd1owWXh3Y191NkFRU2lMTktFZDRlbkJ2a1J1dWN6cXd2M0EtLUcxbm55N1JLTTVzOXBRMnpXaTE3el9FcVlzdGgwMTBnTmZnRVhXc2ZRZXNjQ1owVWhidGRiSUVFMEI2QU1uZk5ZQ3FXcDRRd3c1U2Izd19sQ2NTd2RaV2cyajQ2aVlCcEJkTllVUnhVaHRnYVZILUJuZHNTZkMyZk5kRnFHcFNfeUlWSmxrMmE3U05aazZQWjRxb1NfbE9Fckk2M3FIVGRjYmxrcUhGaW5QSF9CQTZWc28wclhxNURRT2ZVN3lZRmtCODN2U0Nobw?oc=5",
+   "resume": "",
+   "img": "",
+   "cats": [
+    "fl"
+   ]
+  },
+  {
+   "titre": "Ne pouvant être consommées, des pommes de terre vendues par Lidl, Leclerc et Auchan font l’objet d’un rappel",
+   "source": "Ouest-France",
+   "date": "2026-11-24T17:13:19.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMirwJBVV95cUxNWDhUakJpemJuY3dFakJoRzN4dTJXcWVpQkdoSms5MXMyQ1UtX2RTU2xycWpGZjBsSDJMb1V6NEZULXV6LXVNSFRSM1FQTzM1bzdNcDF5M1YyVndmcnc3ZTNKU0hCWWpva3VJcnYyN3FfR2o3bUhVNzlzZThjb2pkVmc2cE1NQWMwRDNYRkoxLXZIaldlcmVYcUFvQnB3UEVwakJYM09DYWZ2Mm5HWXp3d0NFR0Q0bEtiUFNlcjc1NThKZE9qa2NuSGlUNWpDWWlpdlJjb2xSSFRtYWJOTWQxVERvZzEzRnU3dUx5OE50YTRxa3ZVN3pmaFk4SF8zSDJRVkF6YjY2WmF0RlpDSGhZRkEycnFKT3VFUkJqRExGUXc5R2lHUjVmcUlEdDQ2Vlk?oc=5",
+   "resume": "",
+   "img": "",
+   "cats": [
+    "fl",
+    "gms"
+   ]
+  },
+  {
+   "titre": "Le loup Mal-Aimé d'Intermarché revient sous forme de chocolats, un an après son succès planétaire",
+   "source": "France 3 Régions",
+   "date": "2026-11-24T16:29:48.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMihwJBVV95cUxPS2VBS1RqWUhvbEs1TkJuaFJhcDVyTHdNX0MxYmwtVnE2dWExU1Y5eGlsR3FJenNtdy1PX3NJdHJ2T0FRNTVrenFJNDlUY2kyRTVXcXRjUkdlY3VZY1ZjbHY4SmRYcHdoWndkS01IT0FaYnFJc0F5alFRZGNKckw2MC1INi1QS0tuQUJNeWdZOWFCcWdDMU9uWmFpRG1jZmxLNDhkMk50S2luUGc0T3g1ejlCWnZBaGVsVkd4LXk0UWdBdWVGTzZtaGUyQmFibFpmRlpqQUxrVmF5QTRnR2ZwczlBMEVxVHdPcFRMa0xkU0tqYjhOcl92OU9SVzQ1dDVEVTRKRHAyTQ?oc=5",
+   "resume": "",
+   "img": "",
+   "cats": [
+    "gms"
+   ]
+  },
+  {
+   "titre": "Fruits et légumes : quatre événements à ne pas manquer entre décembre 2026 et mars 2027",
+   "source": "Réussir",
+   "date": "2026-11-24T13:30:00.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPaVdGWTN6S05xbUQ3QklRTm1QRF93Zkh4a1pTOGZVdlZiVU9tdWNXSVJkcU1WSDh2YkhsNTkwV3R5R296UWIxbmJvMlZtbUZqbGRmZktQQ2hfeVVyU0tQS3ZOcUhIT2E5d1ZvMmRWdlhQbzdHakxjRDktdjlDNmhRWlc1V2xBcF84SUc2NC1MZURQOTZjTUV4MVdiOTVWeWh5eWhyS1pFMGJTT2ZQaFdpVnZNSGhpUQ?oc=5",
+   "resume": "",
+   "img": "",
+   "cats": [
+    "fl"
+   ]
+  },
+  {
+   "titre": "Avec sa Business Intelligence prédictive, Akanea séduit la filière fruits et légumes",
+   "source": "Agro Media",
+   "date": "2026-11-24T10:00:51.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMiygFBVV95cUxOUTFGanRHU3M4cngySDRPSTA4Z3AzS2VmMTUtdGtpSGYtdHhuQ1l5cW1BMVJwMjN5R0czYmVKdUgtM0tPMnFNVEdaQmo3RElUR016dTFkMGwybTZScFM2eDhTdTFZX2RmUzNuWE9nRkp5RDhCUWhVTG1YcXpoMkFfNzI1bVl5UXhxMG9LLVdiMTBXaUpNeGlpMWRKVFRVbElqRVBXLURZVmxoVUJGQ1dPaGxBZGRTbjVBYVJFQVhOWFJmVkFOb1BkVnBR?oc=5",
+   "resume": "",
+   "img": "",
+   "cats": [
+    "fl"
+   ]
+  },
+  {
+   "titre": "Des pommes de terre vendues chez Auchan, E.Leclerc et Lidl rappelées dans toute la France en raison d'un risque d'intoxication",
+   "source": "Franceinfo",
+   "date": "2026-11-24T08:37:26.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMikAJBVV95cUxQcHlfM2hXRlpKRkN1MTU3SnZoU1NlZGp2SjhieF9SUjJ6Rm5hV0VfNndSVVk5VXk4ekVYUGRFczJkSmFPTFBPZmlLTThScmhHUXhwOVhNR0xNMmRRTmRPZi1qWFIzbUZhMVdaUS1IV3BSOTZZckN4T3BoSkdKX0xlY0ZYcFpJZVhPaWhCNEJxOTdOOGF5eGlsVW1LS3RtNnZ1TW1OdDFIVnFieS0xMjVVZGRMYWR4cGpQemJqNUNzdTV4ZE1jNERVRGZJejRFcjhkckEwQVp4RlY2cXllVXFac2E3ZDdubHBjc2JoR3d2bHNNMjZKRkU4Wkg1WUg5a0tPUUxjeDFpelpWV2Fxc0oxMQ?oc=5",
+   "resume": "",
+   "img": "",
+   "cats": [
+    "fl",
+    "gms"
+   ]
+  },
+  {
+   "titre": "Lidl, Aldi ou E.Leclerc : voici le supermarchés le moins cher de France en 2026",
+   "source": "Top Santé",
+   "date": "2026-11-24T05:56:31.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNNVF5a24wRk1PeDRqU2drN2NfNnFINFBwc0pnc25zM3VTS0RNbENKaWpXYmlnYmxGQlpvaXIwZ3pqMEd1alZ6N0xUNV9NdmZRRXNnaVNIZjJlWVVhcWdTekJzRWhnY0o2Z09hblR6WGhPMDBHWEZhWTFqOWtqT2hiM3RSV0gxZ0NnV1YtSjZlNElZVlJ3TnVvcWZjb0ZpblNCcXR4b0lUY21UN1pXeUhoMi1WVHBUMS1wMnBuZkJVUnNmRjJDcEdMZE1iSFJmMlRRdEI0UEhlb0FjVW5PdU9oODVteXVjdm0wV0FYelRR?oc=5",
+   "resume": "",
+   "img": "",
+   "cats": [
+    "gms"
+   ]
+  },
+  {
+   "titre": "Dans cette AMAP de Gironde, « les prix des fruits, des légumes et du pain restent fixes sur toute une année»",
+   "source": "Actu.fr",
+   "date": "2026-11-24T05:46:02.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxNdDh1OEhKWjNONE1vNjJaV2RfbHFSOVZ2ZlZnd08xYzZvOTlOMHVUcW1OaUloWGxfTm9PYzh6dkNSNHIxeGprRG1IMlVSWHVKNmktcHFvUkp1V2trbE05V2x5TlZrR3AwN1lXWGpIVHBmUVZzZGJKUkc2ME1wMFZQMDh6MU1yX0xUdHJadTFsRExGcFJfQm5MbjM3NkdWVzE4ZHBjVXUzNlhRR0wzWXozdmpNeEMwNzhYdkg2ay1pbWlOSnVZYzBvOWpmZUlRamQ0OThDV0ZCa0dHRTFLZ19oVWk2QTBVYks1UkhjYUZ0dlhVSjNiYWEtUQ?oc=5",
+   "resume": "",
    "img": "",
    "cats": [
     "fl"
@@ -179,6 +636,29 @@
    ]
   },
   {
+   "titre": "«Nausées, maux de ventre, vomissements» : des pommes de terre vendues chez Lidl, E.Leclerc et Auchan rappelées",
+   "source": "Le Figaro",
+   "date": "2026-11-23T15:25:20.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxOZjBLeHZ4ZW1Zbzludm56QjUxUTZNVFlSNy0tSkxiV2RaYlRVbzhySWF4cFl3RHo5Rm8tUzBoTlROaGt6UjQwbnM1QjZxWHhwN3dSNHpmNUpqQW1XTVhjWlAtZ3NBczN6OFdVZVdzMzB5UFY1U3ByTEc5NTVldTdNaG1PVm9FQVkzQzBNRlJlY3laRU1SQ1VXNDdzT2JEZy0xWkF1R3ZnbHVVX2MxTTNQdTRqZVhxbDZid2VITk9aYU5aT0VVSXYwa0JGcE5xc1BR?oc=5",
+   "resume": "",
+   "img": "",
+   "cats": [
+    "fl",
+    "gms"
+   ]
+  },
+  {
+   "titre": "« C’est qui le Patron ?! » fête ses dix ans",
+   "source": "La France Agricole",
+   "date": "2026-11-23T13:14:00.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPX2l5aFVyWU5TaGh6UWEwMmJaWTFRbFZTdXQ3Nll0ODlUYndSY0FOZDBOU3JxRWc4enJXVmE0V21hN2o5WG15aS1zd1pxYjlpUXhmbV9OeU1qamhWZ3U5VGM4WWhGMVRMTDNOZlZ5TnNCaDBmcjJieHBsV0w2d2dpWkpWSFJvWGgyN01aN0FyalFmR0s4WkFtY2dTSk1MWVZPenh4Yk1B0gGrAUFVX3lxTFBYTkUxRHhxUFZxTXhWcm9LbFNfa2Nldm9MZ1M2X0tEV1VJYlpTSy0zRkdWQXo0WVR3bElHZERCMDFjR3lFaEJ0eHJqanpRcGRyMVhSZGNkRlZRc21DWGtBajBsZjlQeHRvS1BrTE44bWtnRFdJWDZkUlZjTHdHX0pSWENQV2dLYzhJdFdPSkc1TzZkdWFOZVJXRDVGeXN1djV1R2NMU0pSS3JMSQ?oc=5",
+   "resume": "",
+   "img": "",
+   "cats": [
+    "gms"
+   ]
+  },
+  {
    "titre": "Endive : une image qui évolue, des freins qui persistent",
    "source": "Végétable",
    "date": "2026-11-23T05:22:00.000Z",
@@ -187,6 +667,61 @@
    "img": "",
    "cats": [
     "fl"
+   ]
+  },
+  {
+   "titre": "L'enseigne Otera vient d'ouvrir son deuxième supermarché dans le Pas-de-Calais",
+   "source": "Actu.fr",
+   "date": "2026-11-22T14:00:02.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPNlQ1UDFZNF9oS1ZnZTFNSWszbWxoMW9vNWNsLWZxSzQtM0JVb0R3V3VLaTI0NW1DbVc1RWNVS1lBLWRPZzRtUm9kclRLWGc1NFBSSDd6T2lVaTRMMGlPbHNTblVfNExCNUkzYUJPQjdEdTNPQUZiTjJEX0pLQm1NNmN3UEpNSV9FMVc4ckhZN00yVU5lQS1yZ1luWkRCbWR6dFRaN2FMd3M1OUQ0eGdNbXBXcTRlMG1zTDdGNFNFcE91YTJYOE12amZpMVZicTB6RXhEMVprNXNYOHRwQ09MVU1qNzJPUQ?oc=5",
+   "resume": "",
+   "img": "",
+   "cats": [
+    "gms"
+   ]
+  },
+  {
+   "titre": "Fruits et légumes : le Vietnam vise 20 milliards de dollars d'exportations",
+   "source": "Vietnam+ (VietnamPlus)",
+   "date": "2026-11-22T08:34:12.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPa1pINmwxSk9KT2lPTTBsdFlDVE9TbG9sd2xjQk9jeW9lMEtEb2w4TzhUbWZyLUNIdW1zTFkxY2xFeGRvRk9FRjlUaDdtT3F1RWpzbGp0WEI0MVloRi1XQTZRUFdCMkdDeERGQ2xCZkRiVFMtXzByU0pDLUtvUUFYS3VwYmpDT1RXN29vVGY0TXdjTEZwRUt1QmEyRDdBaHVKXzJSNWhEd3NHOHBfT3ZndVBB?oc=5",
+   "resume": "",
+   "img": "",
+   "cats": [
+    "fl"
+   ]
+  },
+  {
+   "titre": "« Un maximum de produits locaux » : dans les Côtes-d’Armor, elle propose la livraison de fruits et légumes à domicile",
+   "source": "Ouest-France",
+   "date": "2026-11-22T07:02:04.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMioAJBVV95cUxOUkdvcWRRTXRQdnhVQ2RvczQ3WmZ5QkZJazVxd29oYmtwbUNTdnhKSE1BbFBUb1RTOUlxZTdXT2swNHh2NkxRSTR2aG9pYXhQX0t0dkZDYkNBSVdQVzBEcm55UThDMC1JaG42QnoyZVMyZEljcUZMSGFUYmdDdTZKVTFCdVloWkdlMG9oYzl1RFZPcjI3VkVsbTV2Mjdvejg2alhRdktxVzVjaG9naDVncDdvSFZNcmQ5QnlvN2NUeHJUR1ktWjd1TnB6X1FjN0tzdjFpaE9kQWRkcVBZYnRvMFNIcGV6UWU0NklDbURZYVltUHJvenJpeVgxWFVkWE11TFdGUWwyRkNYS3ByRFNRWkZha18xRU9ka21XdTkzd1k?oc=5",
+   "resume": "",
+   "img": "",
+   "cats": [
+    "fl"
+   ]
+  },
+  {
+   "titre": "Naturalia : 20 ans de MDD et le défi des filières agricoles",
+   "source": "https://www.republikgroup.com/",
+   "date": "2026-11-20T17:01:55.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxOX2p5RENSLWpza0tlR2FlZnhwSHVBZmdWYzNjM0tXV3gtblFBVFJnZlBoa0UzTFFVeC1Sa3dOQzlVM0hUOE5QdkRjQnQ0eEpMa3UycmY4eGpzYVdNZUNYOGhMdDMzWUJrbG1vbFd0d2VyWldld2VBLW1DdXJveEM3OXlhN3QxS2RucjJrVy1wNzh3YzhFVmRzQzF6Zkh4MEo4Q01wTDVmdi1seE9qZWRjcUo2a1M3TGlPZkR0TlZvQlRvWGRVUy1nbWRKMm9ISGlSZnppeWRIV1I5YUM4TUpGOEY4alFrZUF6MkVNREV0OXA?oc=5",
+   "resume": "",
+   "img": "",
+   "cats": [
+    "gms"
+   ]
+  },
+  {
+   "titre": "Transparence sur le bio : ce qu'une enseigne doit afficher",
+   "source": "Linternaute.com",
+   "date": "2026-11-20T15:06:36.000Z",
+   "lien": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPNFd1VE5GekRQN0ttMWhncFRDTEsxVDZLRTBGUk1OMWROUFBEcmNtNUJ5OUZYa3B4WWtTV0Z1WWRyOW5HaFVxT3BudzZLN00wYXJmQjBfWlZNa3I2M0JzS1hpemRIYTZFeVA3UHBOeVNTSE1CVm15U0d0b1lWM0k3QURvSHVRS2xlV2g2QmpsbElWMF9EV1RtOEwzcTJZR01QT0xPbWtmLTZpV2kzSmJqREtXdw?oc=5",
+   "resume": "",
+   "img": "",
+   "cats": [
+    "gms"
    ]
   },
   {
